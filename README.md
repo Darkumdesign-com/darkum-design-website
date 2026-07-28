@@ -1,4 +1,4 @@
-# Darkum Design (داركم)
+# Darkum Design
 
 Official website repository for **Darkum Design** — a custom furniture company.
 
