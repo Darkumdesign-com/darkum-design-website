@@ -1,6 +1,8 @@
 # Darkum Design
 
-Official website repository for **Darkum Design** — a custom furniture company.
+DESIGN THAT INSPIRES. CRAFT THAT ENDURES.
+
+Official website repository for **Darkum Design** — a custom handmade furniture company.
 
 Darkum Design is a female-owned furniture and home decor studio bringing timeless Victorian elegance into modern Egyptian homes. Our specialty is custom-built and altered Victorian-style furniture — reimagined and tailored to match the character of your entire home, complete with matching accessories, add-ons, and decorative customizations.
 
@@ -11,9 +13,14 @@ Currently, serving clients across Cairo and Giza, with plans to grow across Egyp
 🛋️ Custom Victorian-style furniture
 🎨 Matching accessories & decorative add-ons
 📍 Cairo & Giza, Egypt
-📩 DM us to start your custom piece
+📩 DM us via the following platforms to start your custom piece:
+- FB: [https://www.facebook.com/darkumdesign](https://www.facebook.com/darkumdesign)
+- Instagram: [https://www.instagram.com/darkumdesign](https://www.instagram.com/darkumdesign)
+- TikTok: [https://www.tiktok.com/@darkumdesign](https://www.tiktok.com/@darkumdesign)
+- YouTube: [https://www.youtube.com/@darkumdesign](https://www.youtube.com/@darkumdesign)
+- Pinterest: [https://www.pinterest.com/darkumdesign](https://www.pinterest.com/darkumdesign)
 
-Category: Furniture Store / Interior Design
+Category: Furniture Store / Interior Design / Home Decor
 
 ## 🚧 Current Status
 
