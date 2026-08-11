@@ -6,6 +6,7 @@
   --cream: #f2e9dd;
   --muted: #8a8078;
   --border: rgba(242, 233, 221, 0.12);
+  --brand-primary-color: #996633;
 }
 
 *{ box-sizing: border-box; }
