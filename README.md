@@ -19,6 +19,8 @@ Currently, serving clients across Cairo and Giza, with plans to grow across Egyp
 - TikTok: [https://www.tiktok.com/@darkumdesign](https://www.tiktok.com/@darkumdesign)
 - YouTube: [https://www.youtube.com/@darkumdesign](https://www.youtube.com/@darkumdesign)
 - Pinterest: [https://www.pinterest.com/darkumdesign](https://www.pinterest.com/darkumdesign)
+- email (Free Gmail): [mailto:darkumdesign@gmail.com](mailto:darkumdesign@gmail.com)
+- X (formerly Twitter): [https://x.com/darkumdesign](https://x.com/darkumdesign)
 
 Category: Furniture Store / Interior Design / Home Decor
 

@@ -1,51 +1,8 @@
 // Darkum Design — coming soon page
-// Minimal JS: language toggle (EN/AR), footer year, front-end-only notify form
+// Bilingual (EN left / AR right) permanent layout — no toggle needed.
+// Minimal JS: footer year, front-end-only notify form, light catchphrase ticker.
 
 (function () {
-  var STORAGE_KEY = 'darkum-lang';
-  var htmlEl = document.documentElement;
-  var bodyEl = document.body;
-  var toggleBtn = document.getElementById('lang-toggle');
-  var translatable = document.querySelectorAll('[data-en]');
-  var emailInput = document.getElementById('email');
-
-  function applyLang(lang) {
-    var isAr = lang === 'ar';
-
-    htmlEl.setAttribute('lang', isAr ? 'ar' : 'en');
-    htmlEl.setAttribute('dir', isAr ? 'rtl' : 'ltr');
-    bodyEl.setAttribute('dir', isAr ? 'rtl' : 'ltr');
-
-    translatable.forEach(function (el) {
-      var text = isAr ? el.getAttribute('data-ar') : el.getAttribute('data-en');
-      if (text !== null) el.textContent = text;
-    });
-
-    if (emailInput) {
-      var placeholder = isAr
-        ? emailInput.getAttribute('data-ar-placeholder')
-        : emailInput.getAttribute('data-en-placeholder');
-      if (placeholder) emailInput.setAttribute('placeholder', placeholder);
-    }
-
-    if (toggleBtn) {
-      toggleBtn.textContent = isAr ? 'English' : 'عربي';
-    }
-
-    localStorage.setItem(STORAGE_KEY, lang);
-  }
-
-  // Restore saved language preference, default to English
-  var savedLang = localStorage.getItem(STORAGE_KEY) || 'en';
-  applyLang(savedLang);
-
-  if (toggleBtn) {
-    toggleBtn.addEventListener('click', function () {
-      var current = htmlEl.getAttribute('lang') === 'ar' ? 'ar' : 'en';
-      applyLang(current === 'ar' ? 'en' : 'ar');
-    });
-  }
-
   // Footer year
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -57,13 +14,63 @@
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var isAr = htmlEl.getAttribute('lang') === 'ar';
       if (message) {
-        message.textContent = isAr
-          ? 'شكرًا لك! سنُعلمك عند إطلاق الموقع.'
-          : "Thank you! We'll let you know when we launch.";
+        message.textContent = "Thank you! We'll let you know when we launch. / شكرًا لك! هنعلمك أول ما نطلق الموقع.";
       }
       form.reset();
     });
+  }
+
+  // Light catchphrase ticker.
+  // Full sliding-question carousel is planned for the real WordPress homepage —
+  // this is a lightweight preview for the coming-soon placeholder.
+  // English enters from the right, Arabic enters from the left, per Bido's spec (2026-08-12).
+  var catchphrases = [
+    {
+      en: "Do you want to buy the same bed as all your friends, family, and neighbors? Customize your bed frame today with Darkum Design.",
+      ar: "عايز تنام على نفس السرير اللي عند كل صحابك وجيرانك؟ اعمل سريرك بتصميمك انت مع داركم ديزاين."
+    },
+    {
+      en: "Is your anniversary coming up? Surprise your partner with romantic customization, only from Darkum Design.",
+      ar: "عيد جوازك قرب؟ فاجئ شريك حياتك بتصميم رومانسي مميز، بس من داركم ديزاين."
+    },
+    {
+      en: "Is your child a superhero fan? Customize his bed with Iron Man or Superman with Darkum Design.",
+      ar: "ابنك بيحب الأبطال الخارقين؟ صمّملّه سرير آيرون مان أو سوبرمان مع داركم ديزاين."
+    }
+  ];
+
+  var tickerEn = document.getElementById('ticker-en');
+  var tickerAr = document.getElementById('ticker-ar');
+
+  if (tickerEn && tickerAr && catchphrases.length) {
+    var index = 0;
+
+    function showPhrase(i) {
+      var phrase = catchphrases[i];
+
+      // Reset animation state
+      tickerEn.classList.remove('enter-en');
+      tickerAr.classList.remove('enter-ar');
+      tickerEn.style.opacity = 0;
+      tickerAr.style.opacity = 0;
+
+      tickerEn.textContent = phrase.en;
+      tickerAr.textContent = phrase.ar;
+
+      // Force reflow so the animation replays every cycle
+      void tickerEn.offsetWidth;
+      void tickerAr.offsetWidth;
+
+      tickerEn.classList.add('enter-en');
+      tickerAr.classList.add('enter-ar');
+    }
+
+    showPhrase(index);
+
+    setInterval(function () {
+      index = (index + 1) % catchphrases.length;
+      showPhrase(index);
+    }, 6000);
   }
 })();
