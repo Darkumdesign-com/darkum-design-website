@@ -14,7 +14,7 @@ This document tracks everything known about the Darkum Design engagement so far:
 - **Key contact / decision authority:** Bido (Albert Friday / AbdAllah Gomaa / Abdallah Gomaa), Noura's uncle and Sobhy's best friend. Bido has positioned Sobhy as sole creative/development authority — nothing goes in or out without Sobhy's approval, and Sobhy is to be contacted before Bido himself.
 - **Payment status:** No payment received yet. This is *not* a case of an offer being sent and ignored — it's an informal, trust-based arrangement given the personal relationship (Noura is Bido's niece). A formal proposal is still pending (see §6).
 - **Access:** Neither Bido nor Noura access Gmail, Social Media accounts, GitHub or Vercel directly — Sobhy administers both solo.
-- **Store**: Under construction in Heliopolis, Cairo. Sobhy has not visited the store yet.
+- **Store**: 10 Aswan Street, El-Sherif Building, Heliopolis, Egypt, 4460305. Under construction in Heliopolis, Cairo. Sobhy has not visited the store yet.
 
 ---
 
