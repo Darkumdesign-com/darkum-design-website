@@ -6,6 +6,7 @@
   --cream: #f2e9dd;
   --muted: #8a8078;
   --border: rgba(242, 233, 221, 0.12);
+  --error: #d16a5a;
 }
 
 *{ box-sizing: border-box; }
@@ -292,6 +293,9 @@ body{
   font-size: 13px;
   color: var(--wood-light);
   margin: 0 0 36px;
+}
+.form-message.is-error{
+  color: var(--error);
 }
 
 .socials{

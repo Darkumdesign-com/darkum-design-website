@@ -16,6 +16,16 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
+      var emailInput = document.getElementById('email');
+      if (emailInput && !emailInput.checkValidity()) {
+        if (message) {
+          message.classList.add('is-error');
+          message.textContent = "Please enter a valid email address. / من فضلك أدخل بريد إلكتروني صحيح.";
+        }
+        emailInput.focus();
+        return;
+      }
+
       var submitBtn = form.querySelector('button[type="submit"]');
       if (submitBtn) submitBtn.disabled = true;
 
@@ -27,6 +37,7 @@
         .then(function (response) {
           if (response.ok) {
             if (message) {
+              message.classList.remove('is-error');
               message.textContent = "Thank you! We'll let you know when we launch. / شكرًا لك! هنعلمك أول ما نطلق الموقع.";
             }
             form.reset();
@@ -36,6 +47,7 @@
         })
         .catch(function () {
           if (message) {
+            message.classList.add('is-error');
             message.textContent = "Something went wrong. Please try again. / حصل خطأ، برجاء المحاولة تاني.";
           }
         })
