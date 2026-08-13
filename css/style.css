@@ -61,47 +61,30 @@ body{
   width: auto;
 }
 
-.mark{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin-bottom: 28px;
-  color: var(--wood-light);
-}
-.mark-line{
-  height: 1px;
-  width: 48px;
-  background: linear-gradient(to right, transparent, var(--wood));
-}
-.mark-line:last-child{
-  background: linear-gradient(to left, transparent, var(--wood));
-}
-
 .brand{
   font-family: 'Cormorant Garamond', serif;
   font-weight: 500;
   font-size: clamp(2.2rem, 6.5vw, 3.2rem);
   letter-spacing: 0.03em;
-  margin: 0 0 14px;
   color: var(--cream);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 18px;
-  flex-wrap: wrap;
+  margin: 0 0 5px;
 }
 .brand .brand-en{
-  font-family: 'Cormorant Garamond', serif;
+  padding: 0;
+  margin: 0;
 }
 .brand .brand-ar{
   font-family: 'Cairo', serif;
   font-weight: 600;
+  font-size: clamp(2.2rem, 6.5vw, 2.8rem);
+  padding: 0;
+  margin: 0;
 }
-.brand .brand-sep{
-  color: var(--wood);
-  font-weight: 300;
-}
+
 
 /* Slogan under brand name */
 .slogan{
@@ -114,44 +97,20 @@ body{
   font-weight: 400;
 }
 
-/* Bilingual two-column layout: English left, Arabic right */
+/* Bilingual pairs: EN+AR tagline together, EN+AR "coming soon" together, separated by a divider */
 .bilingual-grid{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
   margin-bottom: 32px;
-  align-items: start;
+  text-align: center;
 }
 
-.col-en{
+.bi-en{
   direction: ltr;
-  text-align: left;
   font-family: 'Inter', sans-serif;
 }
 
-.col-ar{
+.bi-ar{
   direction: rtl;
-  text-align: right;
   font-family: 'Cairo', sans-serif;
-}
-
-.col-divider{
-  display: none;
-}
-
-@media (min-width: 620px){
-  .col-divider{
-    display: block;
-    width: 1px;
-    background: linear-gradient(to bottom, transparent, var(--border), transparent);
-    grid-column: 2;
-    grid-row: 1 / span 2;
-  }
-  .bilingual-grid{
-    grid-template-columns: 1fr 1px 1fr;
-  }
-  .bilingual-grid .col-en{ grid-column: 1; }
-  .bilingual-grid .col-ar{ grid-column: 3; }
 }
 
 .tagline{
@@ -159,12 +118,20 @@ body{
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--wood-light);
-  margin: 0 0 14px;
+  margin: 0;
 }
-.col-ar .tagline{
+.tagline.bi-ar{
   letter-spacing: 0;
   text-transform: none;
   font-weight: 600;
+  margin: 0 0 16px;
+}
+
+.bi-separator{
+  width: 40px;
+  height: 1px;
+  background: var(--border);
+  margin: 0 auto 16px;
 }
 
 .coming-soon{
@@ -172,6 +139,28 @@ body{
   color: var(--muted);
   margin: 0;
   line-height: 1.7;
+}
+
+@media (min-width: 620px){
+  .bilingual-grid{
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    column-gap: 28px;
+    align-items: start;
+    text-align: initial;
+  }
+  .tagline.bi-en{ grid-column: 1; grid-row: 1; text-align: left; margin: 0 0 14px; }
+  .tagline.bi-ar{ grid-column: 3; grid-row: 1; text-align: right; margin: 0 0 14px; }
+  .coming-soon.bi-en{ grid-column: 1; grid-row: 2; text-align: left; }
+  .coming-soon.bi-ar{ grid-column: 3; grid-row: 2; text-align: right; }
+  .bi-separator{
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    width: 1px;
+    height: auto;
+    background: linear-gradient(to bottom, transparent, var(--border), transparent);
+    margin: 0;
+  }
 }
 
 /* Light sliding catchphrase ticker (full carousel is planned for the real WordPress homepage) */
@@ -222,17 +211,29 @@ body{
   }
 }
 
+/* Decorative divider: fading line — dot — fading line (purely visual, no controls) */
 .divider{
   display: flex;
+  align-items: center;
   justify-content: center;
+  gap: 16px;
   margin-bottom: 32px;
 }
-.divider span{
+.divider-line{
+  height: 1px;
+  width: 48px;
+  background: linear-gradient(to right, transparent, var(--wood));
+}
+.divider-line:last-child{
+  background: linear-gradient(to left, transparent, var(--wood));
+}
+.divider-dot{
   width: 6px;
   height: 6px;
   background: var(--wood);
   border-radius: 50%;
   display: inline-block;
+  flex-shrink: 0;
 }
 
 .notify-form{
@@ -324,16 +325,6 @@ body{
   width: 1px; height: 1px;
   overflow: hidden;
   clip: rect(0,0,0,0);
-}
-
-@media (max-width: 619px){
-  .bilingual-grid{
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  .col-en, .col-ar{
-    text-align: center;
-  }
 }
 
 @media (max-width: 480px){
