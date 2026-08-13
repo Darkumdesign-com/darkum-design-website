@@ -1,23 +1,47 @@
 // Darkum Design — coming soon page
 // Bilingual (EN left / AR right) permanent layout — no toggle needed.
-// Minimal JS: footer year, front-end-only notify form, light catchphrase ticker.
+// Minimal JS: footer year, Formspree-connected notify form, light catchphrase ticker.
 
 (function () {
   // Footer year
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // Notify form — front-end only placeholder until a real backend/service is wired up
+  // Notify form — submits to Formspree (https://formspree.io/f/mzepvbqn) via fetch,
+  // success/error handled in-page (no redirect) with a swapped-in status message.
   var form = document.getElementById('notify-form');
   var message = document.getElementById('form-message');
 
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (message) {
-        message.textContent = "Thank you! We'll let you know when we launch. / شكرًا لك! هنعلمك أول ما نطلق الموقع.";
-      }
-      form.reset();
+
+      var submitBtn = form.querySelector('button[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
+
+      fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      })
+        .then(function (response) {
+          if (response.ok) {
+            if (message) {
+              message.textContent = "Thank you! We'll let you know when we launch. / شكرًا لك! هنعلمك أول ما نطلق الموقع.";
+            }
+            form.reset();
+          } else {
+            throw new Error('Formspree submission failed');
+          }
+        })
+        .catch(function () {
+          if (message) {
+            message.textContent = "Something went wrong. Please try again. / حصل خطأ، برجاء المحاولة تاني.";
+          }
+        })
+        .finally(function () {
+          if (submitBtn) submitBtn.disabled = false;
+        });
     });
   }
 

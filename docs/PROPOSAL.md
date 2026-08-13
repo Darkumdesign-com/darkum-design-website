@@ -19,7 +19,7 @@ This covers everything built for Darkum Design to date, plus the upcoming full w
 
 | # | Item | Status | Price (EGP) |
 |---|---|---|---|
-| 1 | Logo & Brand Mark | ✅ Delivered, quote-validated | 5,000 |
+| 1 | Logo & Brand Mark | ✅ Delivered, quote-validated | 3,000 |
 | 2 | Social Media Presence | ✅ Delivered, quotes pending | 3,000 |
 | 3 | Coming-Soon Page | ✅ Delivered | 9,000 ⚠️ |
 | 4 | Website — Full WordPress/WooCommerce Build | 📋 Scoped, not started | 35,000 ⚠️ |
@@ -34,7 +34,7 @@ This covers everything built for Darkum Design to date, plus the upcoming full w
 
 ## 3. Line Item Details
 
-### 1. Logo & Brand Mark — 5,000 EGP *(revised down from 12,000, validated against 2 real quotes)*
+### 1. Logo & Brand Mark — 3,000 EGP *(revised down from 12,000, validated against 2 real quotes)*
 Full brand mark design, delivered in a complete multi-format export system: 6 file formats (PNG, JPG, WebP, SVG, EPS, AI), 3 color variants (Black/White/Transparent), 4 layout variants (Circular, Exact, Favicon, Horizontal), across raster sizes from 410×489 up to print-resolution 300ppi and full vector — 176 files total, all correctly named and verified.
 
 ### 2. Social Media Presence — 3,000 EGP *(revised down from 12,000, quote-check in progress — see §5)*

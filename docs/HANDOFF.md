@@ -12,7 +12,7 @@ This document tracks everything known about the Darkum Design engagement so far:
 - **Darkum Design (داركم ديزاين)** — Victorian-style custom furniture and home décor studio, operating in Cairo and Giza, Egypt and selling worldwide. Slogan: "FURNITURE · ART · DESIGN".
 - **Owners:** Nourhan Osama ("Noura") and her partner Heba Farouk. Both recent college graduates, not technical — avoid jargon in partner-facing communication.
 - **Key contact / decision authority:** Bido (Albert Friday / AbdAllah Gomaa / Abdallah Gomaa / Cars Buyer Inc Owner), Noura's uncle and Sobhy's best friend, currently in Egypt on vacation. The "nothing goes in or out without approval" arrangement is narrower than previously noted here: Bido said it applies to **technological matters specifically**, and only takes effect **once he returns to the US** — he's delegating to Sobhy in his stead for that period. It also wasn't said directly to Noura/Heba; it was said to his own circle, roughly: "I am not staying here forever... once my plane takes off, [Sobhy] is here in my stead. If you have questions, ask him. If you have a problem, ask him. If you have crazy ideas, ask him also. Nothing technological goes in or out without [Sobhy's] approval."
-- **Payment status:** No payment received yet. This is *not* a case of an offer being sent and ignored — it's an informal, trust-based arrangement given the personal relationship (Noura is Bido's niece). A formal proposal is now drafted (see §6) — Sobhy explicitly does not want to treat this as a favor: the work (logo, social media presence, coming-soon page, upcoming full site) is billable regardless of the personal relationship.
+- **Payment status:** No payment received yet. This is *not* a case of an offer being sent and ignored — it's an informal, trust-based arrangement given the personal relationship (Noura is Bido's niece). A formal proposal is now drafted (see §6) — Sobhy explicitly does not want to treat this as a favor: the work (logo, social media presence, coming-soon page, upcoming full site) is billable regardless of the personal relationship. **Bido explicitly reconfirmed on 2026-08-13 (third time Sobhy asked directly) that the arrangement is paid, not a favor** — see §6 for the full call summary and the pricing pushback that came with that confirmation.
 - **Access:** Neither Bido nor Noura access Gmail, Social Media accounts, GitHub or Vercel directly — Sobhy administers both solo.
 - **Store**: Store No. 5, 10 Aswan Street, El-Sherif Building, Heliopolis, Egypt, 4460305. Under construction in Heliopolis, Cairo. Sobhy has not visited the store yet.
 
@@ -31,6 +31,7 @@ This document tracks everything known about the Darkum Design engagement so far:
 - **Fixed (2026-08-12):** "Exact" layout PNG/JPG/WebP files were mislabeled — suffixes claimed square sizes (`512px`, `1024px`, `2048px`) but the actual images are non-square (`Exact` preserves the logo's natural proportions, ~410:489 ratio, unlike the square-cropped `Circular`/`Favicon` layouts). Pixel content was correct; only filenames were wrong. Renamed 27 files across PNG/JPG/WebP to reflect true dimensions (e.g. `-512px` → `-410x489px`, `-1024px` → `-820x978px`, `-2048px` → `-1640x1954px`). No re-export needed — `300ppi` suffix was unaffected since it describes resolution, not claimed pixel size. **Already-sent WhatsApp files to partners were not affected/reissued** — only the local export folder was corrected.
 - **Brand primary color confirmed:** the mark's native fill is `#996633` (hex shorthand `#963` in the SVG source) — this is the single source of truth for the brand's primary color, now also the site's `--brand-primary-color` CSS variable (see §5).
 - **Pricing validated (2026-08-13):** Sobhy contacted 2 Khamsat freelancers for quotes on logo work matching this exact spec (multi-format/multi-color/multi-layout export). Had full conversations with both; both confirmed they'd deliver all 176 files at the real spec — $80 (~4,000 EGP) and $40 (~2,000 EGP). Combined with Sobhy's own instinct (max 5,000 EGP), the proposal's original 12,000 EGP figure (sourced from Egyptian agency-blog marketing pages) was confirmed too high for this context. See §6 for the revised proposal figure.
+- **Third Khamsat offer received (2026-08-13) — ⚠️ preliminary, not yet scope-confirmed:** [Shatha A.](https://khamsat.com/user/shatha_abufoul4) quoted **$40**, then unprompted self-discounted to **$25** ("سعر مميز لك استاذي" — a "special price for you"). No back-and-forth yet confirming she understood the full 176-file multi-format/multi-color/multi-layout spec (unlike the two quotes above, which were validated through full conversations) — her message is generic, no reference to any specific deliverable. The unprompted ~37.5% self-discount before Sobhy even responded is itself worth noting: it suggests the listed $40 wasn't a firm number to begin with, which cuts against using either figure ($40 or $25) as a reliable data point until scope is confirmed the same way the first two were.
 
 ---
 
@@ -86,6 +87,19 @@ No free plugin puts a true reply-from-everywhere inbox inside wp-admin — that'
 To get an accurate Social Media Presence price the same way the logo was validated, a freelancer quote request brief was drafted, describing the exact one-time setup scope delivered (9 platform accounts, bilingual bio/About copywriting, business email setup, unified-inbox recommendation, phone number integration) — deliberately flagged as **one-time setup, not monthly management**, since almost all Egyptian social-media freelance pricing defaults to monthly retainers and would otherwise produce incomparable quotes. Sobhy to send to 3+ freelancers.
 - English version: `docs/SOCIAL-MEDIA-FREELANCER-REQUEST.md`
 - Egyptian Arabic version: `docs/SOCIAL-MEDIA-FREELANCER-REQUEST-AR.md` (colloquial register, no em dash — comma used instead, matching Sobhy's established preference)
+
+**Four offers received on Khamsat (2026-08-13) — ⚠️ preliminary, not yet scope-confirmed:**
+
+| # | Freelancer | Quote (USD) | ≈EGP (~50.2:1, Aug 2026 rate) | Scope-confirmation signal |
+|---|---|---|---|---|
+| 1 | Ahmed A. | $40 | ~2,010 | Weak — generic "it's big work but I can do it," no reference to specific line items (9 platforms, bilingual copy, 4 emails, inbox tool, phone linking) |
+| 2 | أحمد ع. | $250 | ~12,550 | Strongest — specifically referenced the email setup line and asked a clarifying question about which free email service is already in use, showing he read past the headline |
+| 3 | إسماعيل س. | $130 | ~6,530 | Moderate — says he read it "بالتفصيل" (in detail) but doesn't reference anything specific to prove it |
+| 4 | [Ahmed H.](https://khamsat.com/user/ahmedsleem) | $50 | ~2,510 | Strong — itemized his own reply against the brief: 9 accounts "bel esm el morad" (with the requested name), bilingual bio/description, About sections sized per-platform character limits, and business email account creation. **Also explicitly separated the one-time setup price ($50) from ongoing post/reel creation ("7asb el ettefa2" — by separate agreement)** — matches the brief's one-time-vs-monthly distinction exactly, a good sign he's pricing the actual scope rather than a generic package. |
+
+**USD is the reference currency for all freelancer quotes going forward** (EGP shown only as an approximate, date-stamped conversion) — EGP has moved noticeably within 2026 alone (46.6–54.9 range over the past year per market data), so a fixed EGP figure agreed on today can look wrong in a few weeks purely from currency movement, independent of the actual value of the work. Quotes, the proposal's internal figures, and any market-research comparisons should be tracked in USD; EGP is only for the client-facing final number, generated at time of invoicing.
+
+Average ≈ $118 (range $40–$250), median $90 — pointing *above* Sobhy's current 3,000 EGP (~$60) proposal estimate (opposite direction from the logo, where real quotes came in below the agency-blog figure). Adding Ahmed H.'s $50 pulls the average down from the 3-quote figure ($140) and puts it closer to Sobhy's own estimate. **None of these four have been through the confirm-the-exact-scope conversation that validated the two logo quotes** — Ahmed H.'s reply is the closest to that bar on its own (itemized against the brief unprompted), but still hasn't had a back-and-forth confirming he'd actually deliver at the full spec. Recommend the same back-and-forth Sobhy did for the logo before using any of these in §6/PROPOSAL.md.
 
 ---
 
@@ -146,6 +160,19 @@ This is the "very customizable product" and is effectively a mini product config
 
 **Scoping note:** even with the right plugin, wiring up the full conditional chain (position → insertions → size, repeated per position) is several hours of careful setup — this should be its own line item in the proposal, not folded into general "website build."
 
+### Pricing quote request — in progress (2026-08-13)
+To continue the same market-research approach used for the Logo and Social Media Presence, a freelancer/developer quote request brief was drafted for Item 4 (Website — Full WordPress/WooCommerce Build), **explicitly excluding** the Bed Frame Configurator (Item 5, priced and sourced separately — see reasoning above).
+
+**Both open scope questions resolved with Sobhy (2026-08-13), before the brief was sent:**
+
+1. **Animation scope:** Hero section uses a custom-built, smoother/more polished version of the Q&A catchphrase slideshow already previewed on the coming-soon page (same direction logic — EN slides from right, AR from left). **Every other section on the homepage uses only light fade-in/fade-out** (Kadence native scroll-reveal, free, no slider plugin needed anywhere on the site). This fully resolves the earlier "scroll-reveal vs. slider plugin" open item in §7 — removed from there, no MetaSlider needed.
+2. **Bilingual approach:** Bido confirmed the **homepage must be simultaneous EN/AR, side-by-side, no switcher** — same technique as the coming-soon page, custom-coded, not plugin-driven. However, **WooCommerce's own pages (cart, checkout, my-account) are server-rendered by the plugin and can't be split into two simultaneous languages on one page** — this is a real technical constraint, not a preference, and Bido (whose prior bilingual site experience was a US English/Spanish site with a manual switcher) hadn't hit this distinction before since this is his first Arabic/RTL site. **Resolved approach:** a multilingual plugin (Polylang or WPML) on the WooCommerce pages only, configured to **silently auto-detect the visitor's browser language** (no visible switcher, session-persisted so it doesn't flip mid-checkout) — functionally achieves "feels automatic, no manual choice" without requiring a custom JS re-render of WooCommerce's own templates. **Fallback default set by Sobhy/Claude (not yet run past Bido, trivial to flip):** if the browser locale is neither English nor Arabic, default to English.
+
+- English version: `docs/WEBSITE-FREELANCER-REQUEST.md`
+- Egyptian Arabic version: `docs/WEBSITE-FREELANCER-REQUEST-AR.md`
+
+Both briefs rewritten 2026-08-13 to reflect the resolved scope above (no more "quote with an assumption" hedging — the brief now states the final architecture directly). Sobhy to send to 3+ developers, same validation approach as Logo/Social Media (see §2–§3).
+
 ---
 
 ## 5. Repo / Infra
@@ -162,6 +189,22 @@ This is the "very customizable product" and is effectively a mini product config
 - **`README.md` corrected (2026-08-13):** tech stack section updated from "TBD" to the confirmed WordPress/WooCommerce/Kadence stack (see §4); "Victorian-style" and "Cairo & Giza" framing replaced with the bed-frame/interchangeable-insert positioning and Egypt-wide delivery scope, matching the finalized OG/GBP copy in §8; tagline updated to the confirmed "FURNITURE · ART · DESIGN" slogan (was "DESIGN THAT INSPIRES. CRAFT THAT ENDURES.", an older/superseded line). Both docs now match.
 - **`docs/PROPOSAL.md` created (2026-08-13):** full pricing proposal draft — see §6 for current status and figures.
 - **`docs/SOCIAL-MEDIA-FREELANCER-REQUEST.md` + `-AR.md` created (2026-08-13):** freelancer quote request briefs — see §3.
+- **`docs/COMING-SOON-FREELANCER-REQUEST.md` + `-AR.md` created and sent to 4 freelancers (2026-08-13):** briefs covering the full coming-soon page rebuild, with heavy emphasis on the hand-coded inline SVG icon requirement and ARIA/accessibility (see §7).
+
+### Coming-Soon Page pricing quote request — responses in progress (2026-08-13)
+
+**Two offers received on Khamsat so far — both show strong, itemized scope confirmation (closest yet to the logo-quote validation bar, on the first reply, unprompted):**
+
+| # | Freelancer | Quote | Timeline | Notes |
+|---|---|---|---|---|
+| 1 | [Muhammet Garib E.](https://khamsat.com/user/muhammed9630) | $60 (~3,010 EGP) | 5 days | Went through nearly every brief item individually and confirmed each: plain HTML/CSS/JS, no build tools; honestly noted his prior bilingual (EN/AR RTL) project used a switcher rather than simultaneous display, but confirmed he understands the side-by-side requirement and can execute it; explicitly confirmed hand-drawing all 9 SVG icons inline in unified line-art style, no icon libraries; confirmed catchphrase ticker, logo/favicon, OG/Twitter/JSON-LD, and **all ARIA/accessibility items by name**. |
+| 2 | [Mostafa E.](https://khamsat.com/user/mostafa_hamdi) | 7,000 EGP (UI/validation only) or 8,000 EGP (with real backend email capture) (~$139/$159) | 7 days | ~3 years web dev experience; also honestly flagged his prior multi-language/RTL work used a switcher, not simultaneous display, but described the layout approach he'd use for the simultaneous requirement; independently confirmed the exact SVG icon spec (`viewBox="0 0 24 24"`, `stroke="currentColor"`, appropriate `stroke-width`, `aria-label` per icon) without being walked through it; confirmed fonts, grain effect, SEO/OG/Twitter/JSON-LD, and accessibility items. |
+
+**Both freelancers independently asked the same clarifying question, unprompted — a real gap in the brief, not a misunderstanding:** does "Notify Me" need to actually capture/store/send the submitted email (real backend), or just show a success/error message (UI + validation only, no data persistence)? **The brief never specified this.** Checked against the current live page (`js/script.js`): today's Notify Me form is explicitly **front-end only** — code comment reads "front-end only placeholder until a real backend/service is wired up" — it shows a success message but the email goes nowhere.
+
+**Resolved (2026-08-13):** if real capture is wanted, the service is **Formspree** — Sobhy's established choice, already used on his own site (SobhyDev), free-tier available, no server-side/backend code needed (form POSTs directly to Formspree, which forwards to email). This gives both freelancers a concrete, identical integration to price against — "Formspree integration" rather than a vague "real backend" — so the two quotes stay apples-to-apples once Sobhy decides which scope (UI-only vs. Formspree-connected) to lock in. **The UI-only vs. Formspree decision itself is a product/business call for Sobhy, not a pricing-research question** — both scopes are being tracked here purely so the market-research figures in §6/PROPOSAL.md are accurate regardless of which way Sobhy decides to go.
+
+**Neither figure has been fully locked in yet** — both are pending Sobhy's answer on the Notify Me question above before the freelancers can confirm a final number.
 
 ---
 
@@ -196,12 +239,27 @@ This is the "very customizable product" and is effectively a mini product config
 - The ongoing creative-authority / gatekeeper role Bido described (nothing goes out without Sobhy's sign-off) is structurally a **retainer**, separate from one-time project pricing — should not be bundled in (reflected above).
 - Skilled/specialized work (e.g., the Bed Frame configurator setup, any CNC/vector work, branding) has a pattern of being informally treated as "just part of the website" — name and price these explicitly as their own line items (reflected above).
 
+### Client conversation — 2026-08-13 (Bido negotiation call)
+
+Bido called back after Sobhy asked directly (**third time**) whether the arrangement is a paid engagement or a favor. Summary, as reported by Sobhy:
+
+- Bido confirmed: **paid**, not a favor.
+- When asked if he/Noura have a budget figure: Bido said Noura had a quote from a friend, weeks before contacting Sobhy, for **10,000 EGP total** covering "all the services we are asking for." Bido said he steered Noura toward Sobhy instead, citing their ~7-year working history and personal trust.
+- Bido then reframed pricing around Sobhy's **monthly salary** (stated as 15,000 EGP, mentioned during the earlier logo work): his framing was that paying salary-equivalent for work that "doesn't take a month to create" is a good deal for both sides.
+- Sobhy pushed back on both points: a freelance/project rate isn't equivalent to a salary, and asked whether the friend's 10,000 EGP quote-giver is actually qualified to do the full scope (logo + social + website). Bido said yes, claiming the friend has done logos/social/websites for other friends of Noura's and is "tested inside out."
+- Sobhy's response: declined to argue the number directly, and said he's doing item-by-item market research instead (the ongoing Khamsat quote-gathering — see §2–§3) and will share findings once complete.
+- Bido's closing note: told Sobhy not to price too high, or Noura will go to her friend instead of dealing with the "uncle"/"sir" dynamic.
+
+**Sobhy's read:** believes Bido is deliberately using two tactics — anchoring against an unverified competing quote, and reframing project pricing as salary-equivalent to suppress the number — and is skeptical the friend/quote is real or fully scoped.
+
+**Noted for the record, not yet verified:** the 10,000 EGP competing quote and the friend's claimed track record are both unconfirmed third-hand claims (no name, no portfolio, no direct contact) — treat as a negotiation anchor, not as market data, until/unless independently verified. The market-research approach already underway (§2–§3, extending to §4) remains the correct response: it's currency- and scope-explicit, sourced directly from working freelancers, and isn't vulnerable to either tactic above.
+
 ---
 
 ## 7. Open Items / Next Steps
 
 - [x] Confirm exact handles/URLs for TikTok, YouTube, Pinterest, and X — done by Sobhy directly in `README.md` and `index.html` (2026-08-12)
-- [ ] Confirm with client: "sliding animations" = scroll-reveal (Kadence native) or carousel/slider (needs MetaSlider)? — separate from the hero catchphrase carousel, which is confirmed scope
+- [x] Confirm with client: "sliding animations" = scroll-reveal (Kadence native) or carousel/slider (needs MetaSlider)? — resolved 2026-08-13, see §4: hero uses a custom Q&A slideshow, everything else uses Kadence's native fade-in/fade-out scroll-reveal, no slider plugin needed
 - [ ] Get the full list of homepage sliding catchphrases from Bido (only 3 examples given so far — see §4)
 - [ ] Await partner confirmation on Advanced Product Fields (APF) — or move to alternative plugin (does not block the proposal, see §6)
 - [ ] Build out Bed Frame configurator once plugin is confirmed
@@ -213,8 +271,8 @@ This is the "very customizable product" and is effectively a mini product config
 - [ ] Remaining social platform copy (LinkedIn, etc.)
 - [ ] Decide on Etsy account setup (pending Noura/Heba)
 - [x] Draft full proposal — done 2026-08-13, `docs/PROPOSAL.md`, see §6
-- [ ] Send Social Media Presence freelancer quote request to 3+ freelancers — briefs ready (`docs/SOCIAL-MEDIA-FREELANCER-REQUEST.md` + `-AR.md`), see §3
-- [ ] Get comparable freelancer quotes for Coming-Soon Page, Website, and Bed Frame Configurator (same approach as Logo/Social Media) before finalizing pricing — see §6
+- [x] Send Social Media Presence freelancer quote request to 3+ freelancers — briefs sent, 3 offers received on Khamsat (2026-08-13), see §3. Still pending: scope-confirmation follow-up with each before treating as validated.
+- [ ] Get comparable freelancer quotes for Coming-Soon Page, Website, and Bed Frame Configurator (same approach as Logo/Social Media) before finalizing pricing — see §6. Coming-Soon Page request sent to 4 freelancers 2026-08-13 (`docs/COMING-SOON-FREELANCER-REQUEST.md` + `-AR.md`), responses pending. Website request drafted 2026-08-13 (`docs/WEBSITE-FREELANCER-REQUEST.md` + `-AR.md`, see §4), not yet sent. Bed Frame Configurator quote request still not started — blocked on plugin confirmation.
 - [x] Update `README.md` — tech stack section + Victorian-style/Cairo & Giza framing + tagline — done 2026-08-13, see §5
 - [ ] Sobhy to review the final coming-soon page (all social links live) and confirm before committing/pushing to GitHub and deploying on Vercel
 - [x] Add Open Graph / Twitter Card meta tags + og:image to the coming-soon page — done 2026-08-12 (image created by Sobhy, meta tags added to `index.html`, see §5)
