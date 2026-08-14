@@ -1,6 +1,6 @@
 # Darkum Design — Project Handoff
 
-**Last updated:** 2026-08-13
+**Last updated:** 2026-08-14
 **Maintainer:** Sobhy (sole developer/administrator — GitHub Org `darkumdesign`, separate Vercel account)
 
 This document tracks everything known about the Darkum Design engagement so far: business context, completed work, decisions made, and open items. Update this file as things change — it's the source of truth for anyone (including future-you) picking this project back up.
@@ -9,12 +9,12 @@ This document tracks everything known about the Darkum Design engagement so far:
 
 ## 1. Business Context
 
-- **Darkum Design (داركم ديزاين)** — Victorian-style custom furniture and home décor studio, operating in Cairo and Giza, Egypt and selling worldwide. Slogan: "FURNITURE · ART · DESIGN".
+- **Darkum Design (داركم ديزاين)** — custom furniture and home décor shop, based in Heliopolis, Cairo, delivering across Egypt. Slogan: "FURNITURE · ART · DESIGN". (Corrected 2026-08-14: dropped the old "Victorian-style / Cairo and Giza / selling worldwide" framing, which had already been retired from `README.md` and the coming-soon page's OG copy but never updated here — see §5. Word choice is "shop," not "studio," per the 2026-08-14 decision, see §8.)
 - **Owners:** Nourhan Osama ("Noura") and her partner Heba Farouk. Both recent college graduates, not technical — avoid jargon in partner-facing communication.
 - **Key contact / decision authority:** Bido (Albert Friday / AbdAllah Gomaa / Abdallah Gomaa / Cars Buyer Inc Owner), Noura's uncle and Sobhy's best friend, currently in Egypt on vacation. The "nothing goes in or out without approval" arrangement is narrower than previously noted here: Bido said it applies to **technological matters specifically**, and only takes effect **once he returns to the US** — he's delegating to Sobhy in his stead for that period. It also wasn't said directly to Noura/Heba; it was said to his own circle, roughly: "I am not staying here forever... once my plane takes off, [Sobhy] is here in my stead. If you have questions, ask him. If you have a problem, ask him. If you have crazy ideas, ask him also. Nothing technological goes in or out without [Sobhy's] approval."
 - **Payment status:** No payment received yet. This is *not* a case of an offer being sent and ignored — it's an informal, trust-based arrangement given the personal relationship (Noura is Bido's niece). A formal proposal is now drafted (see §6) — Sobhy explicitly does not want to treat this as a favor: the work (logo, social media presence, coming-soon page, upcoming full site) is billable regardless of the personal relationship. **Bido explicitly reconfirmed on 2026-08-13 (third time Sobhy asked directly) that the arrangement is paid, not a favor** — see §6 for the full call summary and the pricing pushback that came with that confirmation.
 - **Access:** Neither Bido nor Noura access Gmail, Social Media accounts, GitHub or Vercel directly — Sobhy administers both solo.
-- **Store**: Store No. 5, 10 Aswan Street, El-Sherif Building, Heliopolis, Egypt, 4460305. Under construction in Heliopolis, Cairo. Sobhy has not visited the store yet.
+- **Store**: Store No. 5, 10 Aswan Street, El-Sherif Building, Heliopolis, Cairo, Egypt, 4460305. Under construction in Heliopolis, Cairo. Sobhy has not visited the store yet.
 
 ---
 
@@ -45,17 +45,17 @@ This document tracks everything known about the Darkum Design engagement so far:
 | Instagram | ✅ Established, bio copy written, linked on coming-soon page |
 | Threads | ✅ Established (`@darkumdesign`), linked live on the coming-soon page (added 2026-08-13) |
 | TikTok | ⚠️ Personal/Creator account only — business account blocked, see below. Handle confirmed (`@darkumdesign`) and linked live on the coming-soon page. |
-| YouTube | ✅ Established, linked live on the coming-soon page (`@darkumdesign`) |
+| YouTube | ✅ Established, linked live on the coming-soon page (`@darkumdesign`). Bilingual About description published 2026-08-14 — the earlier "We couldn't save your changes" error turned out to be a stale-session/cache issue, resolved by a hard reload, not a content problem. Contact email set to `info@darkumdesign.com`. **Published version is still the old, shorter draft** — a fuller version using the full 1,000-char field (and the "Shop"/"محل" wording) now exists in `docs/MARKETING-COPY.md` and needs re-publishing, see §7. |
 | Pinterest | ✅ Established, linked live on the coming-soon page |
 | X (Twitter) | ✅ Established, linked live on the coming-soon page. Still needs verification of the business phone number (now available, see below) for the account itself. |
 | Email | ✅ `darkumdesign@gmail.com` (Free Gmail). Business domain email also now set up via Zoho — see "Business email addresses" below. |
-| Email (business domain) | ✅ `info@darkumdesign.com` Login using `darkumdesign@gmail.com`. Used on the coming-soon page. |
+| Email (business domain) | ✅ `info@darkumdesign.com` Login using `darkumdesign@gmail.com`. Used on the coming-soon page and as the YouTube channel's public contact email. |
 | Messenger | ✅ Live click-to-chat link (`m.me/darkumdesign`), listed in `README.md` |
 | Houzz | 💡 Recommended, not yet actioned |
 | WhatsApp Business | 💡 Recommended, not yet actioned. Currently a personal WhatsApp number, not the Business app/tier. Coming-soon page links directly to the business number via `wa.me/201037888900` in the meantime. |
 | Google Business Profile | 🔃 Created, but Waiting verification on 17 August 2026 |
 | Etsy | 💡 Explained to Noura/Heba for consideration (handmade/custom positioning fits well) — decision pending |
-| LinkedIn | ⚠️ Company Page created. Tagline + About description drafted in both English and pending the colloquial Egyptian Arabic  — see §8. |
+| LinkedIn | ⚠️ Company Page created. English tagline + About published 2026-08-14. Arabic About pasted in (slogan corrected to the translated version, matching YouTube) but **not yet saved** — pending the "Shop"/"محل" word swap, see `docs/MARKETING-COPY.md`. |
 
 **All confirmed handles for the coming-soon page's social row are sourced from `README.md`, which Sobhy maintains directly as the source of truth for social URLs.**
 
@@ -184,12 +184,13 @@ Both briefs rewritten 2026-08-13 to reflect the resolved scope above (no more "q
 - **Logo assets in repo:** `img/darkum-logo.svg` + `img/darkum-logo.png` (Transparent/Exact variant, mark only), `img/favicon.svg` + `img/favicon.png`, copied from the master export folder in §2.
 - **Social links on coming-soon page — all 9 live (updated 2026-08-13):** Instagram, Threads, Facebook, TikTok, YouTube, Pinterest, X, and Email use the exact handles Sobhy confirmed in `README.md`; WhatsApp links to the business number (`wa.me/201037888900` — corrected 2026-08-13, see §3).
 - Sobhy reviewed the bilingual layout and social icons in-browser and confirmed both looked correct (2026-08-12).
-- **Open Graph / Twitter Card meta tags added (2026-08-12):** `og:url`, `og:type`, `og:title`, `og:description`, `og:image` (+ `width`/`height`), and matching `twitter:card` (`summary_large_image`), `twitter:title`, `twitter:description`, `twitter:image`, `twitter:domain`, `twitter:url` added to `index.html`'s `<head>`. Page `<title>` and plain `name="description"` left unchanged. `og:image`/`twitter:image` use the absolute URL `https://darkumdesign.com/img/og-image.png` — won't resolve on local/preview URLs, only once live on the real domain. **`img/og-image.png` (1200×630) was created by Sobhy directly**, not generated by Claude. OG description text is the finalized copy in §8.
+- **Open Graph / Twitter Card meta tags added (2026-08-12):** `og:url`, `og:type`, `og:title`, `og:description`, `og:image` (+ `width`/`height`), and matching `twitter:card` (`summary_large_image`), `twitter:title`, `twitter:description`, `twitter:image`, `twitter:domain`, `twitter:url` added to `index.html`'s `<head>`. Page `<title>` and plain `name="description"` left unchanged. `og:image`/`twitter:image` use the absolute URL `https://darkumdesign.com/img/og-image.png` — won't resolve on local/preview URLs, only once live on the real domain. **`img/og-image.png` (1200×630) was created by Sobhy directly**, not generated by Claude. OG description text is in `docs/MARKETING-COPY.md` — still has an em dash predating the no-em-dash-in-English rule, flagged there but not changed yet since it requires editing live `index.html`, see §7.
 - **JSON-LD structured data added (2026-08-13):** `<script type="application/ld+json">` in `index.html`'s `<head>`, `@type: "FurnitureStore"`. Includes `name`/`alternateName`, `url`, `logo`, `image`, `email`, `address` (`PostalAddress`, store address from §1), `contactPoint` (two entries — `contactType: "phone"` and `contactType: "customer service"` for WhatsApp, both using the confirmed `+20-10-37-888-900`), and `sameAs` (8 social profile URLs from `README.md`). WhatsApp/Messenger deep links (`wa.me`/`m.me`) were deliberately excluded from `sameAs` — those aren't identity/profile pages, they're click-to-chat links, so WhatsApp is represented via `contactPoint` instead. No `description` field included — avoided propagating the retired "Victorian-style"/"Cairo & Giza" framing.
-- **`README.md` corrected (2026-08-13):** tech stack section updated from "TBD" to the confirmed WordPress/WooCommerce/Kadence stack (see §4); "Victorian-style" and "Cairo & Giza" framing replaced with the bed-frame/interchangeable-insert positioning and Egypt-wide delivery scope, matching the finalized OG/GBP copy in §8; tagline updated to the confirmed "FURNITURE · ART · DESIGN" slogan (was "DESIGN THAT INSPIRES. CRAFT THAT ENDURES.", an older/superseded line). Both docs now match.
+- **`README.md` corrected (2026-08-13):** tech stack section updated from "TBD" to the confirmed WordPress/WooCommerce/Kadence stack (see §4); "Victorian-style" and "Cairo & Giza" framing replaced with the bed-frame/interchangeable-insert positioning and Egypt-wide delivery scope, matching the finalized OG/GBP copy in `docs/MARKETING-COPY.md`; tagline updated to the confirmed "FURNITURE · ART · DESIGN" slogan (was "DESIGN THAT INSPIRES. CRAFT THAT ENDURES.", an older/superseded line). Both docs now match.
 - **`docs/PROPOSAL.md` created (2026-08-13):** full pricing proposal draft — see §6 for current status and figures.
 - **`docs/SOCIAL-MEDIA-FREELANCER-REQUEST.md` + `-AR.md` created (2026-08-13):** freelancer quote request briefs — see §3.
 - **`docs/COMING-SOON-FREELANCER-REQUEST.md` + `-AR.md` created and sent to 4 freelancers (2026-08-13):** briefs covering the full coming-soon page rebuild, with heavy emphasis on the hand-coded inline SVG icon requirement and ARIA/accessibility (see §7).
+- **`docs/MARKETING-COPY.md` created (2026-08-14):** all reusable bio/About/tagline copy moved out of this file's old §8 into its own document — see §8 below.
 - **Notify Me form — ✅ complete, Formspree-connected (2026-08-13):** the front-end-only placeholder (see §4) is retired. `index.html`'s `#notify-form` now posts to Formspree endpoint `https://formspree.io/f/mzepvbqn` (project "Darkum Design," form "Coming Soon (Notify me) - Darkum Design"), `action`/`method` attributes set as a no-JS fallback. `js/script.js` submits via `fetch()` (no `@formspree/ajax` library pulled in — plain `fetch` matches the site's no-build-step approach and keeps the footprint identical to before) with `Accept: application/json` so Formspree replies with JSON instead of redirecting. Success and failure both swap the existing bilingual `#form-message` text in place — no redirect, no separate thank-you page, matching the "front-end placeholder is good enough for a coming-soon page" decision. Submit button disables mid-request to prevent double-submits. Client-side email-format validation added (`emailInput.checkValidity()`, leaning on the existing `type="email"` input rather than a new regex) so obviously-invalid input is caught instantly and shown via the bilingual message, without a round trip to Formspree — `novalidate` stays on the `<form>` since it's only suppressing the browser's own (English-only) validation UI, not `checkValidity()` itself. Error and success states are now visually distinct: `.form-message.is-error` uses a new `--error: #d16a5a` CSS variable (muted terracotta-red, chosen to read clearly as an error without clashing with the black/wood-brown palette) toggled via JS; success keeps the original `--wood-light` amber. **Verified live (2026-08-13):** two real test submissions (`sobhydesign@gmail.com`, `sobhy0101@gmail.com`) confirmed landing in the Formspree inbox; invalid input (`sdasd`) confirmed caught client-side with the red bilingual message, no network call made.
 
 ### Coming-Soon Page pricing quote request — responses in progress (2026-08-13)
@@ -269,7 +270,6 @@ Bido called back after Sobhy asked directly (**third time**) whether the arrange
 - [ ] Complete registrar email verification for the domain (avoid suspension)
 - [ ] Clarify Darkum Design's legal entity status in Egypt (affects TikTok business account path)
 - [ ] Resolve TikTok business account once commercial registration docs are available
-- [ ] Remaining social platform copy (LinkedIn, etc.)
 - [ ] Decide on Etsy account setup (pending Noura/Heba)
 - [x] Draft full proposal — done 2026-08-13, `docs/PROPOSAL.md`, see §6
 - [x] Send Social Media Presence freelancer quote request to 3+ freelancers — briefs sent, 3 offers received on Khamsat (2026-08-13), see §3. Still pending: scope-confirmation follow-up with each before treating as validated.
@@ -277,73 +277,18 @@ Bido called back after Sobhy asked directly (**third time**) whether the arrange
 - [x] Update `README.md` — tech stack section + Victorian-style/Cairo & Giza framing + tagline — done 2026-08-13, see §5
 - [ ] Sobhy to review the final coming-soon page (all social links live) and confirm before committing/pushing to GitHub and deploying on Vercel
 - [x] Add Open Graph / Twitter Card meta tags + og:image to the coming-soon page — done 2026-08-12 (image created by Sobhy, meta tags added to `index.html`, see §5)
-- [ ] Publish/finish the LinkedIn Company Page (tagline + About description drafted, ready to paste in — see §8)
+- [ ] Finish publishing the LinkedIn Company Page — English tagline + About live (2026-08-14); Arabic About pasted in but not yet saved, pending the "Shop"/"محل" word swap, see `docs/MARKETING-COPY.md`
 - [ ] Google Business Profile — created, pending verification 17 August 2026
+- [x] Resolve YouTube "We couldn't save your changes. Please try again." error — fixed 2026-08-14, turned out to be a stale-session/cache issue, resolved by clearing cache and hard-reloading the page. Not a content or character-limit problem.
+- [ ] Re-publish YouTube About description with the fuller version in `docs/MARKETING-COPY.md` (current live version is still the shorter 2026-08-13 draft, which left the 1,000-char field underused)
 - [x] Add JSON-LD structured data (`FurnitureStore`) to the coming-soon page — done 2026-08-13, see §5
+- [x] Decide LinkedIn Arabic slogan: translated (أثاث · فن · تصميم), not transliterated (فرنيتشر · آرت · ديزاين) — matches YouTube, resolved 2026-08-14, Sobhy applied it directly in the LinkedIn draft
+- [x] Brand word choice decided 2026-08-14: **"Shop" (EN) / "محل" (AR)**, not "Studio"/"استوديو" — see §8 for reasoning. Applied across LinkedIn and YouTube copy in `docs/MARKETING-COPY.md`; doesn't appear in the OG description or JSON-LD, so nothing to change there.
+- [ ] Decide whether to also fix the em dash in the live Open Graph / meta description (`index.html`) to match the new no-em-dash-in-English rule — flagged in `docs/MARKETING-COPY.md`, not changed yet since it needs a code edit to already-shipped copy
 - [ ] Draft retainer offer/proposal for the ongoing creative-authority role — separately, after the full website is built (see §6)
 
 ---
 
 ## 8. Reusable Marketing Copy — Reference
 
-Copy drafted across sessions, kept here so it doesn't only live in chat history. All Arabic marketing copy (excluding UI/structural translations) follows the same colloquial "Egyptian street-cool" register as the hero catchphrases in §4.
-
-### Open Graph / meta description (finalized, in use)
-> Darkum Design | داركم ديزاين — Beds with an interchangeable insert system, so you can reinvent the look anytime. One bed, your style, endless possibilities.
-
-(156 characters. Used for `og:description` and `twitter:description` in `index.html`, see §5. Earlier drafts mentioned "Victorian-style" and "Cairo & Giza" — both removed at Sobhy's direction: the business does more than Victorian style, and shipping is Egypt-wide for now, not worldwide, with the store address instead being Store No. 5, 10 Aswan Street, El-Sherif Building, Heliopolis. `README.md`'s prose description now matches, corrected 2026-08-13 — see §5.)
-
-### Google Business Profile description (drafted, not yet used — GBP not set up)
-> Darkum Design is a custom furniture and home décor studio based in Heliopolis, Cairo, creating pieces made to order and delivered across Egypt. Our signature offering is a fully customizable bed with an interchangeable insert system, letting you change materials, colors, and textures to reinvent its look whenever your style or mood changes. Every piece is designed around you, from initial concept to final details, so instead of choosing from a standard collection, you create something that feels genuinely your own. FURNITURE · ART · DESIGN: one piece, your style, endless possibilities. Get in touch to start designing your custom piece today.
-
-(649/750 characters. Written to Google's guidelines — no URL, no superlatives like "best.")
-
-### LinkedIn tagline — English (120 char max)
-> Custom furniture and home décor studio, made-to-order. One bed, your style, endless possibilities.
-
-### LinkedIn About/Overview description — English (2,000 char max)
-> Darkum Design | داركم ديزاين is a custom furniture and home décor studio based in Heliopolis, Cairo, creating pieces made to order and delivered across Egypt.
->
-> Our signature offering reimagines one of the most traditional pieces of furniture: the bed. Using an interchangeable insert system, customers can change the look of their bed whenever they want, swapping materials, colors, textures, and design inserts to create a piece that evolves with their taste, mood, and space. Instead of committing to a single permanent design, our clients keep the same bed and continuously reinvent its appearance.
->
-> We believe furniture shouldn't be static; it should evolve with you. From selecting preferred materials and inserts to shaping combinations that suit your space, we offer a fully personalized experience from concept to final piece. Every customer has the opportunity to create something that feels different, rather than choosing from a standard collection.
->
-> Whether you're drawn to something elegant and timeless, modern and minimal, bold and artistic, or soft and luxurious, your Darkum Design piece can grow and change with you.
->
-> What sets us apart:
-> - Fully customized experience: your preferences shape every step of the design process
-> - Unique pieces: furniture that feels personal, not mass-produced
-> - Interchangeable inserts: change your bed's look whenever you want
-> - Personal expression: mix and match designs, colors, textures, and styles
-> - Versatile design: one bed, multiple looks over time
-> - Long-term value: refresh your space without replacing the whole piece
->
-> FURNITURE · ART · DESIGN. One piece, your style, endless possibilities.
-
-(1,650/2,000 characters. Source material: a longer brand description Bido/partners had ChatGPT write, condensed and tightened here.)
-
-### LinkedIn tagline — Arabic, colloquial Egyptian (120 char max)
-> أثاث وديكور مصمم على مزاجك، قطعة واحدة، ستايلك انت، وإمكانيات ملهاش آخر.
-
-(72 characters. No em dash, per Sobhy's preference — comma used instead.)
-
-### LinkedIn About/Overview description — Arabic, colloquial Egyptian (2,000 char max)
-> داركم ديزاين هو استوديو أثاث وديكور منزلي، مقره في مصر الجديدة بالقاهرة، بيصمم كل قطعة أوردر خاص وبيوصلها لأي مكان في مصر.
->
-> أشهر حاجة عندنا إننا بنجدد فكرة قطعة أثاث تقليدية جدًا: السرير. بفضل نظام الإنسيرتس (القطع القابلة للتغيير)، تقدر تغيّر شكل سريرك في أي وقت، تبدّل الخامات والألوان والتكسشر والتصاميم علشان تطلع قطعة بتتطور مع ذوقك ومودك ومساحتك. بدل ما تلتزم بتصميم ثابت، عملاؤنا بيحتفظوا بنفس السرير ويعيدوا ابتكار شكله كل ما حابين.
->
-> إحنا مقتنعين إن الأثاث مش لازم يفضل ثابت، لازم يتطور معاك. من اختيار الخامات والإنسيرتس اللي تناسبك لحد تركيب الكومبينيشن اللي يناسب مساحتك، بنقدملك تجربة مخصصة بالكامل من الفكرة لحد القطعة النهائية. كل عميل بيقدر يعمل حاجة حسّها مختلفة، مش يختار من كولكشن جاهز.
->
-> سواء بتحب الستايل الكلاسيك والأنيق، أو المودرن البسيط، أو الجريء الفني، أو الناعم الفخم، قطعتك من داركم ديزاين تقدر تكبر وتتغيّر معاك.
->
-> اللي بيميزنا:
-> - تجربة مخصصة بالكامل: رغبتك هي اللي بتوجّه كل خطوة في التصميم
-> - قطع فريدة: أثاث حسّه شخصي، مش إنتاج بالجملة
-> - إنسيرتس قابلة للتغيير: غيّر شكل سريرك في أي وقت
-> - تعبير شخصي: امزج بين التصاميم والألوان والخامات والستايلات
-> - تصميم مرن: سرير واحد، أشكال كتير على مدار الوقت
-> - قيمة طويلة المدى: جدد شكل مساحتك من غير ما تستبدل القطعة كلها
->
-> فرنيتشر · آرت · ديزاين. قطعة واحدة، ستايلك انت، وإمكانيات ملهاش آخر.
-
-(1,260/2,000 characters.)
+Moved to its own file: **`docs/MARKETING-COPY.md`** (2026-08-14). Covers Open Graph/meta description, Google Business Profile, LinkedIn (EN/AR tagline + About), and YouTube (EN/AR About) — plus the standing rules behind them: no em dash anywhere (extended 2026-08-14 from Arabic-only to all copy), and "Shop"/"محل" as the fixed word choice over "Studio"/"استوديو". Kept out of this handoff doc so a single wording change doesn't require re-editing a long project-status document — see that file directly rather than duplicating it here.

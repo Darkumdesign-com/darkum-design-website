@@ -25,7 +25,8 @@ We don't just build furniture; every piece is designed around the customer, from
 - Email (Custom Domain): [mailto:info@darkumdesign.com](mailto:info@darkumdesign.com)
 - WhatsApp (personal, not yet Business): [https://wa.me/201037888900](https://wa.me/201037888900)
 - Messenger: [https://m.me/darkumdesign](https://m.me/darkumdesign)
-- Phone: +20-10-37-888-900
+- Phone: 
+
 
 Category: Furniture Store / Interior Design / Home Decor
 
