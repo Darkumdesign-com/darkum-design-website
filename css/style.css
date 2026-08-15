@@ -77,9 +77,9 @@ body{
 }
 
 .brand{
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 500;
-  font-size: clamp(2.2rem, 6.5vw, 3.2rem);
+  font-family: 'Alice', 'Times New Roman', Times, serif;
+  font-weight: 400;
+  font-size: clamp(2.2rem, 6.5vw, 2.8rem);
   letter-spacing: 0.03em;
   color: var(--cream);
   display: flex;
@@ -87,6 +87,7 @@ body{
   align-items: center;
   justify-content: center;
   margin: 0 0 5px;
+  text-transform: uppercase;
 }
 .brand .brand-en{
   padding: 0;
@@ -135,10 +136,11 @@ body{
   color: var(--wood-light);
   margin: 0;
 }
+
 .tagline.bi-ar{
   letter-spacing: 0;
   text-transform: none;
-  font-weight: 600;
+  font-weight: 400;
   margin: 0 0 16px;
 }
 
