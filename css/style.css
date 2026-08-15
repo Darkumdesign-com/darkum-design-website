@@ -384,4 +384,10 @@ body{
 @media (max-width: 480px){
   .notify-form{ flex-direction: column; }
   .logo img{ height: 76px; }
+  .socials{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px 10px;
+    justify-items: center;
+  }
 }
