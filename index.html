@@ -82,7 +82,9 @@
 
   <div class="grain"></div>
 
-  <main class="wrap">
+  <main class="page">
+
+    <div class="wrap">
 
     <div class="logo">
       <picture>
@@ -112,11 +114,25 @@
       <p class="ticker-line ticker-ar" id="ticker-ar" lang="ar" dir="rtl"></p>
     </div>
 
-    <div class="divider" aria-hidden="true">
-      <span class="divider-line"></span>
-      <span class="divider-dot"></span>
-      <span class="divider-line"></span>
+    <div class="ticker-nav-row" role="group" aria-label="Catchphrase navigation / التنقل بين الجمل">
+      <button type="button" id="ticker-prev" class="ticker-arrow" aria-label="Previous phrase / السابق">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M14 5l-6 7 6 7" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+      <div class="ticker-dots" id="ticker-dots"></div>
+      <button type="button" id="ticker-next" class="ticker-arrow" aria-label="Next phrase / التالي">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M10 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
     </div>
+
+    <p id="ticker-status" class="sr-only" role="status" aria-live="polite"></p>
+
+    </div>
+
+    <div class="bottom-block">
 
     <form id="notify-form" class="notify-form" action="https://formspree.io/f/mzepvbqn" method="POST" novalidate>
       <label for="email" class="sr-only">Email address / البريد الإلكتروني</label>
@@ -126,6 +142,12 @@
     </form>
 
     <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+
+    <div class="divider" aria-hidden="true">
+      <span class="divider-line"></span>
+      <span class="divider-dot"></span>
+      <span class="divider-line"></span>
+    </div>
 
     <div class="socials" aria-label="Social links / روابط التواصل الاجتماعي">
 
@@ -178,6 +200,17 @@
         </svg>
       </a>
 
+      <a href="https://www.linkedin.com/company/darkumdesign" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3" y="3" width="18" height="18" rx="4" />
+          <circle cx="7.5" cy="7.7" r="0.8" fill="currentColor" stroke="none" />
+          <path d="M7.5 10.8v6.7" stroke-linecap="round" />
+          <path d="M11.3 17.5v-4.4c0-1.5 1-2.6 2.5-2.6s2.4 1 2.4 2.7v4.3" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M11.3 17.5v-6.7" stroke-linecap="round" />
+        </svg>
+      </a>
+
       <a href="https://wa.me/201037888900" target="_blank" rel="noopener" aria-label="WhatsApp">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5">
           <path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3Z" />
@@ -199,6 +232,8 @@
       <span>© <span id="year"></span> Darkum Design. All rights reserved.</span>
       <span class="footer-ar" lang="ar" dir="rtl"> داركم ديزاين. جميع الحقوق محفوظة.</span>
     </p>
+
+    </div>
 
   </main>
 

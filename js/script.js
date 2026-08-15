@@ -60,7 +60,11 @@
   // Light catchphrase ticker.
   // Full sliding-question carousel is planned for the real WordPress homepage —
   // this is a lightweight preview for the coming-soon placeholder.
-  // English enters from the right, Arabic enters from the left, per Bido's spec (2026-08-12).
+  // Crossfade between phrases (slowed 2026-08-15 — the original slide-in read as too fast/sudden,
+  // distracting in peripheral vision; a slower plain fade is calmer).
+  // Manual dot/arrow navigation + pause-on-hover/focus added 2026-08-15 — a first-time visitor
+  // has no way to know it's a multi-phrase rotation, so give a position indicator, manual
+  // back/forth, and let their own attention pause it instead of racing to read in time.
   var catchphrases = [
     {
       en: "Do you want to buy the same bed as all your friends, family, and neighbors? Customize your bed frame today with Darkum Design.",
@@ -78,35 +82,129 @@
 
   var tickerEn = document.getElementById('ticker-en');
   var tickerAr = document.getElementById('ticker-ar');
+  var tickerPrev = document.getElementById('ticker-prev');
+  var tickerNext = document.getElementById('ticker-next');
+  var tickerDotsWrap = document.getElementById('ticker-dots');
+  var tickerStatus = document.getElementById('ticker-status');
+  var tickerSection = document.querySelector('.catchphrase-ticker');
+  var tickerNavRow = document.querySelector('.ticker-nav-row');
 
   if (tickerEn && tickerAr && catchphrases.length) {
     var index = 0;
+    var intervalId = null;
+    var paused = false;
+    var prefersReducedMotion = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var fadeMs = prefersReducedMotion ? 0 : 900;
+    var rotateMs = 7000;
+    var dots = [];
 
-    function showPhrase(i) {
+    // Build one dot per phrase — driven by the array length rather than hardcoded in HTML,
+    // so it stays correct if phrases are added or removed later.
+    if (tickerDotsWrap) {
+      catchphrases.forEach(function (_, i) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'ticker-dot';
+        dot.setAttribute('aria-current', i === 0 ? 'true' : 'false');
+        dot.setAttribute('aria-label', 'Slide ' + (i + 1) + ' of ' + catchphrases.length +
+          ' / الشريحة ' + (i + 1) + ' من ' + catchphrases.length);
+        dot.addEventListener('click', function () { goTo(i, true); });
+        tickerDotsWrap.appendChild(dot);
+        dots.push(dot);
+      });
+    }
+
+    function updateDots(i) {
+      dots.forEach(function (dot, di) {
+        dot.setAttribute('aria-current', di === i ? 'true' : 'false');
+      });
+    }
+
+    function updateStatus(i) {
+      if (tickerStatus) {
+        tickerStatus.textContent = 'Slide ' + (i + 1) + ' of ' + catchphrases.length +
+          ' / الشريحة ' + (i + 1) + ' من ' + catchphrases.length;
+      }
+    }
+
+    function setPhraseText(phrase) {
+      tickerEn.textContent = phrase.en;
+      tickerAr.textContent = phrase.ar;
+      tickerEn.style.opacity = 1;
+      tickerAr.style.opacity = 1;
+    }
+
+    function renderSlide(i, immediate) {
       var phrase = catchphrases[i];
 
-      // Reset animation state
-      tickerEn.classList.remove('enter-en');
-      tickerAr.classList.remove('enter-ar');
+      if (immediate) {
+        setPhraseText(phrase);
+        updateDots(i);
+        updateStatus(i);
+        return;
+      }
+
+      // Fade the current phrase out first, then swap the text and fade the next one in —
+      // avoids the old abrupt cut where the previous phrase vanished instantly.
       tickerEn.style.opacity = 0;
       tickerAr.style.opacity = 0;
 
-      tickerEn.textContent = phrase.en;
-      tickerAr.textContent = phrase.ar;
-
-      // Force reflow so the animation replays every cycle
-      void tickerEn.offsetWidth;
-      void tickerAr.offsetWidth;
-
-      tickerEn.classList.add('enter-en');
-      tickerAr.classList.add('enter-ar');
+      setTimeout(function () {
+        setPhraseText(phrase);
+        updateDots(i);
+        updateStatus(i);
+      }, fadeMs);
     }
 
-    showPhrase(index);
+    function startAutoplay() {
+      stopAutoplay();
+      intervalId = setInterval(function () {
+        if (paused) return;
+        index = (index + 1) % catchphrases.length;
+        renderSlide(index, false);
+      }, rotateMs);
+    }
 
-    setInterval(function () {
-      index = (index + 1) % catchphrases.length;
-      showPhrase(index);
-    }, 6000);
+    function stopAutoplay() {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+    }
+
+    function goTo(i, userInitiated) {
+      index = i;
+      renderSlide(index, false);
+      if (userInitiated) {
+        // Manual navigation restarts the autoplay clock so it doesn't advance
+        // again right on top of the visitor's own click.
+        startAutoplay();
+      }
+    }
+
+    if (tickerPrev) {
+      tickerPrev.addEventListener('click', function () {
+        goTo((index - 1 + catchphrases.length) % catchphrases.length, true);
+      });
+    }
+    if (tickerNext) {
+      tickerNext.addEventListener('click', function () {
+        goTo((index + 1) % catchphrases.length, true);
+      });
+    }
+
+    // Pause auto-rotation while the visitor is hovering or has keyboard focus in the
+    // ticker/controls — so it never moves on someone mid-sentence.
+    [tickerSection, tickerNavRow].forEach(function (el) {
+      if (!el) return;
+      el.addEventListener('mouseenter', function () { paused = true; });
+      el.addEventListener('mouseleave', function () { paused = false; });
+      el.addEventListener('focusin', function () { paused = true; });
+      el.addEventListener('focusout', function () { paused = false; });
+    });
+
+    renderSlide(index, true);
+    startAutoplay();
   }
 })();
