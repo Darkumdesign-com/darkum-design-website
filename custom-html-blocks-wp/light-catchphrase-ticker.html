@@ -1,0 +1,20 @@
+<div class="catchphrase-ticker" aria-live="off">
+      <p class="ticker-line ticker-en" id="ticker-en" lang="en"></p>
+      <p class="ticker-line ticker-ar" id="ticker-ar" lang="ar" dir="rtl"></p>
+    </div>
+
+    <div class="ticker-nav-row" role="group" aria-label="Catchphrase navigation / التنقل بين الجمل">
+      <button type="button" id="ticker-prev" class="ticker-arrow" aria-label="Previous phrase / السابق">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M14 5l-6 7 6 7" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </button>
+      <div class="ticker-dots" id="ticker-dots"></div>
+      <button type="button" id="ticker-next" class="ticker-arrow" aria-label="Next phrase / التالي">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M10 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </button>
+    </div>
+
+    <p id="ticker-status" class="sr-only" role="status" aria-live="polite"></p>
