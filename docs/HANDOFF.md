@@ -1,6 +1,6 @@
 # Darkum Design — Project Handoff
 
-**Last updated:** 2026-08-16
+**Last updated:** 2026-08-17
 **Maintainer:** Sobhy (sole developer/administrator — GitHub Org `darkumdesign`, separate Vercel account)
 **Pricing note:** Bido offered a flat rate of EGP 15,000 for the entire engagement (2026-08-16). The original item-by-item proposal and all freelancer market research have been archived to `docs/offer_market-research.md` — see §6.
 
@@ -16,6 +16,7 @@ This document tracks everything known about the Darkum Design engagement so far:
 - **Owners:** Nourhan Osama ("Noura") and her partner Heba Farouk. Both recent college graduates, not technical — avoid jargon in partner-facing communication.
 - **Key contact / decision authority:** Bido (Albert Friday / AbdAllah Gomaa / Abdallah Gomaa / Cars Buyer Inc Owner), Noura's uncle and Sobhy's best friend, currently in Egypt on vacation. The "nothing goes in or out without approval" arrangement is narrower than previously noted here: Bido said it applies to **technological matters specifically**, and only takes effect **once he returns to the US** — he's delegating to Sobhy in his stead for that period. It also wasn't said directly to Noura/Heba; it was said to his own circle, roughly: "I am not staying here forever... once my plane takes off, [Sobhy] is here in my stead. If you have questions, ask him. If you have a problem, ask him. If you have crazy ideas, ask him also. Nothing technological goes in or out without [Sobhy's] approval."
 - **Payment status:** No payment received yet. This is *not* a case of an offer being sent and ignored — it's an informal, trust-based arrangement given the personal relationship (Noura is Bido's niece). Sobhy explicitly does not want to treat this as a favor: the work (logo, social media presence, coming-soon page, upcoming full site) is billable regardless of the personal relationship. **Bido explicitly reconfirmed on 2026-08-13 (third time Sobhy asked directly) that the arrangement is paid, not a favor**, and on 2026-08-16 offered a flat rate of **EGP 15,000 for the entire engagement**. See `docs/offer_market-research.md` for the full negotiation call summary, the pricing pushback that preceded the flat offer, and the item-by-item proposal/market research it superseded.
+- **SEO scope narrowed 2026-08-17:** Bido has a separate marketing agency deal covering ongoing on-page and off-page SEO — this removes SEO strategy/content work from Sobhy's scope entirely (he had proposed Yoast SEO Premium; Bido declined it in the same conversation the agency deal came up, which resolved the question anyway). Yoast SEO (free) stays installed as WordPress infrastructure (sitemap, meta tags, technical basics) — see §4.
 - **Access:** Neither Bido nor Noura access Gmail, Social Media accounts, GitHub or Vercel directly — Sobhy administers both solo.
 - **Store**: Store No. 5, 10 Aswan Street, El-Sherif Building, Heliopolis, Cairo, Egypt, 4460305. Under construction in Heliopolis, Cairo. Sobhy has not visited the store yet.
 
@@ -101,17 +102,77 @@ No free plugin puts a true reply-from-everywhere inbox inside wp-admin — that'
 - **CMS:** WordPress
 - **E-commerce:** WooCommerce
 - **Page builder:** Kadence Blocks (free) + Kadence theme (free) — chosen over Elementor Pro specifically because Bido wants to avoid subscription costs, so capital goes toward marketing instead. Kadence's native block animations cover scroll-reveal effects for free, which would otherwise require Elementor Pro.
-- **SEO:** Yoast SEO (free)
-- **Custom code:** Code Snippets (free) — for PHP snippets outside `functions.php`; Kadence blocks also support Custom CSS directly, and native Gutenberg has a Custom HTML block for JS/HTML injection.
+- **SEO:** Yoast SEO (free) — handles technical on-page basics (meta tags, sitemap, canonical URLs). **Scope clarified 2026-08-17:** Bido has a separate marketing agency deal covering ongoing on-page and off-page SEO strategy/content — that work is no longer part of Sobhy's scope. Yoast stays installed as WordPress infrastructure regardless.
+- **Custom code:** GoDaddy Pro's built-in Code Snippets (included with GoDaddy Pro, no plugin required) — for PHP snippets outside `functions.php`; Kadence blocks also support Custom CSS directly, and native Gutenberg has a Custom HTML block for JS/HTML injection. **Decided 2026-08-17:** dropped the separate Code Snippets *plugin* in favor of this — GoDaddy Pro already provides the same capability natively, so this is one fewer plugin to maintain, matching the fewer-plugins-for-performance-and-security preference.
 - **Slider (conditional):** MetaSlider (free) — only needed if "sliding animations" turns out to mean an actual image/content carousel rather than Kadence's native scroll-reveal effects. **Open question, not yet confirmed with client which one they mean.**
-- **Hosting (under discussion 2026-08-15, plan confirmed by Claude, not yet started):** GoDaddy Managed WordPress hosting. Recommended build/go-live sequence:
-  1. Set up GoDaddy Managed WordPress hosting. It automatically provides a **temporary domain** (something like `abc123.myftpupload.com`) specifically for building/testing without touching `darkumdesign.com`'s DNS — no special request needed, this is the standard workflow.
-  2. Build the full site there (Kadence, WooCommerce, Bed Frame configurator once the plugin's confirmed).
+- **Hosting (Step 1 complete 2026-08-16):** GoDaddy Managed WordPress hosting is now set up — **Ecommerce plan** (2 websites, unlimited monthly visitors, SSH/SFTP access, one-click staging site, per the account dashboard). **Temporary build domain confirmed: `1221269.us32.myftpupload.com`.** Recommended build/go-live sequence:
+  1. ✅ Set up GoDaddy Managed WordPress hosting. It automatically provides a **temporary domain** (`1221269.us32.myftpupload.com`) specifically for building/testing without touching `darkumdesign.com`'s DNS — no special request needed, this is the standard workflow.
+  2. ⏳ Build the full site there (Kadence, WooCommerce, Bed Frame configurator once the plugin's confirmed) — **not yet started.**
   3. Bido/Noura/Heba review and approve the build on the temporary domain.
   4. Only then point `darkumdesign.com`'s DNS from Vercel to GoDaddy, retiring the coming-soon page. This can happen as soon as the build is approved — see the Domain section below for why it does **not** need to wait for the 25 September registrar-transfer date.
   5. The registrar ownership transfer to Bido's GoDaddy account (see Domain section below) happens later, whenever convenient after 25 September, independent of step 4 — the site can go live on the new build well before the registrar transfer itself completes.
 
   Throughout steps 1–3, `darkumdesign.com` keeps serving the current coming-soon page on Vercel, completely untouched. See §7 for this item's open-item tracking.
+
+### Local development environment — set up, then torn down (2026-08-16/17)
+Originally set up as Docker Desktop + `wp-env` (`@wordpress/env`) at `C:\Projects\darkum-design-wordpress\`, with Kadence, Kadence Blocks, WooCommerce, Yoast SEO, and Code Snippets all installed and verified active there.
+
+**Decision reversed 2026-08-17: torn down entirely, moved to live-only development on the GoDaddy temp domain.** Reasoning: most of this build's real work (Kadence page layouts, WooCommerce settings, product configurator fields) happens through the wp-admin GUI, not in files — so local's usual advantage (fast, disposable iteration before committing to the "real" environment) barely applied here, since GUI speed is identical whether it's `localhost:8888` or the live temp domain. Keeping one environment instead of two also removes the drift risk local/live sync would otherwise require managing.
+
+**Teardown executed via Claude Code** (chosen specifically for live terminal visibility on a multi-step uninstall, per the process note this replaced):
+- `wp-env stop` run cleanly first.
+- All project-specific Docker images removed: the 4 `wp-env-darkum-design-wordpress-*` images, plus `mariadb:lts` and `phpmyadmin:latest` (both confirmed only referenced by this project's wp-env stack, not shared with anything else).
+- All 4 project-specific Docker volumes removed.
+- No containers or non-default networks existed to remove.
+- `C:\Projects\darkum-design-wordpress\` fully deleted (the containing folder needed a manual `Remove-Item` after closing the session, since Claude Code's own working-directory handle briefly locked the empty folder — a Windows file-lock quirk, not a data-loss issue).
+- Docker Desktop fully uninstalled (via winget), including the `docker-desktop` WSL VM, `%APPDATA%\Docker`, `%LOCALAPPDATA%\Docker`, `~/.docker`, and `C:\ProgramData\Docker(Desktop)`. Confirmed clean: `docker` no longer a recognized command, no Docker entries left on PATH.
+- **Verified before uninstalling:** nothing else on the machine depends on Docker Desktop — WSL integration was only enabled for the unrelated Ubuntu-24.04 general-purpose distro (no Docker CLI or compose files inside it), and no other `C:\Projects` subfolder contains a `Dockerfile`/`docker-compose*.yml`/`.wp-env.json`. WSL Ubuntu-24.04 itself was left untouched throughout, as intended.
+- One harmless leftover (`C:\Program Files\Docker\Docker\tmp-delete\*`, a few Windows-locked installer files) cleared itself on the next reboot, as expected.
+
+**Live-only build's safety net is now GoDaddy's Premium Backups (hourly), not a local sandbox** — see the new subsection below.
+
+### GoDaddy Managed WordPress — known limitations (researched 2026-08-17, from GoDaddy's own docs)
+Raised by Sobhy: is GoDaddy Managed WordPress limited enough to cause problems, and does that affect the local↔live setup? Findings:
+
+- **SSH + WP-CLI: available**, confirmed for the Ecommerce plan specifically (Deluxe/Ultimate/Ecommerce tiers only — not a limitation for this project).
+- **File editing is restricted** on Managed WordPress — GoDaddy only allows editing a specific list of files directly (core bootstrap files like `wp-config.php` are locked down for security). This doesn't affect normal plugin/theme installs via wp-admin, which work as usual. It's also the reason **Code Snippets (database-stored PHP) was already the right call** over direct `functions.php` editing — it sidesteps this restriction entirely.
+- **Blocklisted plugins:** GoDaddy blocks plugins in a few categories — caching (W3 Total Cache, WP Super Cache, WP Fastest Cache, etc. — GoDaddy has its own built-in caching), backup/duplicate-functionality tools, and known security/performance offenders. **None of the confirmed stack (Kadence, WooCommerce, Yoast, Code Snippets) falls into these categories.** Worth a quick check of Advanced Product Fields against GoDaddy's WooCommerce-specific blocklist before purchasing — cheap due diligence, unlikely to be an issue.
+- **Outbound SMTP ports (25/465/587) are blocked** for third-party mail systems — a typical "WP Mail SMTP + Gmail relay" setup won't work. **Open item, verify near go-live:** whether GoDaddy's own default mail delivery handles WooCommerce order/notification emails adequately on its own, or whether an API-based (not SMTP-port) transactional email plugin is needed.
+- **Multisite not supported** — irrelevant, this is a single-site build.
+- **Net effect: low risk.** The confirmed stack was already built around avoiding GoDaddy's common pain points. Main real open item is the email-deliverability check above.
+
+### GoDaddy hosting environment — reference (as of 2026-08-17)
+Pulled directly from the GoDaddy Hub's WordPress Settings page, useful shared reference for both Sobhy and Claude going forward:
+
+- **WordPress version:** 7.0.4
+- **PHP version:** 8.2
+- **Managed WordPress platform version:** 2.0
+- **SSH/SFTP login:** `1221269.us32.ssh.myftpupload.com`
+- **Primary (temp) domain:** `1221269.us32.myftpupload.com` — matches the confirmed build domain above.
+- **CDN:** Enabled. **Website metrics:** Enabled. **PHP error/access logs:** available directly in the Hub — useful now that there's no local environment to check errors in.
+- **CI/CD integration:** Disabled (consistent with the 2026-08-17 decision not to wire up GitHub CI/CD — see below).
+- **Application performance monitoring:** Disabled.
+- **Staging site:** Not yet created, but included free on the Ecommerce plan (one-click) — worth creating once the build is far enough along that testing risky changes against a copy becomes valuable again, now that there's no local sandbox for that purpose.
+- **Built-in Hub tools available:** file browser, reset file permissions, safe mode reset, cache flush — worth knowing about for troubleshooting now that local's gone.
+- **Plan:** Managed WordPress Ecommerce — 1 website, unlimited monthly visitors, SSH/SFTP + one-click staging included.
+- **Storage:** 100 GB total, 0.13 GB used (~0%). **Note: this GoDaddy hosting account is shared with Bido's own site**, `carsbuyerinc.net` (0.04 GB) — the Darkum temp domain (`1221269.us32.myftpupload.com`, 0.09 GB) is the second site on the same account. Worth keeping in mind since it's Bido's account, not a dedicated one for Darkum Design.
+
+### Backup strategy — GoDaddy Premium Backups (active, temporary)
+GitHub was never going to cover this project's real backup risk — most of the build's actual state (WooCommerce products, Kadence page layouts, the Bed Frame configurator's field configuration) lives in the WordPress database, which git doesn't track regardless of CI/CD setup. With local development torn down (see above), the live GoDaddy site is now the only place this work exists, so it needed its own safety net.
+
+- **Activated 2026-08-17**, approved by Bido same day (by phone, after his first payment card failed and he authorized use of a second card). **Order total: EGP 274.15** (the 249.00 EGP/month base rate shown at checkout, likely plus tax), receipt emailed to `carsbuyerinc@gmail.com`.
+- **Adds:** hourly automatic backups + 90-day backup history, up from the plan's default daily backups.
+- **Explicit commitment, worded exactly as agreed with Bido: "I'll cancel it the day the site goes live on `darkumdesign.com`."** At that point it reverts to the Ecommerce plan's included daily backups, at no extra cost.
+- **Framing given to Bido, matching Sobhy's own established pattern across 8+ prior projects:** hourly backups during active build, canceled once live. This is a Sobhy-managed, Sobhy-canceled, time-boxed cost tied to the build phase specifically — not a subscription Noura is ever exposed to or would need to manage/cancel herself, which directly answered Bido's actual concern (raised in the context of his general no-subscriptions stance) about partners getting stuck with recurring costs they can't safely drop.
+- **Tracked as an open item below** so the cancellation isn't forgotten once the site goes live — see §7.
+
+### GitHub CI/CD to GoDaddy — decided against for now (2026-08-17)
+Not recommended during the build:
+1. **Wrong repo structure.** `darkum-design-website` holds the static coming-soon site (for Vercel) — a WordPress deployment would need its own dedicated repo with a completely different file structure.
+2. **Org policy conflict.** The `Darkumdesign-com` GitHub org currently blocks SSH Deploy Keys org-wide, which is specifically what GoDaddy's CI/CD integration UI asks for (seen 2026-08-16). Enabling this would need either loosening that policy or GoDaddy adding GitHub App support (unconfirmed as of this writing).
+3. **Smaller benefit than it looks.** As above, git only solves file sync — most of this build's real state lives in the database, which git-based deployment doesn't touch at all.
+
+**Revisit only if** there's a meaningful, ongoing slice of pure custom code worth version-controlling later (e.g. a future child theme) — not needed for the current scope.
 
 ### Site structure
 One-page site: Homepage / landing page, with sliding animations, plus one highly customizable product (Bed Frame) via WooCommerce.
@@ -152,11 +213,13 @@ This is the "very customizable product" and is effectively a mini product config
 
 **Why Kadence Blocks doesn't cover this:** it's a page/layout builder, not a WooCommerce product-options tool. This needs a dedicated plugin.
 
-**Plugin decision — pending client confirmation:**
-- **Recommended:** Advanced Product Fields (APF) by StudioWombat — one-time payment ($199), lifetime updates, 18+ field types, conditional logic, formula-based pricing. Currently waiting on partner reply.
+**Plugin decision — GoDaddy compatibility confirmed 2026-08-17, purchase still pending:**
+- **Advanced Product Fields (APF) by StudioWombat** — 18+ field types, conditional logic, formula-based pricing.
+- **Corrected 2026-08-17:** the earlier note in this doc about APF being "installed and active" was the **free version**, installed by Sobhy specifically to verify it runs cleanly on GoDaddy Managed WordPress (i.e. isn't blocklisted) — not a purchase. This confirms the plugin is compatible with the hosting environment, which resolves that due-diligence open item (see §7), but **the free version cannot build the actual configurator** — its stripped-down feature set is missing conditional logic and file upload fields, both required here (position → insertions → size is a dependent chain). The real build still needs the paid tier.
+- **Purchase status:** ready to proceed on the paid **Lifetime** tier (the one-time option confirmed to exist as of 2026-08-16, satisfying the no-subscription requirement) — **blocked on Bido/partners choosing which of the three Lifetime tiers to buy: Pro, Extended, or Extended + Addons.** Confirmed 2026-08-17 (Sobhy).
 - **Alternative if APF doesn't work out:** Extra Product Options & Add-Ons by ThemeComplete — one-time payment **only if purchased via CodeCanyon specifically**; buying directly through themecomplete.com now defaults to a subscription model, which would violate the no-subscription requirement.
-- **Ruled out:** free-tier product option plugins — their free versions strip out conditional logic and file upload fields, both of which are required here (position → insertions → size is a dependent chain).
-- **Plugin cost is separate from Sobhy's fee** — Sobhy has no credit card to purchase or subscribe on Bido's behalf even if he wanted to, so the ~$199 (or CodeCanyon equivalent) is a cost Bido/partners handle directly with the vendor. This still holds under the flat EGP 15,000 offer (see §6).
+- **Ruled out:** free-tier product option plugins generally — same reasoning as above, missing conditional logic and file upload fields.
+- **Plugin cost is separate from Sobhy's fee** — this is a cost Bido/partners ultimately bear, authorized for Sobhy to pay directly per the 2026-08-16 green light, rather than requiring Bido/partners to purchase it themselves. This still holds under the flat EGP 15,000 offer (see §6).
 
 **Scoping note:** even with the right plugin, wiring up the full conditional chain (position → insertions → size, repeated per position) is several hours of careful setup work. (Original per-item pricing reasoning for this archived to `docs/offer_market-research.md`.)
 
@@ -209,7 +272,7 @@ Two freelancer quotes gathered during the (now-superseded) market research phase
 
 **Still relevant despite the flat rate:**
 - **Retainer (ongoing creative-authority/gatekeeper role)** remains a separate, future offer — not part of the EGP 15,000 flat rate; will be presented only after the full website is built.
-- **Plugin costs** (e.g. Advanced Product Fields, ~$199) remain excluded from Sobhy's fee — Bido/partners handle those directly with the vendor (see §4).
+- **Plugin costs** (e.g. Advanced Product Fields — free version installed 2026-08-17 for GoDaddy compatibility testing only, paid Lifetime purchase still pending, see §4) remain excluded from Sobhy's fee. As of 2026-08-16, Bido authorized Sobhy to pay for these directly rather than requiring Bido/partners to purchase from the vendor themselves (see §4).
 - The **skilled/specialized-work-gets-named-explicitly** principle (Bed Frame configurator, CNC/vector work, branding shouldn't quietly fold into "just part of the website") still applies to scoping conversations even without itemized pricing behind it.
 
 ---
@@ -219,8 +282,9 @@ Two freelancer quotes gathered during the (now-superseded) market research phase
 - [x] Confirm exact handles/URLs for TikTok, YouTube, Pinterest, and X — done by Sobhy directly in `README.md` and `index.html` (2026-08-12)
 - [x] Confirm with client: "sliding animations" = scroll-reveal (Kadence native) or carousel/slider (needs MetaSlider)? — resolved 2026-08-13, see §4: hero uses a custom Q&A slideshow, everything else uses Kadence's native fade-in/fade-out scroll-reveal, no slider plugin needed
 - [ ] Get the full list of homepage sliding catchphrases from Bido (only 3 examples given so far — see §4)
-- [ ] Await partner confirmation on Advanced Product Fields (APF) — or move to alternative plugin (does not block the build)
-- [ ] Build out Bed Frame configurator once plugin is confirmed
+- [x] Re-verify StudioWombat APF pricing (subscription vs. one-time — see §4) — resolved 2026-08-16: confirmed a genuine one-time "Lifetime" license exists (separate toggle from "Yearly"). **Free version installed 2026-08-17 to confirm GoDaddy compatibility only — not a purchase, see §4.**
+- [ ] **Purchase APF on the Lifetime tier** — blocked on Bido/partners choosing between the three Lifetime tiers (Pro, Extended, Extended + Addons). See §4.
+- [ ] Build out Bed Frame configurator — blocked on the APF purchase above; the currently-installed free version can't build the actual conditional-logic chain (position → insertions → size), see §4.
 - [x] Set up X (Twitter) account — needs updated logo (have it) + business phone number (have it: +20-10-37-888-900)
 - [ ] Migrate `darkumdesign.com` domain's **registrar** from Vercel to Bido's GoDaddy account — blocked until 25 September 2026 (ICANN 60-day rule). Does **not** block pointing DNS/hosting to GoDaddy earlier, see §4.
 - [ ] Complete registrar email verification for the domain (avoid suspension)
@@ -228,7 +292,15 @@ Two freelancer quotes gathered during the (now-superseded) market research phase
 - [ ] Resolve TikTok business account once commercial registration docs are available
 - [ ] Resume Etsy shop setup once commercial registration docs are available — stopped 2026-08-15 at the required `Business Registration Number` field, owners informed via WhatsApp same day. `DarkumDesignShop` recommended as the final handle once resumed (`DarkumDesign` itself is taken), see §3.
 - [x] Decide on Houzz — dropped 2026-08-15, doesn't operate in Egypt (confirmed directly during signup), see §3
-- [ ] **Start the full WordPress build on GoDaddy Managed WordPress hosting.** Full recommended sequence documented in §4 (temp domain → build → partner approval → DNS cutover → registrar transfer later, independent steps). Not yet started, awaiting Sobhy's go-ahead.
+- [x] Set up GoDaddy Managed WordPress hosting (Step 1 of the §4 sequence) — done 2026-08-16, Ecommerce plan, temporary build domain `1221269.us32.myftpupload.com` confirmed
+- [x] Set up local WordPress development environment — done 2026-08-16, **then fully torn down 2026-08-17** in favor of live-only development. See §4 for the full reasoning and teardown record.
+- [x] Activate GoDaddy Premium Backups as the safety net for live-only development — done 2026-08-17, EGP 274.15, approved by Bido same day. See §4.
+- [ ] **Cancel GoDaddy Premium Backups** the day `darkumdesign.com` goes live — reverts to the Ecommerce plan's default daily backups at no extra cost. See §4.
+- [x] Research whether GoDaddy Managed WordPress's known limitations would cause issues for this build — resolved 2026-08-17, low risk, see §4
+- [x] Decide GitHub CI/CD ↔ GoDaddy timing — resolved 2026-08-17: not doing it during the build, see §4 for full reasoning
+- [ ] Verify GoDaddy's default mail delivery handles WooCommerce order/notification emails, given GoDaddy blocks outbound SMTP ports for third-party mail systems — verify near go-live, see §4
+- [x] Quick-check Advanced Product Fields against GoDaddy's WooCommerce-specific plugin blocklist — resolved 2026-08-17: successfully installed and activated on GoDaddy Managed WordPress, confirming it isn't blocklisted. See §4.
+- [ ] **Start the full WordPress build itself** (Kadence, WooCommerce, Bed Frame configurator) on the now-live temporary domain. Full recommended sequence documented in §4 (temp domain ✅ → build → partner approval → DNS cutover → registrar transfer later, independent steps).
 - [x] Draft full proposal — done 2026-08-13, `docs/PROPOSAL.md`. **Superseded** 2026-08-16 by Bido's flat EGP 15,000 offer — archived to `docs/offer_market-research.md`, see §6
 - [x] Send Social Media Presence freelancer quote request to 3+ freelancers — briefs sent, 4 offers received on Khamsat (2026-08-13). **No longer needed** — superseded by Bido's flat-rate offer; quotes archived to `docs/offer_market-research.md`.
 - [x] ~~Get comparable freelancer quotes for Coming-Soon Page, Website, and Bed Frame Configurator before finalizing pricing~~ — **no longer needed**, superseded 2026-08-16 by Bido's flat EGP 15,000 offer; quotes gathered so far archived to `docs/offer_market-research.md`.

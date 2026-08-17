@@ -27,10 +27,12 @@ Category: Furniture Store · Interior Design · Home Decor
 
 ## 🚧 Current Status
 
-Live at **[darkumdesign.com](https://darkumdesign.com)**: a static bilingual (EN/AR, simultaneous side-by-side, no language switcher) "coming soon" placeholder page, deployed on **Vercel** with auto-deploy from this repo's `main` branch. The tech stack for the full site is confirmed (see below); the full WordPress/WooCommerce build itself hasn't started yet.
+Live at **[darkumdesign.com](https://darkumdesign.com)**: a static bilingual (EN/AR, simultaneous side-by-side, no language switcher) "coming soon" placeholder page, deployed on **Vercel** with auto-deploy from this repo's `main` branch. The tech stack for the full site is confirmed (see below); a local WordPress development environment (Docker + Kadence + WooCommerce + Yoast + Code Snippets, all installed and verified) is now running, but the actual build on GoDaddy's temp domain hasn't started yet.
 
 - Live placeholder: `index.html` (plain HTML/CSS/JS, no build step required)
 - Production domain: `darkumdesign.com`, currently registered through Vercel. A future transfer to the client's own GoDaddy account is planned but not yet actioned (Vercel enforces a registrar transfer lock for 60 days post-purchase).
+- Build domain (temporary): `1221269.us32.myftpupload.com` — GoDaddy Managed WordPress (Ecommerce plan), auto-provisioned for building/testing the full site without touching `darkumdesign.com`'s DNS. See `docs/HANDOFF.md` §4 for the full build/go-live sequence.
+- Local WordPress dev environment: `C:\Projects\darkum-design-wordpress\` (separate folder, not part of this repo) — see `docs/HANDOFF.md` §4 for details.
 
 ## 📁 Structure
 
@@ -50,11 +52,12 @@ darkum-design-website/
 **Confirmed:**
 - **CMS:** WordPress
 - **E-commerce:** WooCommerce
+- **Hosting:** GoDaddy Managed WordPress (Ecommerce plan) — temporary build domain `1221269.us32.myftpupload.com`
 - **Page builder:** Kadence Blocks (free) + Kadence theme (free)
 - **SEO:** Yoast SEO (free)
 - **Custom code:** Code Snippets (free)
 - **Slider (conditional):** MetaSlider (free), only needed if "sliding animations" turns out to require an actual carousel rather than Kadence's native scroll-reveal effects; not yet confirmed with client
-- **Bed Frame product configurator:** pending plugin decision. Advanced Product Fields (APF) by StudioWombat recommended (one-time payment), awaiting partner confirmation; Extra Product Options & Add-Ons by ThemeComplete as fallback (via CodeCanyon specifically, since their direct-purchase site now defaults to a subscription model)
+- **Bed Frame product configurator:** pending plugin decision. Advanced Product Fields (APF) by StudioWombat recommended — **confirmed 2026-08-16** via the plugin's pricing page: a genuine one-time "Lifetime" license exists (toggle above the pricing tiers, separate from the default "Yearly" subscription view) — awaiting partner confirmation. Extra Product Options & Add-Ons by ThemeComplete as fallback (via CodeCanyon specifically, since their direct-purchase site now defaults to a subscription model)
 
 Chosen specifically to avoid subscription costs, so budget goes toward marketing instead of recurring software fees.
 
