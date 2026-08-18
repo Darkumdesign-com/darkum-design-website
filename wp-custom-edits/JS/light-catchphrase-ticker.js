@@ -1,12 +1,7 @@
+// Homepage hero ticker JS, Kadence Custom HTML block (see HTML/light-catchphrase-ticker.html
+// for the pairing note). Pastes into the same block, wrapped in a <script> tag.
+// Ported from the coming-soon page's js/script.js with no logic changes (2026-08-17).
 (function () {
-  // Light catchphrase ticker.
-  // Full sliding-question carousel is planned for the real WordPress homepage —
-  // this is a lightweight preview for the coming-soon placeholder.
-  // Crossfade between phrases (slowed 2026-08-15 — the original slide-in read as too fast/sudden,
-  // distracting in peripheral vision; a slower plain fade is calmer).
-  // Manual dot/arrow navigation + pause-on-hover/focus added 2026-08-15 — a first-time visitor
-  // has no way to know it's a multi-phrase rotation, so give a position indicator, manual
-  // back/forth, and let their own attention pause it instead of racing to read in time.
   var catchphrases = [
     {
       en: "Do you want to buy the same bed as all your friends, family, and neighbors? Customize your bed frame today with Darkum Design.",
@@ -41,8 +36,6 @@
     var rotateMs = 7000;
     var dots = [];
 
-    // Build one dot per phrase — driven by the array length rather than hardcoded in HTML,
-    // so it stays correct if phrases are added or removed later.
     if (tickerDotsWrap) {
       catchphrases.forEach(function (_, i) {
         var dot = document.createElement('button');
@@ -79,19 +72,14 @@
 
     function renderSlide(i, immediate) {
       var phrase = catchphrases[i];
-
       if (immediate) {
         setPhraseText(phrase);
         updateDots(i);
         updateStatus(i);
         return;
       }
-
-      // Fade the current phrase out first, then swap the text and fade the next one in —
-      // avoids the old abrupt cut where the previous phrase vanished instantly.
       tickerEn.style.opacity = 0;
       tickerAr.style.opacity = 0;
-
       setTimeout(function () {
         setPhraseText(phrase);
         updateDots(i);
@@ -119,8 +107,6 @@
       index = i;
       renderSlide(index, false);
       if (userInitiated) {
-        // Manual navigation restarts the autoplay clock so it doesn't advance
-        // again right on top of the visitor's own click.
         startAutoplay();
       }
     }
@@ -136,8 +122,6 @@
       });
     }
 
-    // Pause auto-rotation while the visitor is hovering or has keyboard focus in the
-    // ticker/controls — so it never moves on someone mid-sentence.
     [tickerSection, tickerNavRow].forEach(function (el) {
       if (!el) return;
       el.addEventListener('mouseenter', function () { paused = true; });

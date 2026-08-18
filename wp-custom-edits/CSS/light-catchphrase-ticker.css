@@ -1,4 +1,10 @@
-/* Light sliding catchphrase ticker (full carousel is planned for the real WordPress homepage) */
+/* Homepage hero ticker CSS, Kadence Custom HTML block (see HTML/light-catchphrase-ticker.html
+   for the pairing note). Pastes into the same block, wrapped in a <style> tag.
+   Corrected 2026-08-18: this repo copy previously still had the 'Source San 3' typo
+   (missing the "s") that was already fixed live on 2026-08-17 — now matches live.
+   Also dropped the .divider rules that were in the old custom-html-blocks-wp copy of this
+   file — those belong to the coming-soon page (css/style.css), not this WordPress block,
+   and were never part of what's actually pasted into Kadence. */
 .catchphrase-ticker{
   min-height: 76px;
   margin: 0 0 32px;
@@ -18,7 +24,7 @@
   transition: opacity 1s ease;
 }
 .ticker-en{
-  font-family: 'Source San 3', sans-serif;
+  font-family: 'Source Sans 3', sans-serif;
   font-weight: 300;
 }
 .ticker-ar{
@@ -30,7 +36,6 @@
     transition: none;
   }
 }
-
 .ticker-nav-row{
   display: flex;
   align-items: center;
@@ -53,7 +58,6 @@
 .ticker-arrow:focus-visible{
   color: #bd9c7a;
 }
-
 .ticker-dots{
   display: flex;
   align-items: center;
@@ -81,28 +85,8 @@
   outline: 1px solid #bd9c7a;
   outline-offset: 2px;
 }
-
-/* Decorative divider: fading line — dot — fading line (purely visual, no controls) */
-.divider{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin-bottom: 32px;
-}
-.divider-line{
-  height: 1px;
-  width: 48px;
-  background: linear-gradient(to right, transparent, #996633);
-}
-.divider-line:last-child{
-  background: linear-gradient(to left, transparent, #996633);
-}
-.divider-dot{
-  width: 6px;
-  height: 6px;
-  background: #996633;
-  border-radius: 50%;
-  display: inline-block;
-  flex-shrink: 0;
-}
+/* Note: .sr-only (used by #ticker-status above) is deliberately NOT defined here.
+   It lives in CSS/additional-css.css, pasted into the Customizer's sitewide Additional CSS
+   instead of duplicated in this block, since it's a reusable utility class any future
+   screen-reader-only element on the site can also use. This block depends on that class
+   existing sitewide, see wp-custom-edits/Docs/wp-reference.md. */

@@ -1,0 +1,56 @@
+/* Darkum Design WordPress build — sitewide Additional CSS
+   Pastes into: WordPress Admin → Appearance → Customize → Additional CSS
+   This is the canonical mirror of whatever is actually live in that field.
+   Update this file every time something is added/changed there, so the database
+   isn't the only place this CSS exists. See wp-custom-edits/Docs/wp-reference.md. */
+
+/* Screen-reader-only utility class — hides content visually while keeping it available to
+   assistive tech. Used by the homepage hero ticker's #ticker-status live region
+   (see wp-custom-edits/HTML/light-catchphrase-ticker.html). Originally defined in the
+   coming-soon page's css/style.css but not carried over when the ticker was ported into
+   a Kadence Custom HTML block on 2026-08-17 — this is the fix for that gap (HANDOFF.md §7).
+   Kept here, sitewide, rather than duplicated inside the block's own <style>, so any future
+   ARIA-live/screen-reader-only element elsewhere on the site can reuse it too. */
+.sr-only{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Footer Social widget — deterministic 5-per-row grid (2026-08-18), same problem/fix as the
+   coming-soon page's .socials 5-per-row grid (css/style.css), but applied unconditionally
+   here rather than gated behind a mobile breakpoint. The footer social row lives inside a
+   narrow widget column (one of three side-by-side footer columns), so it wraps unevenly
+   (8+2 for the current 10 icons) at every screen width, not just under 480px like the
+   coming-soon page's full-width row. Real selectors confirmed against the live DOM
+   2026-08-18 — see wp-custom-edits/HTML/footer-social-icons/README.md. */
+.footer-social-wrap .footer-social-inner-wrap{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+}
+
+/* Footer Copyright HTML widget — color fix (2026-08-18). Confirmed via live DOM inspection
+   that this text was rendering as black-on-black (rgb(0,0,0)), genuinely invisible — it only
+   looked visible in a screenshot because the text was selected, and browser selection styling
+   forces white text regardless of the real color. #8a8078 matches --muted from the coming-soon
+   page's own .footer-note, the same muted tan used for its least-prominent footer text, kept
+   consistent rather than picking an arbitrary new color. Real selector confirmed from the
+   live DOM: .site-info .footer-html-inner p. Companion widget content change (bilingual
+   "All rights reserved." / "جميع الحقوق محفوظة.") made directly in the Footer Copyright HTML
+   widget's Code tab, not tracked as a separate file since it's one short line — see
+   HANDOFF.md §4 for the exact text used. */
+.site-info .footer-html-inner p{
+  color: #8a8078;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+}
+.site-info .footer-html-inner p [lang="ar"]{
+  font-family: 'Cairo', sans-serif;
+}
