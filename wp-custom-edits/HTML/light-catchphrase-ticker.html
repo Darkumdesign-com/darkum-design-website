@@ -26,3 +26,222 @@
     </div>
 
     <p id="ticker-status" class="sr-only" role="status" aria-live="polite"></p>
+
+<style>
+.catchphrase-ticker{
+  min-height: 76px;
+  margin: 0 0 32px;
+  padding: 18px 8px 0;
+  border-top: 1px solid rgba(242, 233, 221, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+}
+.ticker-line{
+  margin: 0;
+  font-size: clamp(1rem, 3vw, 1.4rem);
+  line-height: 1.6;
+  color: #f2e9dd;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.ticker-en{
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 300;
+}
+.ticker-ar{
+  font-family: 'Cairo', sans-serif;
+  font-weight: 500;
+}
+@media (prefers-reduced-motion: reduce){
+  .ticker-line{
+    transition: none;
+  }
+}
+.ticker-nav-row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 10px 0 28px;
+}
+.ticker-arrow{
+  background: none;
+  border: none;
+  padding: 4px;
+  margin: 0;
+  color: #8a8078;
+  cursor: pointer;
+  display: inline-flex;
+  transition: color 0.2s ease;
+}
+.ticker-arrow svg{ display: block; }
+.ticker-arrow:hover,
+.ticker-arrow:focus-visible{
+  color: #bd9c7a;
+}
+.ticker-dots{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ticker-dot{
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(242, 233, 221, 0.12);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.ticker-dot:hover{
+  background: #bd9c7a;
+}
+.ticker-dot[aria-current="true"]{
+  background: #996633;
+  transform: scale(1.3);
+}
+.ticker-arrow:focus-visible,
+.ticker-dot:focus-visible{
+  outline: 1px solid #bd9c7a;
+  outline-offset: 2px;
+}
+</style>
+
+<script>
+(function () {
+  var catchphrases = [
+    {
+      en: "Do you want to buy the same bed as all your friends, family, and neighbors? Customize your bed frame today with Darkum Design.",
+      ar: "عايز تنام على نفس السرير اللي عند كل صحابك وجيرانك؟ اعمل سريرك بتصميمك انت مع داركم ديزاين."
+    },
+    {
+      en: "Is your anniversary coming up? Surprise your partner with romantic customization, only from Darkum Design.",
+      ar: "عيد جوازك قرب؟ فاجئ شريك حياتك بتصميم رومانسي مميز، بس من داركم ديزاين."
+    },
+    {
+      en: "Is your child a superhero fan? Customize his bed with Iron Man or Superman with Darkum Design.",
+      ar: "ابنك بيحب الأبطال الخارقين؟ صمّملّه سرير آيرون مان أو سوبرمان مع داركم ديزاين."
+    }
+  ];
+
+  var tickerEn = document.getElementById('ticker-en');
+  var tickerAr = document.getElementById('ticker-ar');
+  var tickerPrev = document.getElementById('ticker-prev');
+  var tickerNext = document.getElementById('ticker-next');
+  var tickerDotsWrap = document.getElementById('ticker-dots');
+  var tickerStatus = document.getElementById('ticker-status');
+  var tickerSection = document.querySelector('.catchphrase-ticker');
+  var tickerNavRow = document.querySelector('.ticker-nav-row');
+
+  if (tickerEn && tickerAr && catchphrases.length) {
+    var index = 0;
+    var intervalId = null;
+    var paused = false;
+    var prefersReducedMotion = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var fadeMs = prefersReducedMotion ? 0 : 900;
+    var rotateMs = 7000;
+    var dots = [];
+
+    if (tickerDotsWrap) {
+      catchphrases.forEach(function (_, i) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'ticker-dot';
+        dot.setAttribute('aria-current', i === 0 ? 'true' : 'false');
+        dot.setAttribute('aria-label', 'Slide ' + (i + 1) + ' of ' + catchphrases.length +
+          ' / الشريحة ' + (i + 1) + ' من ' + catchphrases.length);
+        dot.addEventListener('click', function () { goTo(i, true); });
+        tickerDotsWrap.appendChild(dot);
+        dots.push(dot);
+      });
+    }
+
+    function updateDots(i) {
+      dots.forEach(function (dot, di) {
+        dot.setAttribute('aria-current', di === i ? 'true' : 'false');
+      });
+    }
+
+    function updateStatus(i) {
+      if (tickerStatus) {
+        tickerStatus.textContent = 'Slide ' + (i + 1) + ' of ' + catchphrases.length +
+          ' / الشريحة ' + (i + 1) + ' من ' + catchphrases.length;
+      }
+    }
+
+    function setPhraseText(phrase) {
+      tickerEn.textContent = phrase.en;
+      tickerAr.textContent = phrase.ar;
+      tickerEn.style.opacity = 1;
+      tickerAr.style.opacity = 1;
+    }
+
+    function renderSlide(i, immediate) {
+      var phrase = catchphrases[i];
+      if (immediate) {
+        setPhraseText(phrase);
+        updateDots(i);
+        updateStatus(i);
+        return;
+      }
+      tickerEn.style.opacity = 0;
+      tickerAr.style.opacity = 0;
+      setTimeout(function () {
+        setPhraseText(phrase);
+        updateDots(i);
+        updateStatus(i);
+      }, fadeMs);
+    }
+
+    function startAutoplay() {
+      stopAutoplay();
+      intervalId = setInterval(function () {
+        if (paused) return;
+        index = (index + 1) % catchphrases.length;
+        renderSlide(index, false);
+      }, rotateMs);
+    }
+
+    function stopAutoplay() {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+    }
+
+    function goTo(i, userInitiated) {
+      index = i;
+      renderSlide(index, false);
+      if (userInitiated) {
+        startAutoplay();
+      }
+    }
+
+    if (tickerPrev) {
+      tickerPrev.addEventListener('click', function () {
+        goTo((index - 1 + catchphrases.length) % catchphrases.length, true);
+      });
+    }
+    if (tickerNext) {
+      tickerNext.addEventListener('click', function () {
+        goTo((index + 1) % catchphrases.length, true);
+      });
+    }
+
+    [tickerSection, tickerNavRow].forEach(function (el) {
+      if (!el) return;
+      el.addEventListener('mouseenter', function () { paused = true; });
+      el.addEventListener('mouseleave', function () { paused = false; });
+      el.addEventListener('focusin', function () { paused = true; });
+      el.addEventListener('focusout', function () { paused = false; });
+    });
+
+    renderSlide(index, true);
+    startAutoplay();
+  }
+})();
+</script>
