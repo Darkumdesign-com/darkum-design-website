@@ -1,0 +1,11 @@
+# Secrets and credentials, never commit
+.env
+wp-custom-edits/PHP/*credentials*
+
+# Database dumps, contain user data, password hashes, API keys
+wp-custom-edits/SQL/
+*.sql
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
