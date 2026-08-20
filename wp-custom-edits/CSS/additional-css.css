@@ -33,7 +33,7 @@
 .footer-social-wrap .footer-social-inner-wrap{
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  justify-items: center;
+  justify-items: start;
 }
 
 /* Footer Copyright HTML widget — color fix (2026-08-18). Confirmed via live DOM inspection
@@ -53,4 +53,84 @@
 }
 .site-info .footer-html-inner p [lang="ar"]{
   font-family: 'Cairo', sans-serif;
+}
+
+/* Footer redesign (2026-08-19/20) — full writeup in HANDOFF.md §4, "Footer redesign" section.
+   Desktop confirmed live. Mobile is broken across the board as of 2026-08-20 and needs its
+   own pass — not covered by anything below. The gradient divider specifically has an
+   identified mobile fix (switch to a horizontal bottom-border via a mobile breakpoint),
+   not yet written. */
+
+/* Stacks the three footer columns' own content (heading + body) vertically instead of the
+   theme's row default — without this, an H3 sibling above each column's existing content
+   renders as an extra row-item instead of stacking above it. */
+.site-footer-section {
+	flex-direction: column;
+}
+
+/* Footer nav menu needs the same column treatment separately, since it's nested inside its
+   own nav/ul structure rather than sharing .site-footer-section's flex context directly. */
+.footer-navigation .menu {
+	flex-direction: column;
+}
+
+/* Nav items had been relying on padding alone (not margin/gap) for row-spacing — zeroing it
+   is required once the menu switches to column direction above, or the links collapse onto
+   a single line with no vertical space between them. */
+#colophon .footer-navigation .footer-menu-container > ul > li > a {
+	padding: 0;
+}
+
+/* Current-page indicator, done via Kadence's own .current-menu-item class rather than
+   :active — :active only applies for the literal moment of a mouse press and reverts on
+   release, so it can never render persistently. This pairs with Kadence's own native
+   color rule on the same selector (not duplicated here). */
+#colophon .footer-navigation .footer-menu-container ul li.current-menu-item > a {
+  text-decoration: underline;
+}
+
+/* Column heading style (About / Follow us / Menu) — wood-light instead of full cream,
+   uppercase + letter-spaced, so headings read as section labels distinct from body content
+   rather than just bigger text in the same color as everything else. */
+.site-footer h3 {
+	color: #bd9c7a;
+	font-size: 1.3rem;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+
+/* Removes a leftover left margin on the middle footer column now that alignment is unified
+   left/start across all three columns. */
+.ft-ro-dir-row .footer-section-inner-items-2 .footer-widget-area {
+	margin-left: 0;
+}
+
+.footer-widget-area p {
+    margin-block-start: 0.5em;
+}
+
+/* Vertical gradient dividers between the three footer columns — a plain solid border can't
+   taper, so this is a pseudo-element with a gradient background instead: transparent at top
+   and bottom, full color (#bd9c7a, bumped up from brand wood #996633 for visibility against
+   the near-black footer) at the vertical midpoint. Debugging note: this rendered completely
+   invisible on the first attempt because the Additional CSS editor (CodeMirror) auto-pairs
+   quote characters as you type — content: ""; typed with double quotes can silently double
+   up into four quote characters, which is invalid and drops the rest of the declaration
+   block. Fixed by using single quotes below, which sidesteps the auto-pairing. */
+.site-footer-middle-section-1,
+.site-footer-middle-section-2 {
+  position: relative;
+}
+
+.site-container .site-footer-middle-section-1::after, .site-container .site-footer-middle-section-2::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 0%, #bd9c7a 50%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
 }
