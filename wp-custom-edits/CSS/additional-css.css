@@ -4,6 +4,22 @@
    Update this file every time something is added/changed there, so the database
    isn't the only place this CSS exists. See wp-custom-edits/Docs/wp-reference.md. */
 
+/* Arabic font fallback (2026-08-21) — Source Sans 3 (the body font) has no Arabic glyphs at
+   all, so any unmarked Arabic character (e.g. inside the {site-title} dynamic tag, which mixes
+   English and Arabic in one string with no lang="ar" wrapper to target) was falling through to
+   the browser's generic system font instead of Cairo. Redefining the CSS variable Kadence's
+   own body/input/select/textarea rule already reads from makes Cairo catch it automatically,
+   per-character, with zero markup changes. Cairo must sit before the trailing sans-serif here,
+   not after — appending after it would never be reached, since the generic keyword already
+   resolves to a real system font with some Arabic coverage of its own. Confirmed this made the
+   old scoped fix below redundant — the `.site-info .footer-html-inner p [lang="ar"]` rule that
+   used to hand-target the footer copyright's Arabic sentence was removed 2026-08-21 once this
+   went live, since unmarked Arabic (including inside the bilingual site-title string) now
+   resolves to Cairo automatically without it. */
+:root {
+  --global-body-font-family: 'Source Sans 3', 'Cairo', sans-serif;
+}
+
 /* Screen-reader-only utility class — hides content visually while keeping it available to
    assistive tech. Used by the homepage hero ticker's #ticker-status live region
    (see wp-custom-edits/HTML/light-catchphrase-ticker.html). Originally defined in the
@@ -23,17 +39,33 @@
   border: 0;
 }
 
+/* Explore button (hero ticker) — box-shadow for contrast (2026-08-21). The button's fill color
+   is close in hue and luminance to both the surrounding photo and its own text, reading as low
+   contrast/barely visible in the hero. Class added via the Buttons block's own "Additional CSS
+   Class(es)" field (Edit Page > block > Advanced), not the ticker's own file, since the button
+   was added independently of the ticker blob, not part of it. Shadow uses #2b2620 (already the
+   site's dark brown palette token, --global-palette5) rather than plain black or a gold tone,
+   for real luminance contrast against the rotating background photos rather than repeating the
+   same low-contrast gold-on-gold problem the button already had. Confirmed sufficient by Sobhy
+   against the live rotating hero images. */
+.ticker-button a {
+    box-shadow: 0 4px 14px rgba(43, 38, 32, 0.45);
+}
+
 /* Footer Social widget — deterministic 5-per-row grid (2026-08-18), same problem/fix as the
    coming-soon page's .socials 5-per-row grid (css/style.css), but applied unconditionally
    here rather than gated behind a mobile breakpoint. The footer social row lives inside a
    narrow widget column (one of three side-by-side footer columns), so it wraps unevenly
    (8+2 for the current 10 icons) at every screen width, not just under 480px like the
    coming-soon page's full-width row. Real selectors confirmed against the live DOM
-   2026-08-18 — see wp-custom-edits/HTML/footer-social-icons/README.md. */
+   2026-08-18 — see wp-custom-edits/HTML/footer-social-icons/README.md.
+   A justify-items: space-between line was tried and removed 2026-08-21 — that's not a
+   valid justify-items value (it belongs to justify-content, which distributes whole
+   tracks, not justify-items, which aligns content inside one cell), so it was silently
+   ignored by the browser and had no effect either way. */
 .footer-social-wrap .footer-social-inner-wrap{
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  justify-items: start;
 }
 
 /* Footer Copyright HTML widget — color fix (2026-08-18). Confirmed via live DOM inspection
@@ -51,15 +83,25 @@
   font-size: 12px;
   letter-spacing: 0.03em;
 }
-.site-info .footer-html-inner p [lang="ar"]{
-  font-family: 'Cairo', sans-serif;
+
+/* Bottom footer row (copyright bar) — removes the theme's default bottom padding so the
+   copyright text sits closer to the page's actual bottom edge instead of leaving a visible
+   gap of empty black space below it. */
+.site-bottom-footer-inner-wrap{
+  padding-bottom: 0;
 }
 
-/* Footer redesign (2026-08-19/20) — full writeup in HANDOFF.md §4, "Footer redesign" section.
-   Desktop confirmed live. Mobile is broken across the board as of 2026-08-20 and needs its
-   own pass — not covered by anything below. The gradient divider specifically has an
-   identified mobile fix (switch to a horizontal bottom-border via a mobile breakpoint),
-   not yet written. */
+/* Footer redesign (2026-08-19/20/21) — full writeup in HANDOFF.md §4, "Footer redesign" section.
+   Desktop and mobile confirmed live. Column spacing across the 1290px boxed container turned out to be
+   a Customizer setting, not CSS — the Kadence Footer Middle Row's own Column Gap field (set
+   to 5em live) is what stretches the three columns evenly; grid-column-gap was never added
+   here. Column order (Menu / Follow Us swapped from the original About / Follow Us / Menu)
+   was also done natively, by reordering the widgets in the Customizer, not via CSS. The slogan
+   moved out of the About column into its own row (Kadence's Middle footer row), which is why
+   the divider selectors below target site-footer-top-section-1/-2 rather than -middle-, the
+   3-column content itself moved from Middle to Top. Divider is hidden under 1024px (the real
+   column-wrap breakpoint, confirmed via responsive testing, not the earlier 719px guess) since
+   it renders as a stray vertical line once columns stack to one-per-row. */
 
 /* Stacks the three footer columns' own content (heading + body) vertically instead of the
    theme's row default — without this, an H3 sibling above each column's existing content
@@ -116,13 +158,21 @@
    invisible on the first attempt because the Additional CSS editor (CodeMirror) auto-pairs
    quote characters as you type — content: ""; typed with double quotes can silently double
    up into four quote characters, which is invalid and drops the rest of the declaration
-   block. Fixed by using single quotes below, which sidesteps the auto-pairing. */
-.site-footer-middle-section-1,
-.site-footer-middle-section-2 {
+   block. Fixed by using single quotes below, which sidesteps the auto-pairing.
+   Retargeted 2026-08-21: the 3-column content moved from Kadence's Middle footer row to the
+   Top footer row (slogan now alone in Middle), so the selector needed to move from
+   -middle- to -top- to match. Kadence's footer builder only ever has three fixed rows
+   (Top/Middle/Bottom) and generates the same site-footer-{row}-section-{n} class pattern
+   for each, confirmed by the -middle- version already working before this move — not
+   re-verified against the live DOM this time since no connected browser tab had the
+   unsaved Customizer preview open. If this doesn't land, inspect one of the two stray
+   vertical lines and report back the real class name. */
+.site-footer-top-section-1,
+.site-footer-top-section-2 {
   position: relative;
 }
 
-.site-container .site-footer-middle-section-1::after, .site-container .site-footer-middle-section-2::after {
+.site-container .site-footer-top-section-1::after, .site-container .site-footer-top-section-2::after {
   content: '';
   display: block;
   position: absolute;
@@ -133,4 +183,14 @@
   background: linear-gradient(to bottom, transparent 0%, #bd9c7a 50%, transparent 100%);
   z-index: 1;
   pointer-events: none;
+}
+
+/* Hides the divider under the mobile breakpoint (2026-08-21) — with columns stacked
+   one-per-row on mobile, the divider no longer sits between two side-by-side columns, so
+   it rendered as a stray vertical line instead. A horizontal replacement (bottom-border
+   between stacked columns) is still on the list for the wider mobile footer pass. */
+@media screen and (max-width: 1024px) {
+	.site-container .site-footer-top-section-1::after, .site-container .site-footer-top-section-2::after {
+		display: none;
+	}
 }

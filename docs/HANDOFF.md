@@ -1,6 +1,6 @@
 # Darkum Design — Project Handoff
 
-**Last updated:** 2026-08-20
+**Last updated:** 2026-08-21
 **Maintainer:** Sobhy (sole developer/administrator — GitHub Org `darkumdesign`, separate Vercel account)
 **Pricing note:** Bido offered a flat rate of EGP 15,000 for the entire engagement (2026-08-16). The original item-by-item proposal and all freelancer market research have been archived to `docs/offer_market-research.md` — see §6.
 
@@ -199,7 +199,7 @@ A full draft (`wp-custom-edits\HTML\header-logo-lockup.html`) was built and veri
 
 **Belt-and-suspenders fix added same day:** since the Hub's Code Snippets tool doesn't persist filters, the free **Code Snippets plugin was installed and activated via WP-CLI** (`wp plugin install code-snippets --activate`), and the `upload_mimes` filter (`enable-svg.php`) was added there as an actual persistent snippet, confirmed Active in wp-admin. This ensures the SVG mime-type allowance stays in place even if Safe SVG is ever deactivated, rather than relying on Safe SVG alone. See `wp-custom-edits\Docs\wp-reference.md` for the full server-access and Code Snippets writeup.
 
-### Footer redesign (2026-08-19/20) — desktop confirmed live, mobile still broken
+### Footer redesign (2026-08-19/20/21) — desktop confirmed live, mobile partially addressed
 
 **Supersedes the earlier "5-per-row grid + copyright color" fix** (originally drafted 2026-08-18, flagged as "not yet confirmed live" in §7) — that fix did ship, and this section covers the fuller redesign that grew out of it once Sobhy started using the footer in the browser.
 
@@ -213,10 +213,50 @@ A full draft (`wp-custom-edits\HTML\header-logo-lockup.html`) was built and veri
 
 **Debugging note worth remembering for future Additional CSS work:** the divider rendered completely invisible on the first attempt despite the positioning rules both showing as applied in DevTools' Styles panel. Root cause: the Kadence Additional CSS field's editor (CodeMirror) auto-pairs quote characters as you type, so an empty-string `content` value typed with double quotes normally can silently double up into four quote characters, which is invalid and causes the parser to drop the rest of the declaration block. Fixed by retyping with single quotes, which sidesteps the auto-pairing behavior. Confirmed via DevTools: the pseudo-element either doesn't appear in the Elements tree at all (parse failure, this cause) or appears but renders invisible (a real positioning/sizing/z-index issue, a different cause) — useful diagnostic split for next time.
 
-**Open, raised 2026-08-20, not yet actioned:**
-- **Mobile footer is broken across the board**, not just the new divider. Sobhy's own assessment: "an absolute disaster." The divider specifically is an easy, identified fix (add a mobile-breakpoint override switching the gradient from a vertical right-side border to a horizontal bottom-side one, matching how the columns stack vertically on narrow screens), but the rest of the mobile layout needs its own full pass, not yet scoped.
-- **Slogan repositioning wanted:** Sobhy now regrets using the Kadence Customizer's middle footer row for the three-column layout (About/Follow us/Menu), since he wants the "FURNITURE · ART · DESIGN" slogan moved out of the About column and into its own **new, separate, centered row** sitting between the three-column row and the copyright row. Not yet scoped how this is best achieved within Kadence's footer row system (a 4th Customizer footer row, if available, vs. a Custom HTML block, vs. restructuring via Additional CSS) — open design decision, not just an implementation detail.
-- **Copyright row stays centered** — confirmed intentional by Sobhy, not an inconsistency to fix, despite the three columns above it being left-aligned.
+**Column spacing ("footer isn't stretched to page width") — root cause found and resolved natively, 2026-08-21, no CSS needed.** Sobhy reported the three columns weren't filling the boxed 1290px container edge-to-edge, and that applying `justify-content`/`justify-items: space-between` directly hadn't visibly done anything. Root cause: the columns are `minmax(0, 1fr)` grid tracks that already consume 100% of the container width with no leftover space, so `justify-content`/`justify-items` had nothing to redistribute — the properties weren't broken, they just had no effect to have. A `grid-column-gap: 5rem` CSS override was tried next and did work, but a leftover `justify-items: start` from the original test (still live in the same DevTools session) was fighting it, shrinking each column to its own content width instead of letting it stretch to fill its grid track. **Actual fix, found by Sobhy: the Kadence Footer Middle Row's own native Column Gap Customizer field, set to 5em.** This is a theme setting, not Additional CSS — no `grid-column-gap` rule was ever added to `additional-css.css`. Confirmed live via screenshot, all three columns now fill the row evenly with both gradient dividers landing correctly.
+
+**Column order swapped (Menu / Follow Us, from the original About / Follow Us / Menu) — 2026-08-21, also native, not CSS.** Done by reordering the widgets directly in the Kadence Footer Middle Row Customizer, not via a CSS `order` property. The divider selectors (`.site-footer-middle-section-1`/`-2`) target columns by structural position, not by which widget occupies them, so they continue to land correctly between columns regardless of this reorder — confirmed no divider/heading regression after the swap.
+
+**Arabic font fallback and Explore button contrast — see the new subsection below this one for both**, done the same session as the above.
+
+**Mobile — partially addressed 2026-08-21, full pass still outstanding:**
+- **Divider stray-line fix shipped:** with columns stacked one-per-row on mobile, the vertical gradient divider no longer sits between two side-by-side columns and was rendering as a stray floating vertical line. Fixed with a `display: none` media query under 719px (see `additional-css.css`). Confirmed this specific piece resolved.
+- **Broader mobile footer layout — status unclear as of this writing, needs verification at the start of the next session.** The original 2026-08-20 flag ("an absolute disaster," Sobhy's words) covered more than just the divider — general stacking/spacing/column-order concerns at mobile widths. Only the divider piece has been explicitly confirmed fixed; whether the rest of the mobile footer now looks acceptable (e.g. as a side effect of the column-gap/reorder fixes above) or still needs its own dedicated pass has not been re-checked this session. **Next session: view the live footer at a mobile viewport width before deciding whether this item is closed or still open.**
+
+**Slogan repositioning — attempted 2026-08-21, not completed, deliberately deferred.** Sobhy attempted to move "FURNITURE · ART · DESIGN" out of the About column into its own row by rearranging the footer's widget/column structure directly in the Customizer, and reported this broke a meaningful amount of the existing CSS customization. **Likely mechanism (not fully confirmed):** most of this section's CSS targets footer columns by structural position (`.site-footer-middle-section-1`/`-2`/`-3`, not by widget identity), so restructuring which widgets occupy which slots, or how many columns exist, can silently misalign the divider pseudo-elements, heading styling, or flex-direction rules without any CSS itself being edited or broken. **Status: deferred, not attempted again this session.** Whether the live site is currently back to the pre-attempt working state, or still shows residual breakage, was not confirmed as of this writing — **first thing to check at the start of the next session**, before anything else, in case the footer needs restoring. When this is picked back up, the safer approach is likely a genuinely separate 4th Kadence footer row for the slogan (leaving the existing 3-column row's structure, and therefore its position-based CSS, untouched) rather than restructuring the 3-column row itself.
+
+**Copyright row stays centered** — confirmed intentional by Sobhy, not an inconsistency to fix, despite the three columns above it being left-aligned.
+
+### Arabic font fallback, Explore button contrast, and site title typo (2026-08-21)
+
+**Arabic characters with no `lang="ar"` wrapper were rendering in the wrong font.** Raised via the footer copyright line, whose `{site-title}` dynamic tag outputs "Darkum Design - داركم ديزاين" as one unmarked bilingual string with no element boundary around just the Arabic portion, so the existing scoped `[lang="ar"]` CSS approach couldn't target it. **Root cause confirmed from the theme's actual generated CSS, not guessed:** the body font, `'Source Sans 3'`, has zero Arabic glyph coverage (confirmed against its real Google Fonts `@font-face` subsets — latin/latin-ext/cyrillic/greek/vietnamese only, no Arabic), so unmarked Arabic characters were falling through past it straight to the browser's generic `sans-serif` system font, a different font than the site's intended Cairo.
+
+**Fix: redefine the CSS variable Kadence's own font-family rule already reads from**, rather than editing markup or duplicating scoped rules:
+```css
+:root {
+  --global-body-font-family: 'Source Sans 3', 'Cairo', sans-serif;
+}
+```
+This works because of how CSS font-stack fallback actually resolves: per character, not per element — a browser checks each font in the list in order and uses the first one that has a glyph for that specific character. Cairo has to sit **before** the trailing `sans-serif`, not after — appending it after would never be reached, since the generic keyword already resolves to a real system font with some Arabic coverage of its own, satisfying the fallback before the list ever reaches Cairo. This is CSS-only and not achievable through the Kadence Customizer Typography UI at all, which only supports picking one font per element, not a fallback chain. Confirmed live by Sobhy testing `getComputedStyle` on the ticker's Arabic element directly in the browser console — resolves to Cairo.
+
+**Made one existing rule redundant, removed:** `.site-info .footer-html-inner p [lang="ar"]{ font-family: 'Cairo', sans-serif; }` (the original scoped fix for the footer copyright's separate, properly-marked Arabic sentence) was removed 2026-08-21 once the global fallback confirmed working — Sobhy verified no visual regression.
+
+**Scope note, not yet needed but worth remembering:** this fix covers body text (paragraphs, inputs, and — via normal inheritance — h5/h6). Headings h1–h4 are hardcoded directly to `font-family: Alice, serif;` in Kadence's own CSS (not through a variable), so they're immune to this fix. Nothing on the site currently puts Arabic inside an actual heading tag, so this hasn't needed addressing, but if it ever does, it will need its own explicit rule.
+
+**Hero ticker's own explicit Cairo/Source Sans 3 declarations deliberately kept, not simplified away.** Considered removing `.ticker-en`/`.ticker-ar`'s own `font-family` lines now that the global fallback makes them technically redundant, but decided against it: `.ticker-ar` pairs a specific `font-weight: 400` and a smaller `clamp()` font-size range against Cairo specifically (documented elsewhere in this file as the fix for Cairo reading visually heavier than Latin type at the same numeric size). Removing the explicit font-family would make that tuning silently dependent on the sitewide default never changing, and the ticker block is otherwise deliberately self-contained. Kept as intentional redundancy.
+
+**Explore button contrast fixed.** The hero's "Explore" button had genuinely low contrast against the rotating background photos (gold-toned fill and text against warm-toned imagery). A `ticker-button` class was added via the Buttons block's own "Additional CSS Class(es)" field (Edit Page > block > Advanced), deliberately not touching the theme's shared button styling used elsewhere on the site. First attempt (a subtle gold `box-shadow`) was flagged as likely to be invisible against the same warm-toned photos causing the original problem — same hue family as the background, so no real contrast. Replaced with a dark shadow using `#2b2620` (the site's own dark brown palette token, `--global-palette5`) for genuine luminance contrast against any of the rotating photos, not just one:
+```css
+.ticker-button a {
+  box-shadow: 0 4px 14px rgba(43, 38, 32, 0.45);
+}
+```
+Confirmed sufficient by Sobhy against the live rotating hero images.
+
+**Site title typo caught, being fixed by Sobhy directly.** The live site title reads "Darkum Desgin" (missing the "i"), visible in the footer copyright line and presumably the `<title>` tag/browser tab sitewide. Sobhy is correcting this in Settings → General → Site Title — **not yet confirmed fixed as of this writing**, worth a quick live check next session.
+
+### Local debug snapshot excluded from git (2026-08-21)
+A full "Save As → Complete Webpage" browser capture of the footer (`wp-custom-edits\HTML\Footer - copy.html` + `Footer - copy_files\`, ~1.14 MB / 46 files, almost entirely third-party vendor bundles and session-tied admin-bar assets) was used as a one-time debugging reference for the footer CSS work above. Decided not to commit it — not source code, already stale, and the actually-useful confirmed selectors are captured properly in `additional-css.css` comments and `wp-reference.md` instead. Added to `.gitignore` (both paths, matching the existing pattern for `.env`/SQL dumps) rather than deleted, so it stays available locally without polluting version history. Both paths confirmed untracked before the ignore rule was added (`git status` showed `??`, never previously committed), and `git check-ignore` confirmed the rule takes effect.
 
 ### GoDaddy hosting environment — reference (as of 2026-08-17)
 Pulled directly from the GoDaddy Hub's WordPress Settings page, useful shared reference for both Sobhy and Claude going forward:
@@ -354,33 +394,25 @@ Two freelancer quotes gathered during the (now-superseded) market research phase
 
 ---
 
-## 7. Open Items / Next Steps
+## 7. Resolved Items Log
+
+**Live open items are tracked in `docs/TO-DO-List.md`.** This section only records what has already been resolved, dated, for reference. If an item below has a follow-up caveat noted inline (for example "still needs Publish clicked"), that follow-up also lives in `TO-DO-List.md`, not just here.
 
 - [x] Confirm exact handles/URLs for TikTok, YouTube, Pinterest, and X — done by Sobhy directly in `README.md` and `index.html` (2026-08-12)
 - [x] Confirm with client: "sliding animations" = scroll-reveal (Kadence native) or carousel/slider (needs MetaSlider)? — resolved 2026-08-13, see §4: hero uses a custom Q&A slideshow, everything else uses Kadence's native fade-in/fade-out scroll-reveal, no slider plugin needed
-- [ ] Get the full list of homepage sliding catchphrases from Bido (only 3 examples given so far — see §4)
 - [x] Re-verify StudioWombat APF pricing (subscription vs. one-time — see §4) — resolved 2026-08-16: confirmed a genuine one-time "Lifetime" license exists (separate toggle from "Yearly"). **Free version installed 2026-08-17 to confirm GoDaddy compatibility only — not a purchase, see §4.**
-- [ ] **Purchase APF on the Lifetime tier** — blocked on Bido/partners choosing between the three Lifetime tiers (Pro, Extended, Extended + Addons). See §4.
-- [ ] Build out Bed Frame configurator — blocked on the APF purchase above; the currently-installed free version can't build the actual conditional-logic chain (position → insertions → size), see §4.
 - [x] Set up X (Twitter) account — needs updated logo (have it) + business phone number (have it: +20-10-37-888-900)
-- [ ] Migrate `darkumdesign.com` domain's **registrar** from Vercel to Bido's GoDaddy account — blocked until 25 September 2026 (ICANN 60-day rule). Does **not** block pointing DNS/hosting to GoDaddy earlier, see §4.
 - [x] Complete registrar email verification for the domain (avoid suspension)
-- [ ] Clarify Darkum Design's legal entity status in Egypt (affects TikTok business account, Etsy, and soon Paymob — see the consolidated "Commercial Registration blocker" note in §3)
-- [ ] Resolve TikTok business account once commercial registration docs are available
-- [ ] Resume Etsy shop setup once commercial registration docs are available — stopped 2026-08-15 at the required `Business Registration Number` field, owners informed via WhatsApp same day. `DarkumDesignShop` recommended as the final handle once resumed (`DarkumDesign` itself is taken), see §3.
 - [x] Decide on Houzz — dropped 2026-08-15, doesn't operate in Egypt (confirmed directly during signup), see §3
 - [x] Set up GoDaddy Managed WordPress hosting (Step 1 of the §4 sequence) — done 2026-08-16, Ecommerce plan, temporary build domain `1221269.us32.myftpupload.com` confirmed
 - [x] Set up local WordPress development environment — done 2026-08-16, **then fully torn down 2026-08-17** in favor of live-only development. See §4 for the full reasoning and teardown record.
 - [x] Activate GoDaddy Premium Backups as the safety net for live-only development — done 2026-08-17, EGP 274.15, approved by Bido same day. See §4.
-- [ ] **Cancel GoDaddy Premium Backups** the day `darkumdesign.com` goes live — reverts to the Ecommerce plan's default daily backups at no extra cost. See §4.
 - [x] Activate Kadence Security Plugin's Brute Force Protection Network — done 2026-08-18, free, API key recorded in §4.
-- [ ] Check whether the Kadence Security Plugin's API key needs reissuing/reconnecting once DNS cuts over from the temp domain to `darkumdesign.com`, see §4.
-- [x] Set up Kadence Global Palette (Colors & Fonts → Colors) with Darkum's actual brand colors — done 2026-08-18, Palette 3 imported, see §4. Still needs **Publish** clicked in the Customizer to persist.
+- [x] Set up Kadence Global Palette (Colors & Fonts → Colors) with Darkum's actual brand colors — done 2026-08-18, Palette 3 imported, see §4. Still needs **Publish** clicked in the Customizer to persist, see `TO-DO-List.md`.
 - [x] Research whether GoDaddy Managed WordPress's known limitations would cause issues for this build — resolved 2026-08-17, low risk, see §4
 - [x] Decide GitHub CI/CD ↔ GoDaddy timing — resolved 2026-08-17: not doing it during the build, see §4 for full reasoning
 - [x] Verify GoDaddy's default mail delivery handles WooCommerce order/notification emails, given GoDaddy blocks outbound SMTP ports for third-party mail systems — verify near go-live, see §4
 - [x] Quick-check Advanced Product Fields against GoDaddy's WooCommerce-specific plugin blocklist — resolved 2026-08-17: successfully installed and activated on GoDaddy Managed WordPress, confirming it isn't blocklisted. See §4.
-- [ ] **Start the full WordPress build itself** (Kadence, WooCommerce, Bed Frame configurator) on the now-live temporary domain. Full recommended sequence documented in §4 (temp domain ✅ → build → partner approval → DNS cutover → registrar transfer later, independent steps).
 - [x] Draft full proposal — done 2026-08-13, `docs/PROPOSAL.md`. **Superseded** 2026-08-16 by Bido's flat EGP 15,000 offer — archived to `docs/offer_market-research.md`, see §6
 - [x] Send Social Media Presence freelancer quote request to 3+ freelancers — briefs sent, 4 offers received on Khamsat (2026-08-13). **No longer needed** — superseded by Bido's flat-rate offer; quotes archived to `docs/offer_market-research.md`.
 - [x] ~~Get comparable freelancer quotes for Coming-Soon Page, Website, and Bed Frame Configurator before finalizing pricing~~ — **no longer needed**, superseded 2026-08-16 by Bido's flat EGP 15,000 offer; quotes gathered so far archived to `docs/offer_market-research.md`.
@@ -388,32 +420,27 @@ Two freelancer quotes gathered during the (now-superseded) market research phase
 - [x] Sobhy to review the final coming-soon page (all social links live) and confirm before committing/pushing to GitHub and deploying on Vercel
 - [x] Add Open Graph / Twitter Card meta tags + og:image to the coming-soon page — done 2026-08-12 (image created by Sobhy, meta tags added to `index.html`, see §5)
 - [x] Finish publishing the LinkedIn Company Page — English tagline + About live (2026-08-14); Arabic tagline + About confirmed published and matching `docs/MARKETING-COPY.md` as of 2026-08-15
-- [ ] Google Business Profile — created, pending verification 17 August 2026. Description ("shop" wording) confirmed live 2026-08-15; the "female-led" addition was reverted before publishing, see §1.
 - [x] Resolve YouTube "We couldn't save your changes. Please try again." error — fixed 2026-08-14, turned out to be a stale-session/cache issue, resolved by clearing cache and hard-reloading the page. Not a content or character-limit problem.
 - [x] Re-publish YouTube About description with the fuller version in `docs/MARKETING-COPY.md` — confirmed live and matching as of 2026-08-15
 - [x] Add JSON-LD structured data (`FurnitureStore`) to the coming-soon page — done 2026-08-13, see §5
 - [x] Decide LinkedIn Arabic slogan: translated (أثاث · فن · تصميم), not transliterated (فرنيتشر · آرت · ديزاين) — matches YouTube, resolved 2026-08-14, Sobhy applied it directly in the LinkedIn draft
 - [x] Brand word choice decided 2026-08-14: **"Shop" (EN) / "محل" (AR)**, not "Studio"/"استوديو" — see §8 for reasoning. Applied across all platforms in `docs/MARKETING-COPY.md` as of the 2026-08-15 sync (see §5); also applied to Google Business Profile, which had drifted with "studio" wording.
 - [x] Decide whether to also fix the em dash in the live Open Graph / meta description (`index.html`) to match the no-em-dash-in-English rule — fixed by Sobhy directly 2026-08-15, verified by Claude reading `index.html`, see §5
-- [ ] Resolve `README.md`'s "female-owned" wording once the Commercial Registration is in hand and the correct positioning/scope can be confirmed — see §1 (superseded the earlier GBP-only framing, now on hold entirely rather than an active decision to make right now)
-- [ ] Draft retainer offer/proposal for the ongoing creative-authority role — separately, after the full website is built (see §6)
 - [x] **Re-export and re-rename the logo's "Exact" layout files** across all formats/sizes now that the corrected base size is confirmed — done 2026-08-17: full 216-file re-export, 30-file rename pass verified via `magick identify`, two mid-process issues (Transparent-Exact stuck on old proportions, mislabeled JPG 192px row) caught and resolved same day, see §2.
 - [x] Decide whether the WhatsApp files already sent to partners need reissuing — resolved 2026-08-17: no reissue, sharing the whole export folder via Google Drive instead, at partners' own request. See §2.
-- [x] **Share the `Darkum Design - Logo Exports` Google Drive folder with partners** — folder itself is confirmed clean/ready (192 files, no stray duplicates, verified 2026-08-17), the actual share/link has not been sent yet. See §2.
+- [x] **Share the `Darkum Design - Logo Exports` Google Drive folder with partners** — folder itself is confirmed clean/ready (192 files, no stray duplicates, verified 2026-08-17), the actual share/link has not been sent yet, see `TO-DO-List.md`. See §2.
 - [x] **Paste the `.sr-only` fix into Additional CSS and click Publish** — done 2026-08-18, confirmed live via screenshot, `#ticker-status` no longer visible. See §4.
 - [x] Paste the Footer Social 5-per-row grid fix and Footer Copyright color fix into Additional CSS and click Publish — done, confirmed live. See §4's Footer redesign section, which supersedes this item with the fuller work that followed.
 - [x] Add H3 headings above each footer column, fix flex-direction so they stack correctly, unify column alignment, add current-page underline to footer nav, add gradient dividers between columns — done 2026-08-19/20, desktop confirmed live. See §4's Footer redesign section.
-- [ ] Fix the footer on mobile — broken across the board as of 2026-08-20 ("an absolute disaster" per Sobhy), not just the gradient divider (which has an identified, easy fix: switch it to a horizontal bottom-border via a mobile breakpoint). Rest of the mobile footer layout not yet scoped. See §4.
-- [ ] Move the "FURNITURE · ART · DESIGN" slogan out of the footer's About column into its own new centered row, sitting between the three-column row and the copyright row — raised 2026-08-20, not yet scoped how to build within Kadence's footer row system. See §4.
-- [ ] Consider swapping the Footer Social icons from Kadence's built-in icon library to the hand-coded custom SVGs at `wp-custom-edits\HTML\footer-social-icons\`, to match the "no icon libraries" standard used elsewhere — optional, low-priority, current icons work fine. See §4.
-- [ ] **Click Save in wp-admin to publish the Transparent Header fix** (already set to Disable on the Home page's Page Settings, not yet saved) — then verify on the live front-end that the header/hero no longer overlap, not on the editor canvas which doesn't reliably reflect this setting. See §4.
-- [ ] Decide whether to re-enable the sitewide sticky header on desktop — disabled temporarily 2026-08-18 purely to help diagnose the Transparent Header overlap, not a final decision either way. See §4.
-- [ ] Diagnose why `header-logo-lockup.html` (now moved to `wp-custom-edits\HTML\_stale-header-logo-blob-2026-08-19\`) rendered as literal text instead of parsed HTML, before deciding whether to retry the inline SVG/HTML header approach or fall back to a re-exported raster logo. See §4.
+- [x] Fix the footer on mobile — divider stray-line issue resolved 2026-08-21 (media query hiding it under 719px). **Broader mobile layout status unclear as of 2026-08-21** — not independently re-checked at a mobile viewport since the column-gap/reorder fixes shipped, so it's unknown whether the original "absolute disaster" assessment still holds or was partly a side effect of the now-fixed column spacing, see `TO-DO-List.md`. See §4.
 - [x] Reinstall the free Code Snippets *plugin* (or find another persistent mechanism) for any PHP that needs to stay active — done 2026-08-19, installed and activated via WP-CLI (`wp plugin install code-snippets --activate`), the SVG `upload_mimes` filter re-added as an actual persistent snippet, confirmed Active in wp-admin. See §4 and `wp-custom-edits\Docs\wp-reference.md`.
 - [x] Await GoDaddy support's response to the SVG-upload server-block ticket — resolved 2026-08-19: GoDaddy support (Stefan) asked for reproduction details, Sobhy's own retesting (Hub File Manager upload, then re-upload via Media Library, then SFTP verification) found SVG uploads now working, replied to the ticket confirming resolution, no further escalation needed. See §4.
-- [ ] Delete (or repurpose) the now-empty Row Layout left behind on the Home page (`uniqueID 35_700888-ac`) after the ticker was moved into the new hero row with the background image. See §4.
-- [ ] Decide on a permanent hero background image — currently a temporary Unsplash placeholder (watermarked, licensing not resolved for production use). See §4.
-- [ ] GoDaddy Managed WordPress exposes a native "Connectors" panel (Settings → Connectors, WordPress 7.0's PHP AI Client SDK) that can wire an Anthropic API key into AI-aware plugins for tasks like alt-text/excerpt generation. Discovered 2026-08-17, not set up. Requires a separate `console.anthropic.com` account and API key (distinct from any claude.ai account), billed pay-per-use. Optional, low-priority, revisit once the WordPress build itself is further along, no obligation to do anything with it.
+- [x] Move the "FURNITURE · ART · DESIGN" slogan out of the footer's About column into its own row — done 2026-08-21, moved to Kadence's Middle footer row (the 3-column content moved to the Top row in its place). The 2026-08-21 attempt that had broken CSS customization was resolved; the two deleted-then-restored spacing rules (`.ft-ro-dir-row .footer-section-inner-items-2 .footer-widget-area{margin-left:0}` and `.footer-widget-area p{margin-block-start:0.5em}`) were recovered from git history (commit `dab7680`) rather than rewritten. Divider selectors retargeted from `site-footer-middle-section-1/-2` to `site-footer-top-section-1/-2` to match, and the mobile-hide media query widened from 719px to 1024px, the actual column-wrap breakpoint (confirmed via responsive testing, corrected from an earlier 876px report that turned out to be a viewport-height reading, not width). Desktop, tablet, and mobile all confirmed clean, no stray divider line at any breakpoint. See §4.
+- [x] Transparent Header — resolved 2026-08-21: disabled outright (not just fixed for the Home page), no header/hero overlap.
+- [x] Sticky header — resolved 2026-08-21: re-enabled, "Yes - Whole Header" with Reveal Sticky on Scroll Up on for desktop; mobile sticky also "Yes - Whole Header" but without reveal-on-scroll-up.
+- [x] Header logo lockup (inline SVG/HTML attempt) — abandoned 2026-08-21 in favor of the actual master SVG logo, uploaded directly once GoDaddy's SVG-upload block was resolved (see the entry above). Currently used across all viewports. `wp-custom-edits\HTML\_stale-header-logo-blob-2026-08-19\` stays as a dated reference, not deleted. New open item surfaced by this: the mobile header (logo + Search + Cart + burger menu) reads as tight, see `docs\TO-DO-List.md`.
+- [x] Site title typo ("Darkum Desgin" to "Darkum Design") — confirmed live 2026-08-21 via Settings → General, Site Title field reads correctly.
+- [x] Kadence Global Palette Publish — confirmed already persisted, not a separate action needed. Multiple Publish clicks have gone out since the palette was set 2026-08-18 (footer redesign, header changes), and the site's live rendering (footer headings, Explore button shadow, etc.) already shows the correct brand palette colors, confirming it took effect.
 
 ---
 

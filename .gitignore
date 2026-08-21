@@ -9,3 +9,12 @@ wp-custom-edits/SQL/
 # OS/editor noise
 .DS_Store
 Thumbs.db
+
+# Local-only debug snapshot (saved webpage capture used for footer CSS debugging, 2026-08-21)
+# Full "Save As -> Complete Webpage" browser capture: third-party vendor bundles (WooCommerce,
+# Stripe, jQuery, Sourcebuster) plus admin-bar CSS/JS tied to a logged-in session, not source
+# code and already stale as of the next footer edit. The real confirmed selectors that made
+# this useful are captured properly in additional-css.css comments and wp-reference.md, so
+# this stays local-only rather than going into history.
+wp-custom-edits/HTML/Footer - copy.html
+wp-custom-edits/HTML/Footer - copy_files/
