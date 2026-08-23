@@ -1,6 +1,6 @@
 # Darkum Design — Project Handoff
 
-**Last updated:** 2026-08-21
+**Last updated:** 2026-08-22
 **Maintainer:** Sobhy (sole developer/administrator — GitHub Org `darkumdesign`, separate Vercel account)
 **Pricing note:** Bido offered a flat rate of EGP 15,000 for the entire engagement (2026-08-16). The original item-by-item proposal and all freelancer market research have been archived to `docs/offer_market-research.md` — see §6.
 
@@ -19,6 +19,9 @@ This document tracks everything known about the Darkum Design engagement so far:
 - **SEO scope narrowed 2026-08-17:** Bido has a separate marketing agency deal covering ongoing on-page and off-page SEO — this removes SEO strategy/content work from Sobhy's scope entirely (he had proposed Yoast SEO Premium; Bido declined it in the same conversation the agency deal came up, which resolved the question anyway). Yoast SEO (free) stays installed as WordPress infrastructure (sitemap, meta tags, technical basics) — see §4.
 - **Access:** Neither Bido nor Noura access Gmail, Social Media accounts, GitHub or Vercel directly — Sobhy administers both solo.
 - **Store**: Store No. 5, 10 Aswan Street, El-Sherif Building, Heliopolis, Cairo, Egypt, 4460305. Under construction in Heliopolis, Cairo. Sobhy has not visited the store yet.
+- **Dema and website/social copy (confirmed 2026-08-22):** Bido told Sobhy that Dema, a friend of Noura's who runs an advertising agency, will be writing all content for the website and social media going forward. Sobhy has stopped drafting any homepage copy until Dema delivers hers, to avoid two conflicting versions. Whether Dema's scope also covers WooCommerce order confirmation email wording, or only homepage/social copy, is unconfirmed — asked via WhatsApp 2026-08-22, see below and `TO-DO-List.md` Phase 2.
+- **Legal pages need a lawyer, not Sobhy/Bido/Noura (confirmed 2026-08-22):** Privacy Policy, Terms of Service, and Return/Refund Policy require the business's formal registered name from the Commercial Registration and Tax Card, and should be drafted or reviewed by a lawyer. Blocked until both documents are in hand and a lawyer is engaged, see `TO-DO-List.md` Phase 2.
+- **Communication gap, as of 2026-08-22:** Bido and Noura have been unreachable by phone for over a week despite daily call attempts from Sobhy. A WhatsApp message was sent 2026-08-22 summarizing the Dema copy-scope question, the legal-pages requirement, and the still-pending APF Lifetime tier decision, awaiting reply.
 
 ---
 
@@ -92,8 +95,20 @@ Set up on **Zoho Mail (free plan)**, domain `darkumdesign.com`:
 
 **Zoho free plan caps at 5 mailboxes** — currently at 4 with `webmaster@` added. Worth remembering before adding more (e.g. a future `support@`).
 
-### Unified inbox recommendation
-No free plugin puts a true reply-from-everywhere inbox inside wp-admin — that's a SaaS-dashboard feature, not a WordPress one. Recommended: **Metricool (free plan)** as a separate dashboard/app Noura bookmarks or installs — covers FB comments/DMs, IG comments/DMs, X DMs, LinkedIn company comments, Google Business reviews, YouTube comments. TikTok comment management via Metricool requires a **business account**, which is currently blocked (see above) — TikTok replies stay manual until that's resolved. The Metricool WordPress plugin itself is just a site-analytics connector, unrelated to the inbox feature.
+### Unified inbox — Metricool, connected 2026-08-22
+No free plugin puts a true reply-from-everywhere inbox inside wp-admin — that's a SaaS-dashboard feature, not a WordPress one. **Metricool (free plan)** was set up as a separate dashboard Sobhy administers, covering FB comments/DMs, IG comments/DMs, Threads, Pinterest, TikTok (personal), Google Business reviews, YouTube comments, plus site/blog analytics via the domain and RSS feed connections. The Metricool WordPress plugin itself is just a site-analytics connector, unrelated to the inbox feature, not installed.
+
+**Connected:** Web (`darkumdesign.com` domain, plus the GoDaddy temp domain `1221269.us32.myftpupload.com`), Blog (RSS feed), Facebook Page, Instagram (professional account), Threads, Pinterest (business account), TikTok personal account, Google Business Profile, YouTube.
+
+**Not connected, free-plan limitation:** X and LinkedIn each require their own separate paid Metricool tier ($25/month or $240/year per platform, confirmed no combined/bundled tier), so this stays open pending a decision on whether the cost is worth it, not a firm no.
+
+**Not connected, deliberately, no current need:** Bluesky (no account exists), Twitch (business doesn't stream games), Meta Ads / Google Ads / TikTok Ads (no active ad campaigns), Looker Studio.
+
+**Not connected, blocked:** TikTok business account, requires business verification, which requires Commercial Registration and Tax ID — same shared blocker as TikTok/Etsy/Paymob elsewhere, see above. TikTok comment management via Metricool stays manual until that's resolved.
+
+**Onboarding note:** Metricool's "How many people are going to use Metricool?" setup question was answered **"Just me"** (not "I will work with more colleagues"), matching the confirmed setup where Sobhy solely administers every account and neither Bido, Noura, nor Heba have direct logins. This may need revisiting if Dema (see below) ends up needing her own Metricool access rather than just handing off finished copy — not yet confirmed either way.
+
+**Metricool MCP connected to Claude, both Claude Desktop and Claude Code (2026-08-22):** Metricool's official hosted MCP server (`https://ai.metricool.com/mcp`, works on any plan including free, no self-hosted Python package needed) lets Claude read and act on Metricool data directly in conversation, e.g. pulling engagement metrics or scheduling posts. Connected via Claude Desktop's Settings → Connectors (paste URL, authorize via browser OAuth) and via Claude Code's CLI (`claude mcp add --transport http metricool https://ai.metricool.com/mcp`, same OAuth authorization). Both tested working same day. **Tool permissions:** read-only tools (Get Available Metrics, Get Analytics Data, Get Best Time to Post, Get Brand Settings, Get Scheduled Posts) set to "Always allow"; write/delete tools (Create Scheduled Post, Create Scheduled Post for Review, and others) set to "Needs approval" — deliberately kept this way given the active "no copy until Dema" rule below, so nothing gets posted or scheduled without an explicit human decision at the moment it happens.
 
 **Pricing/market-research history:** Social Media Presence pricing was researched via a dedicated freelancer quote request brief and four Khamsat offers ($40–$250) before the item-by-item proposal was superseded by Bido's flat-rate offer — full detail, including the brief documents and offer table, archived to `docs/offer_market-research.md`.
 
@@ -441,6 +456,8 @@ Two freelancer quotes gathered during the (now-superseded) market research phase
 - [x] Header logo lockup (inline SVG/HTML attempt) — abandoned 2026-08-21 in favor of the actual master SVG logo, uploaded directly once GoDaddy's SVG-upload block was resolved (see the entry above). Currently used across all viewports. `wp-custom-edits\HTML\_stale-header-logo-blob-2026-08-19\` stays as a dated reference, not deleted. New open item surfaced by this: the mobile header (logo + Search + Cart + burger menu) reads as tight, see `docs\TO-DO-List.md`.
 - [x] Site title typo ("Darkum Desgin" to "Darkum Design") — confirmed live 2026-08-21 via Settings → General, Site Title field reads correctly.
 - [x] Kadence Global Palette Publish — confirmed already persisted, not a separate action needed. Multiple Publish clicks have gone out since the palette was set 2026-08-18 (footer redesign, header changes), and the site's live rendering (footer headings, Explore button shadow, etc.) already shows the correct brand palette colors, confirming it took effect.
+- [x] Sign up and configure Metricool (free plan) as the unified social inbox — done 2026-08-22, see the new §3 subsection for the full connected/skipped/blocked breakdown.
+- [x] Connect Metricool's official MCP server to Claude Desktop and Claude Code — done 2026-08-22, both tested working, see §3.
 
 ---
 

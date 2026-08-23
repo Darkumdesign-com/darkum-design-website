@@ -194,3 +194,126 @@
 		display: none;
 	}
 }
+
+/* ============================================================
+   Contact section, map + floating form card (2026-08-23). Built manually
+   from native Kadence blocks (Google Maps, Row Layout, Section, Form Adv),
+   using the Kadence Design Library's "Form 40" template (a Pro element) as
+   a style reference only, see HANDOFF.md. Not yet confirmed live; this is
+   the drafted CSS ready to paste once the section is saved/published.
+   Structure (List View labels):
+   Row Layout
+     Section (Google Maps)                      -> class: dkd-contact-map-section
+     Row Layout (Address + Form, side by side)   -> class: dkd-contact-panels-row
+       Section (Address/Hours)                   -> class: dkd-address-card
+       Section (Form Adv)                        -> class: dkd-form-card
+   Classes added via each block's own Advanced tab, "Additional CSS
+   Class(es)" field. Fields/labels/submit are targeted by real HTML tag
+   inside .dkd-form-card rather than Kadence's own generated classes, so
+   this survives any internal Kadence markup changes. */
+
+/* Lifts the Address+Form row up so it sits partly over the map, floating
+   card look. Single custom property so the overlap amount is one number
+   to tune instead of hunting through the rule. Could also be set natively
+   via the Row Layout block's own Advanced > Margin field (negative top
+   value) instead of this rule, if a CSS-free approach is preferred. */
+.dkd-contact-panels-row {
+  --dkd-contact-lift: 64px;
+  position: relative;
+  z-index: 5;
+  margin-top: calc(-1 * var(--dkd-contact-lift));
+}
+
+/* Less lift on narrower screens, where the map itself renders shorter, so
+   the card doesn't swallow too much of it. Verify this breakpoint against
+   the live page, it's a starting guess, not confirmed via DOM inspection. */
+@media screen and (max-width: 768px) {
+  .dkd-contact-panels-row {
+    --dkd-contact-lift: 24px;
+  }
+}
+
+/* Keeps the embedded Google Map's own UI controls (zoom, fullscreen) from
+   ever painting above the floating card, those controls build their own
+   stacking context inside the iframe. */
+.dkd-contact-map-section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Shared card treatment for both panels, rounded corners plus a drop
+   shadow read as one floating unit rather than the row's flat default.
+   Background is left out here on purpose, Address already has its own
+   gradient set via Kadence's native Section background control; only Form
+   gets a background rule below. */
+.dkd-address-card,
+.dkd-form-card {
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  padding: 2.5rem;
+}
+
+/* Form card gradient, brand wood tokens already used everywhere else on
+   the site (darker wood -> wood -> wood light), diagonal top-left to
+   bottom-right, matching the Design Library reference's direction. */
+.dkd-form-card {
+  background: linear-gradient(135deg, #7a522a 0%, #996633 45%, #bd9c7a 100%);
+}
+
+/* Field labels, cream and slightly bolded so they read clearly against
+   the gradient. */
+.dkd-form-card label {
+  color: #f2e9dd;
+  font-weight: 600;
+}
+
+/* Fields, cream fill instead of transparent/underline-only, with real
+   padding and rounded corners so they read as filled fields. Covers every
+   input type Kadence's Advanced Form uses across this specific form
+   (text, email, tel, the Type dropdown, the Message textarea). */
+.dkd-form-card input[type="text"],
+.dkd-form-card input[type="email"],
+.dkd-form-card input[type="tel"],
+.dkd-form-card input[type="number"],
+.dkd-form-card select,
+.dkd-form-card textarea {
+  background: #f2e9dd;
+  color: #2b2620;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75em 1em;
+}
+
+.dkd-form-card input::placeholder,
+.dkd-form-card textarea::placeholder {
+  color: #8a8078;
+}
+
+/* Visible focus outline on the now-solid cream fields, accessibility, not
+   just cosmetic, since the previous transparent/underline style relied on
+   the browser's default focus ring being visible against a dark card. */
+.dkd-form-card input:focus,
+.dkd-form-card select:focus,
+.dkd-form-card textarea:focus {
+  outline: 2px solid #2b2620;
+  outline-offset: 1px;
+}
+
+/* Submit, translucent cream pill against the darker gradient, matching
+   the reference. Covers both button[type=submit] and input[type=submit]
+   since Kadence's Advanced Form output for this hasn't been confirmed
+   against the live DOM yet. */
+.dkd-form-card button[type="submit"],
+.dkd-form-card input[type="submit"] {
+  background: rgba(242, 233, 221, 0.9);
+  color: #2b2620;
+  border: none;
+  border-radius: 999px;
+  padding: 0.9em 2.2em;
+  font-weight: 600;
+}
+
+.dkd-form-card button[type="submit"]:hover,
+.dkd-form-card input[type="submit"]:hover {
+  background: #f2e9dd;
+}
