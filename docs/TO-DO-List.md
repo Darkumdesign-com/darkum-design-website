@@ -30,6 +30,14 @@
 - [x] Add the confirmed store address (Store No. 5, 10 Aswan Street, El-Sherif Building, Heliopolis) and working hours next to the contact form. Built 2026-08-23/24 as a map + floating form card section, styling confirmed matching the reference design — see `HANDOFF.md` §4's Contact section write-up for the full CSS-specificity troubleshooting trail.
 - [ ] Add the store address/hours to the site's JSON-LD structured data (not yet done — the section above only covers the visible contact block, not structured data).
 - [x] **Contact form wasn't delivering submissions to email.** Resolved 2026-08-24. Real cause: Zoho's own inbound filter rejecting the message as likely spoofed, since GoDaddy's local mail relay was sending "From: webmaster@darkumdesign.com" without being an authorized sender in that domain's SPF record (confirmed by looking up the bounce's destination IP, it belonged to Zoho, not GoDaddy). Fixed by installing WP Mail SMTP and connecting its Gmail mailer via Google Cloud OAuth, authenticated as `darkumdesign@gmail.com`, sidestepping the fact that Zoho's free plan doesn't support SMTP. Confirmed delivered to both `marketing@darkumdesign.com` and `darkumdesign@gmail.com`. See `HANDOFF.md` §4's Contact section write-up for the full diagnosis.
+- [x] **Contact section bilingual EN/AR content pass** (Address value, heading icons/color, all form field labels/placeholders/dropdown options/Submit button). Done 2026-08-25 via direct WordPress editor automation, saved and confirmed live. See `HANDOFF.md` §4.
+- [ ] **DM column under Store Hours.** Add Facebook Messenger, Instagram Direct, Email, and Phone as direct-contact links inside the existing `.dkd-address-card` Section, below the Store Hours content (WhatsApp is intentionally excluded, already covered by the footer social icons and the floating widget). Real handles already confirmed via Metricool, ready to use:
+  - Messenger: `https://m.me/1198692206663459`
+  - Instagram Direct: `https://ig.me/m/darkumdesign`
+  - Email: `mailto:marketing@darkumdesign.com`
+  - Phone: `tel:+201037888900`
+  
+  Likely a new Paragraph block with real anchor-tag links, styled/iconed to match the Address/Store Hours headings above it. See `HANDOFF.md` §4's "Contact section, bilingual content pass + capability correction" write-up for full context.
 
 ---
 

@@ -348,3 +348,52 @@
 #dkd-contact-panels-row .dkd-form-card input[type="submit"]:hover {
   background: #f2e9dd;
 }
+
+/* Outer container, 2026-08-24. Groups the map + the Address/Form panels row
+   into one visually contained unit instead of the map's square corners
+   sitting bare against the black page background. Class added to the
+   Column/Section that's the shared parent of both the map (dkd-contact-map-section)
+   and the Address+Form row (#dkd-contact-panels-row), confirmed live via
+   DOM inspection (renders as a .wp-block-kadence-column div). overflow:
+   hidden is safe here specifically because the Form card's floating lift
+   above uses transform, not negative margin, so it stays inside this same
+   parent's box rather than escaping it, this also has the side effect of
+   clipping the map's own square iframe corners to match the rounded shape.
+   Final version is Sobhy's own inset glow (warm wood tone, ties to the
+   brand palette) in place of the flatter drop-shadow first drafted here. */
+.dkd-contact-section {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 10px 10px rgba(153, 102, 51, 0.50) inset;
+}
+
+/* Heading icons, 2026-08-25. A small location-pin before "Address / العنوان" and a
+   clock before "Store Hours / ساعات العمل", inline SVG data URIs rather than an icon
+   font/plugin, since none is otherwise used on this site. Colored to match #bd9c7a, the
+   same wood-light token Sobhy already set directly on both headings (matches the footer's
+   own h3 treatment too). Both headings are plain sibling h3 elements inside the same
+   .dkd-address-card Section, so :first-of-type / :nth-of-type(2) tells them apart without
+   needing a class on each heading individually. */
+#dkd-contact-panels-row .dkd-address-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+#dkd-contact-panels-row .dkd-address-card h3::before {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#dkd-contact-panels-row .dkd-address-card h3:first-of-type::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23bd9c7a'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z'/%3E%3C/svg%3E");
+}
+
+#dkd-contact-panels-row .dkd-address-card h3:nth-of-type(2)::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23bd9c7a' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v5l3 3'/%3E%3C/svg%3E");
+}
