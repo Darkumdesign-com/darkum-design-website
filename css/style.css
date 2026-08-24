@@ -7,6 +7,7 @@
   --muted: #8a8078;
   --border: rgba(242, 233, 221, 0.12);
   --error: #d16a5a;
+  --test: rgba(153, 102, 51, 0.5);
 }
 
 *{ box-sizing: border-box; }

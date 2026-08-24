@@ -27,7 +27,9 @@
 - [x] Add floating WhatsApp button (`wa.me/201037888900`)
 
 ### Site details
-- [ ] Add the confirmed store address (Store No. 5, 10 Aswan Street, El-Sherif Building, Heliopolis) and working hours next to the contact form, and to the site's JSON-LD structured data. No separate contact page, contact info sits beside the form. Footer already has this covered, no footer changes needed.
+- [x] Add the confirmed store address (Store No. 5, 10 Aswan Street, El-Sherif Building, Heliopolis) and working hours next to the contact form. Built 2026-08-23/24 as a map + floating form card section, styling confirmed matching the reference design — see `HANDOFF.md` §4's Contact section write-up for the full CSS-specificity troubleshooting trail.
+- [ ] Add the store address/hours to the site's JSON-LD structured data (not yet done — the section above only covers the visible contact block, not structured data).
+- [x] **Contact form wasn't delivering submissions to email.** Resolved 2026-08-24. Real cause: Zoho's own inbound filter rejecting the message as likely spoofed, since GoDaddy's local mail relay was sending "From: webmaster@darkumdesign.com" without being an authorized sender in that domain's SPF record (confirmed by looking up the bounce's destination IP, it belonged to Zoho, not GoDaddy). Fixed by installing WP Mail SMTP and connecting its Gmail mailer via Google Cloud OAuth, authenticated as `darkumdesign@gmail.com`, sidestepping the fact that Zoho's free plan doesn't support SMTP. Confirmed delivered to both `marketing@darkumdesign.com` and `darkumdesign@gmail.com`. See `HANDOFF.md` §4's Contact section write-up for the full diagnosis.
 
 ---
 
