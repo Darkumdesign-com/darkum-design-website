@@ -27,12 +27,12 @@ Category: Furniture Store · Interior Design · Home Decor
 
 ## 🚧 Current Status
 
-Live at **[darkumdesign.com](https://darkumdesign.com)**: a static bilingual (EN/AR, simultaneous side-by-side, no language switcher) "coming soon" placeholder page, deployed on **Vercel** with auto-deploy from this repo's `main` branch. The tech stack for the full site is confirmed (see below); a local WordPress development environment (Docker + Kadence + WooCommerce + Yoast + Code Snippets, all installed and verified) is now running, but the actual build on GoDaddy's temp domain hasn't started yet.
+Live at **[darkumdesign.com](https://darkumdesign.com)**: a static bilingual (EN/AR, simultaneous side-by-side, no language switcher) "coming soon" placeholder page, deployed on **Vercel** with auto-deploy from this repo's `main` branch. The tech stack for the full site is confirmed (see below). A local WordPress development environment (Docker + Kadence + WooCommerce + Yoast + Code Snippets) was set up, verified, and later torn down entirely in favor of live-only development directly on GoDaddy's temp domain, where the actual build is now underway, see `docs/handoff/website-stack-and-hosting.md`.
 
 - Live placeholder: `index.html` (plain HTML/CSS/JS, no build step required)
 - Production domain: `darkumdesign.com`, currently registered through Vercel. A future transfer to the client's own GoDaddy account is planned but not yet actioned (Vercel enforces a registrar transfer lock for 60 days post-purchase).
-- Build domain (temporary): `1221269.us32.myftpupload.com` is a GoDaddy Managed WordPress (Ecommerce plan), auto-provisioned for building/testing the full site without touching `darkumdesign.com`'s DNS. See `docs/HANDOFF.md` §4 for the full build/go-live sequence.
-- Local WordPress dev environment: `C:\Projects\darkum-design-wordpress\` (separate folder, not part of this repo) — see `docs/HANDOFF.md` §4 for details.
+- Build domain (temporary): `1221269.us32.myftpupload.com` is a GoDaddy Managed WordPress (Ecommerce plan), auto-provisioned for building/testing the full site without touching `darkumdesign.com`'s DNS. See `docs/handoff/website-stack-and-hosting.md` for the full build/go-live sequence.
+- Local WordPress dev environment: `C:\Projects\darkum-design-wordpress\` (separate folder, not part of this repo), note this was later torn down entirely, see `docs/handoff/website-stack-and-hosting.md` for details.
 
 ## 📁 Structure
 

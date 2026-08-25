@@ -4,7 +4,7 @@
 
 **Source:** built from `HANDOFF.md` plus Sobhy's answers in `TO-DO-LIST-QUESTIONNAIRE.md` (2026-08-17). Sequenced per Sobhy's explicit preference (questionnaire §15): start everything not blocked, right now, rather than waiting for the blocked items to clear.
 
-**This is the single live task list for the project.** `HANDOFF.md` §7 is a historical log only, resolved items get a dated entry there, but new open items and anything still unchecked belong here, not there.
+**This is the single live task list for the project.** `docs/handoff/resolved-items-log.md` is a historical log only, resolved items get a dated entry there, but new open items and anything still unchecked belong here, not there.
 
 **Build location:** GoDaddy temp domain `1221269.us32.myftpupload.com`. `darkumdesign.com` keeps serving the current coming-soon page on Vercel, untouched, until this build is approved and DNS is cut over.
 
@@ -27,19 +27,19 @@
 - [x] Add floating WhatsApp button (`wa.me/201037888900`)
 
 ### Site details
-- [x] Add the confirmed store address (Store No. 5, 10 Aswan Street, El-Sherif Building, Heliopolis) and working hours next to the contact form. Built 2026-08-23/24 as a map + floating form card section, styling confirmed matching the reference design — see `HANDOFF.md` §4's Contact section write-up for the full CSS-specificity troubleshooting trail.
+- [x] Add the confirmed store address (Store No. 5, 10 Aswan Street, El-Sherif Building, Heliopolis) and working hours next to the contact form. Built 2026-08-23/24 as a map + floating form card section, styling confirmed matching the reference design, see `docs/handoff/contact-section.md` for the full CSS-specificity troubleshooting trail.
 - [ ] Add the store address/hours to the site's JSON-LD structured data (not yet done — the section above only covers the visible contact block, not structured data).
-- [x] **Contact form wasn't delivering submissions to email.** Resolved 2026-08-24. Real cause: Zoho's own inbound filter rejecting the message as likely spoofed, since GoDaddy's local mail relay was sending "From: webmaster@darkumdesign.com" without being an authorized sender in that domain's SPF record (confirmed by looking up the bounce's destination IP, it belonged to Zoho, not GoDaddy). Fixed by installing WP Mail SMTP and connecting its Gmail mailer via Google Cloud OAuth, authenticated as `darkumdesign@gmail.com`, sidestepping the fact that Zoho's free plan doesn't support SMTP. Confirmed delivered to both `marketing@darkumdesign.com` and `darkumdesign@gmail.com`. See `HANDOFF.md` §4's Contact section write-up for the full diagnosis.
-- [x] **Contact section bilingual EN/AR content pass** (Address value, heading icons/color, all form field labels/placeholders/dropdown options/Submit button). Done 2026-08-25 via direct WordPress editor automation, saved and confirmed live. See `HANDOFF.md` §4.
-- [x] **Contact section RTL/column layout, spacing, and nested `<p>` bug.** Resolved 2026-08-26 across four troubleshooting rounds, see `HANDOFF.md` §4's "SESSION END STATE" note for the full summary.
-- [ ] **Map's top corners are square instead of rounded.** New, surfaced 2026-08-26 as a side effect of adding `padding: 10px` to `.dkd-contact-section` (the fix for the glow-not-showing-around-the-map issue). Likely fix: `border-radius` + `overflow: hidden` directly on `.dkd-contact-map-section` or its iframe, needs the real selector confirmed via live DOM inspection first, not guessed. See `HANDOFF.md` §4.
+- [x] **Contact form wasn't delivering submissions to email.** Resolved 2026-08-24. Real cause: Zoho's own inbound filter rejecting the message as likely spoofed, since GoDaddy's local mail relay was sending "From: webmaster@darkumdesign.com" without being an authorized sender in that domain's SPF record (confirmed by looking up the bounce's destination IP, it belonged to Zoho, not GoDaddy). Fixed by installing WP Mail SMTP and connecting its Gmail mailer via Google Cloud OAuth, authenticated as `darkumdesign@gmail.com`, sidestepping the fact that Zoho's free plan doesn't support SMTP. Confirmed delivered to both `marketing@darkumdesign.com` and `darkumdesign@gmail.com`. See `docs/handoff/contact-section.md` for the full diagnosis.
+- [x] **Contact section bilingual EN/AR content pass** (Address value, heading icons/color, all form field labels/placeholders/dropdown options/Submit button). Done 2026-08-25 via direct WordPress editor automation, saved and confirmed live. See `docs/handoff/contact-section.md`.
+- [x] **Contact section RTL/column layout, spacing, and nested `<p>` bug.** Resolved 2026-08-26 across four troubleshooting rounds, see `docs/handoff/contact-section.md`'s "SESSION END STATE" note for the full summary.
+- [ ] **Map's top corners are square instead of rounded.** New, surfaced 2026-08-26 as a side effect of adding `padding: 10px` to `.dkd-contact-section` (the fix for the glow-not-showing-around-the-map issue). Likely fix: `border-radius` + `overflow: hidden` directly on `.dkd-contact-map-section` or its iframe, needs the real selector confirmed via live DOM inspection first, not guessed. See `docs/handoff/contact-section.md`.
 - [ ] **DM column under Store Hours.** Add Facebook Messenger, Instagram Direct, Email, and Phone as direct-contact links inside the existing `.dkd-address-card` Section, below the Store Hours content (WhatsApp is intentionally excluded, already covered by the footer social icons and the floating widget). Real handles already confirmed via Metricool, ready to use:
   - Messenger: `https://m.me/1198692206663459`
   - Instagram Direct: `https://ig.me/m/darkumdesign`
   - Email: `mailto:marketing@darkumdesign.com`
   - Phone: `tel:+201037888900`
   
-  Likely a new Paragraph block with real anchor-tag links, styled/iconed to match the Address/Store Hours headings above it. See `HANDOFF.md` §4's "Contact section, bilingual content pass + capability correction" write-up for full context.
+  Likely a new Paragraph block with real anchor-tag links, styled/iconed to match the Address/Store Hours headings above it. See `docs/handoff/contact-section.md`'s "Contact section, bilingual content pass + capability correction" write-up for full context.
 - [ ] **Two Polylang-generated "Home" pages (IDs 229 "Home - English", 231 "Home - العربية"), both `publish` status.** Surfaced 2026-08-26 while confirming the real homepage's post ID via `wp post list`. Sobhy confirmed these are expected Polylang language variants but hasn't decided whether to unpublish, archive, or delete them. Deliberately deferred until the Contact section work above is finished.
 
 ---
@@ -56,7 +56,7 @@
 - [ ] Resolve TikTok business account once Commercial Registration docs are available
 - [ ] Resume Etsy shop setup once Commercial Registration docs are available, stopped 2026-08-15 at the required Business Registration Number field. `DarkumDesignShop` recommended as the final handle once resumed (`DarkumDesign` itself is taken)
 - [ ] Resolve `README.md`'s "female-owned" general description wording once Commercial Registration is in hand and the correct positioning/scope can be confirmed. On hold entirely for now, not an active decision to make right now
-- [ ] Domain DNS cutover from Vercel to GoDaddy, happens once the homepage build is approved by partners, not blocked by Commercial Registration itself, see HANDOFF §4 for the full sequence
+- [ ] Domain DNS cutover from Vercel to GoDaddy, happens once the homepage build is approved by partners, not blocked by Commercial Registration itself, see `docs/handoff/website-stack-and-hosting.md` for the full sequence
 - [ ] Google Business Profile verification, created and description live, waiting on Google since 17 August 2026 (Google requested photos/videos of the business)
 - [ ] Google Search Console setup, deliberately deferred until after the DNS cutover
 - [ ] Google Analytics setup, deliberately deferred until after the DNS cutover
@@ -102,4 +102,4 @@ Timing-gated items, not blocked by anyone specifically, just sequenced to a late
 - GoDaddy Ecommerce plan stays shared with Bido's `carsbuyerinc.net` site long-term, no dedicated hosting account planned, confirmed by Sobhy.
 - Zoho Mail is at 4 of 5 free mailboxes, `info@` and `finances@` are both already provisioned and now have a confirmed purpose above.
 - No em dashes, ever, per standing rule.
-- This file is the only place with live, unchecked tasks. `HANDOFF.md` §7 only records what's already resolved.
+- This file is the only place with live, unchecked tasks. `docs/handoff/resolved-items-log.md` only records what's already resolved.

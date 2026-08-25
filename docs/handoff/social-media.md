@@ -4,7 +4,7 @@
 
 | Platform | Status |
 |---|---|
-| Facebook | ✅ Established, About section corrected 2026-08-15 to current brand positioning (previous copy predated the 2026-08-14 pivot: old "Victorian-style"/"Cairo & Giza" framing, "Studio" wording — despite this table marking it "written," it had drifted out of sync since the pivot and was never caught until a full copy audit, see §5), linked on coming-soon page |
+| Facebook | ✅ Established, About section corrected 2026-08-15 to current brand positioning (previous copy predated the 2026-08-14 pivot: old "Victorian-style"/"Cairo & Giza" framing, "Studio" wording — despite this table marking it "written," it had drifted out of sync since the pivot and was never caught until a full copy audit, see `repo-infra-coming-soon-page.md`), linked on coming-soon page |
 | Instagram | ✅ Established, bio synced 2026-08-15 to current brand positioning, linked on coming-soon page |
 | Threads | ✅ Established (`@darkumdesign`), bio synced 2026-08-15, linked live on the coming-soon page (added 2026-08-13) |
 | TikTok | ⚠️ Personal/Creator account only — business account blocked on Commercial Registration, see below. Handle confirmed (`@darkumdesign`) and linked live on the coming-soon page. Bio synced 2026-08-15; also corrected a wrong assumption in this project that the bio limit was 80 chars — it's actually 160, confirmed from Sobhy's screenshot. |
@@ -15,7 +15,7 @@
 | Email (business domain) | ✅ `info@darkumdesign.com` Login using `darkumdesign@gmail.com`. Used on the coming-soon page and as the YouTube channel's public contact email. |
 | Messenger | ✅ Live click-to-chat link (`m.me/darkumdesign`), listed in `README.md` |
 | WhatsApp Business | 💡 Recommended, not yet actioned. Currently a personal WhatsApp number, not the Business app/tier. Coming-soon page links directly to the business number via `wa.me/201037888900` in the meantime. Description copy already drafted and confirmed on-brand, ready to use once the Business app is set up — see `docs/MARKETING-COPY.md`. |
-| Google Business Profile | 🔃 Created, waiting on verification (Google requesting photos/videos of the business) as of 17 August 2026. Description confirmed live 2026-08-15 with the "studio" → "shop" fix. The "female-led" addition proposed the same day was reverted before publishing — see §1, on hold pending Commercial Registration. |
+| Google Business Profile | 🔃 Created, waiting on verification (Google requesting photos/videos of the business) as of 17 August 2026. Description confirmed live 2026-08-15 with the "studio" → "shop" fix. The "female-led" addition proposed the same day was reverted before publishing — see `business-context.md`, on hold pending Commercial Registration. |
 | Etsy | ⛔ **Blocked on Commercial Registration, same as TikTok** — see "Commercial Registration blocker" below. Bido gave the green light 2026-08-15; Sobhy got as far as the shop-naming step (desired handle `DarkumDesign` unavailable, `DarkumDesignShop` recommended for later) before hitting a required `Business Registration Number` field further into onboarding (payments/address step) and stopped, informing Noura/Heba/Bido via WhatsApp. |
 | LinkedIn | ✅ Company Page created. English tagline + About published 2026-08-14. Arabic tagline + About confirmed published and matching `docs/MARKETING-COPY.md` as of 2026-08-15 (the earlier "pasted but not yet saved" state is resolved). |
 
@@ -37,8 +37,8 @@ A couple of days before this was confirmed as a shared blocker, Bido, Noura, and
 - Any account recovery / 2FA setups tied to it (WhatsApp Business, Google Business Profile, X, etc.) will depend on Noura's phone being available
 - Needed for X (Twitter) account setup, alongside the updated logo
 - Sobhy sent a WhatsApp message to business group requesting a dedicated meeting time to add the phone to all relevant accounts (Facebook, Instagram, X, WhatsApp Business, Google Business Profile, etc.) and confirm that Noura has access to it. Meeting not yet scheduled.
-- Now also used directly on the coming-soon page as a `wa.me` link (see §5).
-- **Corrected (2026-08-13):** an earlier session had briefly recorded a different number (`+20-10-8063-1009`) in the Open Items list (§7) and it had leaked into the live `wa.me` link on the coming-soon page. Sobhy confirmed `+20-10-37-888-900` is the correct number — both have been fixed.
+- Now also used directly on the coming-soon page as a `wa.me` link (see `repo-infra-coming-soon-page.md`).
+- **Corrected (2026-08-13):** an earlier session had briefly recorded a different number (`+20-10-8063-1009`) in the Open Items list (`resolved-items-log.md`) and it had leaked into the live `wa.me` link on the coming-soon page. Sobhy confirmed `+20-10-37-888-900` is the correct number — both have been fixed.
 
 ### Business email addresses
 Set up on **Zoho Mail (free plan)**, domain `darkumdesign.com`:
