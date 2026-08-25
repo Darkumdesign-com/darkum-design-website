@@ -1,29 +1,29 @@
 # Darkum Design
 
+**Bilingual (English/Arabic) website build for a custom furniture studio in Cairo, Egypt.** Coming-soon page live at [darkumdesign.com](https://darkumdesign.com), full WordPress/WooCommerce site in progress.
+
 FURNITURE · ART · DESIGN
 
-Official website repository for **Darkum Design**, a custom handmade furniture company.
+## ✨ Highlights
 
-Darkum Design is a female-owned custom furniture and home décor shop based in Heliopolis, Cairo, creating pieces made to order and delivered across Egypt. Our signature offering is a fully customizable bed frame with an interchangeable insert system, letting customers change materials, colors, and textures to reinvent its look whenever their style or mood changes. We don't just build furniture: every piece is designed around the customer, from initial concept to final details, so instead of choosing from a standard collection, they create something that feels genuinely their own.
+What this project demonstrates:
 
-📍 Store: Heliopolis, Cairo · Delivering across Egypt
-📩 DM us via the following platforms to start your custom piece:
-- FB: [https://www.facebook.com/darkumdesign](https://www.facebook.com/darkumdesign)
-- Instagram: [https://www.instagram.com/darkumdesign](https://www.instagram.com/darkumdesign)
-- Threads: [https://www.threads.net/@darkumdesign](https://www.threads.net/@darkumdesign)
-- TikTok: [https://www.tiktok.com/@darkumdesign](https://www.tiktok.com/@darkumdesign)
-- YouTube: [https://www.youtube.com/@darkumdesign](https://www.youtube.com/@darkumdesign)
-- Pinterest: [https://www.pinterest.com/darkumdesign](https://www.pinterest.com/darkumdesign)
-- X (formerly Twitter): [https://x.com/darkumdesign](https://x.com/darkumdesign)
-- LinkedIn: [https://www.linkedin.com/company/darkumdesign](https://www.linkedin.com/company/darkumdesign)
+- **Genuine bilingual UX, not just translated strings.** English and Arabic content displayed simultaneously, side by side, no language switcher, matching how the client's own customers actually read.
+- **RTL-aware typography, not just `dir="rtl"`.** Arabic and Latin type use separate font stacks, weights, and spacing rules. Arabic drops the `letter-spacing`/uppercase-transform conventions that break its contextually-connected letterforms, and reads correctly heavier at a lower numeric weight than the equivalent Latin weight.
+- **Accessible, hand-built ticker component.** Auto-rotating catchphrase carousel with manual dot/arrow navigation, pause on hover and keyboard focus, `aria-live` status announcements for screen readers, and full `prefers-reduced-motion` support, built from scratch, no slider plugin.
+- **Zero-build-step vanilla JS, by design.** No framework, no bundler, kept intentionally lightweight for a static coming-soon page.
+- **Formspree-connected form** with client-side validation and bilingual success/error states, no backend required.
+- **Structured data (JSON-LD)** for local SEO, `FurnitureStore` schema with bilingual business details.
 
-- Email (Free Gmail): [mailto:darkumdesign@gmail.com](mailto:darkumdesign@gmail.com)
-- Email (Custom Domain): [mailto:info@darkumdesign.com](mailto:info@darkumdesign.com)
-- WhatsApp (personal, not yet Business): [https://wa.me/201037888900](https://wa.me/201037888900)
-- Messenger: [https://m.me/darkumdesign](https://m.me/darkumdesign)
-- Phone: +20-10-37-888-900
+## 🤖 AI-Assisted Workflow
 
-Category: Furniture Store · Interior Design · Home Decor
+Built in close collaboration with Claude (Anthropic), used deliberately rather than casually, in a pattern meant to hold up on projects far bigger than this one:
+
+- **Discussions.** Planning and decision-making happen conversationally with Claude (Claude.ai / Claude Desktop) before any code or content gets touched, weighing options, catching edge cases, and reaching an agreed direction first.
+- **Hooks.** Project memory lives in versioned Markdown, not chat history. `docs/HANDOFF.md` is a slim index into `docs/handoff/`, topic files any session, human or AI, can read at the start of work to get fully oriented without re-explaining months of decisions from scratch.
+- **Plans.** Well-defined, multi-file tasks get handed off as scoped, self-contained brief documents to Claude Code, an agentic coding tool, with explicit stop-and-review gates before anything gets committed or pushed.
+
+The point isn't the tools themselves, it's that this keeps context cheap and portable. Instead of every session re-loading an ever-growing conversation history, both the state (hooks) and the intent (plans) get written down once, reviewable, versioned, and reusable by any teammate, human or AI. Same practice whether the project is this size or considerably larger.
 
 ## 🚧 Current Status
 
@@ -56,8 +56,8 @@ darkum-design-website/
 - **Page builder:** Kadence Blocks (free) + Kadence theme (free)
 - **SEO:** Yoast SEO (free)
 - **Custom code:** Code Snippets (free)
-- **Slider (conditional):** MetaSlider (free), only needed if "sliding animations" turns out to require an actual carousel rather than Kadence's native scroll-reveal effects; not yet confirmed with client
-- **Bed Frame product configurator:** pending plugin decision. Advanced Product Fields (APF) by StudioWombat recommended, **confirmed 2026-08-16** via the plugin's pricing page: a genuine one-time "Lifetime" license exists (toggle above the pricing tiers, separate from the default "Yearly" subscription view), awaiting partner confirmation. Extra Product Options & Add-Ons by ThemeComplete as fallback (via CodeCanyon specifically, since their direct-purchase site now defaults to a subscription model)
+- **Slider:** Not used. Confirmed the hero uses a hand-built Q&A ticker and every other homepage section uses Kadence's native scroll-reveal, no carousel plugin needed anywhere on the site.
+- **Bed Frame product configurator:** Advanced Product Fields (APF) by StudioWombat, confirmed compatible with GoDaddy Managed WordPress and confirmed as the plugin of choice, on its one-time "Lifetime" license (no subscription). Purchase is ready to proceed, pending only which of the three Lifetime tiers (Pro / Extended / Extended + Addons) the client selects. Extra Product Options & Add-Ons by ThemeComplete as fallback (via CodeCanyon specifically, since their direct-purchase site now defaults to a subscription model).
 
 Chosen specifically to avoid subscription costs, so budget goes toward marketing instead of recurring software fees.
 
@@ -77,7 +77,7 @@ Loaded from Google Fonts (single combined request, plus preconnect to both `font
 | **Cairo** | All Arabic text: brand wordmark (`داركم ديزاين`), body copy, headings | Loaded at weights 400/600. Arabic type doesn't use `letter-spacing`/`text-transform: uppercase` (Latin-only conventions: Arabic letterforms are contextually connected, so added tracking breaks that connection) and generally reads correctly heavier at a lower numeric weight than the equivalent Latin weight; see `.tagline.bi-ar` in `css/style.css` for the override. |
 | **Inter** | All English body copy and UI text (buttons, form, footer) | Loaded at weights 300/400/500. |
 
-Previously the wordmark used **Cormorant Garamond**; replaced with Alice (2026-08-15) to match the logo's typeface.
+Previously the wordmark used **Cormorant Garamond**; replaced with Alice (2026-08-15) to match the logo's typeface. Note: the WordPress homepage's hero ticker (not part of this repo) intentionally uses **Source Sans 3** in place of Inter for that component specifically.
 
 ## ▶️ Running Locally
 
@@ -90,6 +90,36 @@ npx serve .
 ## 🚀 Deployment
 
 Live on **Vercel**, auto-deploying `main` to the `darkumdesign.com` domain.
+
+## 📚 Documentation
+
+Full project history, decisions, and open tasks live in `docs/`:
+
+- **`docs/HANDOFF.md`**, the entry point. A slim index into `docs/handoff/`, topic files covering business context, the logo, social media, the WordPress stack and hosting, the homepage build, the Contact section, the Bed Frame configurator, domain and scope decisions, repo and infra, business terms, and a dated log of resolved items.
+- **`docs/TO-DO-List.md`**, the single live task list, everything still open, organized by what's blocked versus what's actionable right now.
+
+## 🪑 About Darkum Design
+
+Darkum Design is a female-owned custom furniture and home décor shop based in Heliopolis, Cairo, creating pieces made to order and delivered across Egypt. Our signature offering is a fully customizable bed frame with an interchangeable insert system, letting customers change materials, colors, and textures to reinvent its look whenever their style or mood changes. We don't just build furniture: every piece is designed around the customer, from initial concept to final details, so instead of choosing from a standard collection, they create something that feels genuinely their own.
+
+📍 Store: Heliopolis, Cairo · Delivering across Egypt
+📩 DM us via the following platforms to start your custom piece:
+- FB: [https://www.facebook.com/darkumdesign](https://www.facebook.com/darkumdesign)
+- Instagram: [https://www.instagram.com/darkumdesign](https://www.instagram.com/darkumdesign)
+- Threads: [https://www.threads.net/@darkumdesign](https://www.threads.net/@darkumdesign)
+- TikTok: [https://www.tiktok.com/@darkumdesign](https://www.tiktok.com/@darkumdesign)
+- YouTube: [https://www.youtube.com/@darkumdesign](https://www.youtube.com/@darkumdesign)
+- Pinterest: [https://www.pinterest.com/darkumdesign](https://www.pinterest.com/darkumdesign)
+- X (formerly Twitter): [https://x.com/darkumdesign](https://x.com/darkumdesign)
+- LinkedIn: [https://www.linkedin.com/company/darkumdesign](https://www.linkedin.com/company/darkumdesign)
+
+- Email (Free Gmail): [mailto:darkumdesign@gmail.com](mailto:darkumdesign@gmail.com)
+- Email (Custom Domain): [mailto:info@darkumdesign.com](mailto:info@darkumdesign.com)
+- WhatsApp (personal, not yet Business): [https://wa.me/201037888900](https://wa.me/201037888900)
+- Messenger: [https://m.me/darkumdesign](https://m.me/darkumdesign)
+- Phone: +20-10-37-888-900
+
+Category: Furniture Store · Interior Design · Home Decor
 
 ## 🤝 Contributing
 
