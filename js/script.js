@@ -1,5 +1,5 @@
-// Darkum Design — coming soon page
-// Bilingual (EN left / AR right) permanent layout — no toggle needed.
+// Darkum Design, coming soon page
+// Bilingual (EN left / AR right) permanent layout, no toggle needed.
 // Minimal JS: footer year, Formspree-connected notify form, light catchphrase ticker.
 
 (function () {
@@ -7,7 +7,7 @@
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // Notify form — submits to Formspree (https://formspree.io/f/mzepvbqn) via fetch,
+  // Notify form, submits to Formspree (https://formspree.io/f/mzepvbqn) via fetch,
   // success/error handled in-page (no redirect) with a swapped-in status message.
   var form = document.getElementById('notify-form');
   var message = document.getElementById('form-message');
@@ -58,11 +58,11 @@
   }
 
   // Light catchphrase ticker.
-  // Full sliding-question carousel is planned for the real WordPress homepage —
+  // Full sliding-question carousel is planned for the real WordPress homepage,
   // this is a lightweight preview for the coming-soon placeholder.
-  // Crossfade between phrases (slowed 2026-08-15 — the original slide-in read as too fast/sudden,
+  // Crossfade between phrases (slowed 2026-08-15, the original slide-in read as too fast/sudden,
   // distracting in peripheral vision; a slower plain fade is calmer).
-  // Manual dot/arrow navigation + pause-on-hover/focus added 2026-08-15 — a first-time visitor
+  // Manual dot/arrow navigation + pause-on-hover/focus added 2026-08-15, a first-time visitor
   // has no way to know it's a multi-phrase rotation, so give a position indicator, manual
   // back/forth, and let their own attention pause it instead of racing to read in time.
   var catchphrases = [
@@ -99,7 +99,7 @@
     var rotateMs = 7000;
     var dots = [];
 
-    // Build one dot per phrase — driven by the array length rather than hardcoded in HTML,
+    // Build one dot per phrase, driven by the array length rather than hardcoded in HTML,
     // so it stays correct if phrases are added or removed later.
     if (tickerDotsWrap) {
       catchphrases.forEach(function (_, i) {
@@ -145,7 +145,7 @@
         return;
       }
 
-      // Fade the current phrase out first, then swap the text and fade the next one in —
+      // Fade the current phrase out first, then swap the text and fade the next one in,
       // avoids the old abrupt cut where the previous phrase vanished instantly.
       tickerEn.style.opacity = 0;
       tickerAr.style.opacity = 0;
@@ -195,7 +195,7 @@
     }
 
     // Pause auto-rotation while the visitor is hovering or has keyboard focus in the
-    // ticker/controls — so it never moves on someone mid-sentence.
+    // ticker/controls, so it never moves on someone mid-sentence.
     [tickerSection, tickerNavRow].forEach(function (el) {
       if (!el) return;
       el.addEventListener('mouseenter', function () { paused = true; });

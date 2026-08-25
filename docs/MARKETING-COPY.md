@@ -1,13 +1,13 @@
 # Darkum Design | Marketing Copy Reference
 
 **Created:** 2026-08-14
-**Synced:** 2026-08-15 — all platforms confirmed live and consistent with brand positioning. Single verified "Current" entry per platform (Live/Proposed split retired now that everything matches).
+**Synced:** 2026-08-15, all platforms confirmed live and consistent with brand positioning. Single verified "Current" entry per platform (Live/Proposed split retired now that everything matches).
 
 **Standing rules for everything in this file:**
 - **No em dashes, anywhere, in either language.** Use a comma, colon, semicolon, or period instead.
-- **Word choice: "Shop" (EN) / "محل" (AR)** — not "Studio" / "استوديو".
+- **Word choice: "Shop" (EN) / "محل" (AR)**, not "Studio" / "استوديو".
 - Arabic slogan is **translated, not transliterated**: أثاث · فن · تصميم.
-- **"Female-owned"/"female-led" positioning: on hold entirely** (2026-08-15) — do not add to any platform's copy, including Google Business Profile, until Darkum Design's Commercial Registration is in hand. `README.md`'s general company description still says "female-owned" from before this pause; also needs revisiting once the registration comes through and the correct wording/scope is confirmed. See `HANDOFF.md` §1 and §3.
+- **"Female-owned"/"female-led" positioning: on hold entirely** (2026-08-15), do not add to any platform's copy, including Google Business Profile, until Darkum Design's Commercial Registration is in hand. `README.md`'s general company description still says "female-owned" from before this pause; also needs revisiting once the registration comes through and the correct wording/scope is confirmed. See `HANDOFF.md` §1 and §3.
 
 **How to use this doc:**
 - This is the confirmed source of truth for what's actually live on each platform right now, verified by Sobhy directly (pasted from the platform, or read from a source file like `index.html`).
@@ -20,35 +20,35 @@ Facebook About: ~255 | Instagram bio: 150 | Threads bio: 150 | TikTok bio: 160 |
 
 ---
 
-## Facebook — About section
+## Facebook, About section
 - [x] Current (229/255 chars):
 > Darkum Design is a custom furniture and home décor shop based in Heliopolis, Cairo, delivering across Egypt. Our signature bed uses an interchangeable insert system, so you can reinvent its look anytime. FURNITURE · ART · DESIGN.
 
-## Instagram — Bio
+## Instagram, Bio
 - [x] Current (139/150 chars):
 > Custom furniture and home décor shop, made to order.
 > One bed, your style, endless possibilities.
 > Heliopolis, Cairo | Delivered across Egypt
 
-## Threads — Bio
+## Threads, Bio
 - [x] Current (139/150 chars):
 > Custom furniture and home décor shop, made to order.
 > One bed, your style, endless possibilities.
 > Heliopolis, Cairo | Delivered across Egypt
 
-## TikTok — Bio
+## TikTok, Bio
 - [x] Current (140/160 chars):
 > Custom furniture and home décor shop, made to order. One bed, your style, endless possibilities. Heliopolis, Cairo | Delivered across Egypt.
 
-## Pinterest — Profile description
+## Pinterest, Profile description
 - [x] Current (140/160 chars):
 > Custom furniture and home décor shop, made to order. One bed, your style, endless possibilities. Heliopolis, Cairo | Delivered across Egypt.
 
-## X (Twitter) — Bio
+## X (Twitter), Bio
 - [x] Current (140/160 chars):
 > Custom furniture and home décor shop, made to order. One bed, your style, endless possibilities. Heliopolis, Cairo | Delivered across Egypt.
 
-## WhatsApp Business — Description
+## WhatsApp Business, Description
 - [x] Current (507/512 chars):
 > Darkum Design | داركم ديزاين is a custom furniture and home décor shop based in Heliopolis, Cairo, delivering across Egypt.
 >
@@ -58,15 +58,15 @@ Facebook About: ~255 | Instagram bio: 150 | Threads bio: 150 | TikTok bio: 160 |
 >
 > FURNITURE · ART · DESIGN. One piece, your style, endless possibilities. Message us to start designing yours.
 
-## Google Business Profile — Description
+## Google Business Profile, Description
 - [x] Current (647/750 chars):
 > Darkum Design is a custom furniture and home décor shop based in Heliopolis, Cairo, creating pieces made to order and delivered across Egypt. Our signature offering is a fully customizable bed with an interchangeable insert system, letting you change materials, colors, and textures to reinvent its look whenever your style or mood changes. Every piece is designed around you, from initial concept to final details, so instead of choosing from a standard collection, you create something that feels genuinely your own. FURNITURE · ART · DESIGN: one piece, your style, endless possibilities. Get in touch to start designing your custom piece today.
 
-## LinkedIn — Tagline (EN, 120 char max)
+## LinkedIn, Tagline (EN, 120 char max)
 - [x] Current (96 chars):
 > Custom furniture and home décor shop, made-to-order. One bed, your style, endless possibilities.
 
-## LinkedIn — About/Overview (EN, 2,000 char max)
+## LinkedIn, About/Overview (EN, 2,000 char max)
 - [x] Current (1,648/2,000 chars):
 > Darkum Design | داركم ديزاين is a custom furniture and home décor shop based in Heliopolis, Cairo, creating pieces made to order and delivered across Egypt.
 >
@@ -86,11 +86,11 @@ Facebook About: ~255 | Instagram bio: 150 | Threads bio: 150 | TikTok bio: 160 |
 >
 > FURNITURE · ART · DESIGN. One piece, your style, endless possibilities.
 
-## LinkedIn — Tagline (AR, colloquial Egyptian, 120 char max)
+## LinkedIn, Tagline (AR, colloquial Egyptian, 120 char max)
 - [x] Current (72 chars):
 > أثاث وديكور مصمم على مزاجك، قطعة واحدة، ستايلك انت، وإمكانيات ملهاش آخر.
 
-## LinkedIn — About/Overview (AR, colloquial Egyptian, 2,000 char max)
+## LinkedIn, About/Overview (AR, colloquial Egyptian, 2,000 char max)
 - [x] Current (1,249/2,000 chars):
 > داركم ديزاين هو محل أثاث وديكور منزلي، مقره في مصر الجديدة بالقاهرة، بيصمم كل قطعة أوردر خاص وبيوصلها لأي مكان في مصر.
 >
@@ -110,7 +110,7 @@ Facebook About: ~255 | Instagram bio: 150 | Threads bio: 150 | TikTok bio: 160 |
 >
 > أثاث · فن · تصميم. قطعة واحدة، مزاجك انت، وإمكانيات ملهاش آخر.
 
-## YouTube — About description (EN, 1,000 char max, separate field from AR)
+## YouTube, About description (EN, 1,000 char max, separate field from AR)
 - [x] Current (971/1,000 chars):
 > Darkum Design | داركم ديزاين is a custom furniture and home décor shop based in Heliopolis, Cairo, delivering across Egypt.
 >
@@ -122,7 +122,7 @@ Facebook About: ~255 | Instagram bio: 150 | Threads bio: 150 | TikTok bio: 160 |
 >
 > FURNITURE · ART · DESIGN. One piece, your style, endless possibilities.
 
-## YouTube — About description (AR, colloquial Egyptian, 1,000 char max, separate field from EN)
+## YouTube, About description (AR, colloquial Egyptian, 1,000 char max, separate field from EN)
 - [x] Current (845/1,000 chars):
 > داركم ديزاين هو محل أثاث وديكور منزلي، مقره في مصر الجديدة بالقاهرة، بيوصل لكل مصر.
 >
@@ -138,7 +138,7 @@ Facebook About: ~255 | Instagram bio: 150 | Threads bio: 150 | TikTok bio: 160 |
 
 ---
 
-## Site Metadata (not a social platform — kept here so it's part of the same consistency pass)
+## Site Metadata (not a social platform, kept here so it's part of the same consistency pass)
 
 ### Open Graph / Twitter Card description (`index.html`)
 - [x] Current:

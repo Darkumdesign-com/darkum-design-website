@@ -24,7 +24,7 @@ The field table in HANDOFF §4 has real gaps that block actually building the co
 
 8. HANDOFF's "Site structure" note says one product (Bed Frame) via WooCommerce. Is Bed Frame genuinely the only product at launch, or are other products expected to be added to the catalog around the same time (even simple, non-configurable ones)? This affects whether the WooCommerce setup should assume "one product forever" shortcuts or a proper multi-product catalog from the start.
   - No, only 1 product (Bed Frame) is expected to be added to the catalog at launch.
-9. Product photography for the Bed Frame itself (not the configurator swatches, the actual finished product shots) — does this exist yet?
+9. Product photography for the Bed Frame itself (not the configurator swatches, the actual finished product shots), does this exist yet?
   - Write a message to the partners to get the answer to this question.
 
 ## 3. Payments and checkout

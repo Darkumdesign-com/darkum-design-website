@@ -265,7 +265,7 @@ body{
   outline-offset: 2px;
 }
 
-/* Decorative divider: fading line — dot — fading line (purely visual, no controls) */
+/* Decorative divider: fading line, dot, fading line (purely visual, no controls) */
 .divider{
   display: flex;
   align-items: center;

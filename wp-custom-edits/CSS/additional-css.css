@@ -1,18 +1,18 @@
-/* Darkum Design WordPress build — sitewide Additional CSS
+/* Darkum Design WordPress build, sitewide Additional CSS
    Pastes into: WordPress Admin → Appearance → Customize → Additional CSS
    This is the canonical mirror of whatever is actually live in that field.
    Update this file every time something is added/changed there, so the database
    isn't the only place this CSS exists. See wp-custom-edits/Docs/wp-reference.md. */
 
-/* Arabic font fallback (2026-08-21) — Source Sans 3 (the body font) has no Arabic glyphs at
+/* Arabic font fallback (2026-08-21), Source Sans 3 (the body font) has no Arabic glyphs at
    all, so any unmarked Arabic character (e.g. inside the {site-title} dynamic tag, which mixes
    English and Arabic in one string with no lang="ar" wrapper to target) was falling through to
    the browser's generic system font instead of Cairo. Redefining the CSS variable Kadence's
    own body/input/select/textarea rule already reads from makes Cairo catch it automatically,
    per-character, with zero markup changes. Cairo must sit before the trailing sans-serif here,
-   not after — appending after it would never be reached, since the generic keyword already
+   not after, appending after it would never be reached, since the generic keyword already
    resolves to a real system font with some Arabic coverage of its own. Confirmed this made the
-   old scoped fix below redundant — the `.site-info .footer-html-inner p [lang="ar"]` rule that
+   old scoped fix below redundant, the `.site-info .footer-html-inner p [lang="ar"]` rule that
    used to hand-target the footer copyright's Arabic sentence was removed 2026-08-21 once this
    went live, since unmarked Arabic (including inside the bilingual site-title string) now
    resolves to Cairo automatically without it. */
@@ -20,11 +20,11 @@
   --global-body-font-family: 'Source Sans 3', 'Cairo', sans-serif;
 }
 
-/* Screen-reader-only utility class — hides content visually while keeping it available to
+/* Screen-reader-only utility class, hides content visually while keeping it available to
    assistive tech. Used by the homepage hero ticker's #ticker-status live region
    (see wp-custom-edits/HTML/light-catchphrase-ticker.html). Originally defined in the
    coming-soon page's css/style.css but not carried over when the ticker was ported into
-   a Kadence Custom HTML block on 2026-08-17 — this is the fix for that gap (HANDOFF.md §7).
+   a Kadence Custom HTML block on 2026-08-17, this is the fix for that gap (HANDOFF.md §7).
    Kept here, sitewide, rather than duplicated inside the block's own <style>, so any future
    ARIA-live/screen-reader-only element elsewhere on the site can reuse it too. */
 .sr-only{
@@ -39,7 +39,7 @@
   border: 0;
 }
 
-/* Explore button (hero ticker) — box-shadow for contrast (2026-08-21). The button's fill color
+/* Explore button (hero ticker), box-shadow for contrast (2026-08-21). The button's fill color
    is close in hue and luminance to both the surrounding photo and its own text, reading as low
    contrast/barely visible in the hero. Class added via the Buttons block's own "Additional CSS
    Class(es)" field (Edit Page > block > Advanced), not the ticker's own file, since the button
@@ -52,14 +52,14 @@
     box-shadow: 0 4px 14px rgba(43, 38, 32, 0.45);
 }
 
-/* Footer Social widget — deterministic 5-per-row grid (2026-08-18), same problem/fix as the
+/* Footer Social widget, deterministic 5-per-row grid (2026-08-18), same problem/fix as the
    coming-soon page's .socials 5-per-row grid (css/style.css), but applied unconditionally
    here rather than gated behind a mobile breakpoint. The footer social row lives inside a
    narrow widget column (one of three side-by-side footer columns), so it wraps unevenly
    (8+2 for the current 10 icons) at every screen width, not just under 480px like the
    coming-soon page's full-width row. Real selectors confirmed against the live DOM
-   2026-08-18 — see wp-custom-edits/HTML/footer-social-icons/README.md.
-   A justify-items: space-between line was tried and removed 2026-08-21 — that's not a
+   2026-08-18, see wp-custom-edits/HTML/footer-social-icons/README.md.
+   A justify-items: space-between line was tried and removed 2026-08-21, that's not a
    valid justify-items value (it belongs to justify-content, which distributes whole
    tracks, not justify-items, which aligns content inside one cell), so it was silently
    ignored by the browser and had no effect either way. */
@@ -68,15 +68,15 @@
   grid-template-columns: repeat(5, 1fr);
 }
 
-/* Footer Copyright HTML widget — color fix (2026-08-18). Confirmed via live DOM inspection
-   that this text was rendering as black-on-black (rgb(0,0,0)), genuinely invisible — it only
+/* Footer Copyright HTML widget, color fix (2026-08-18). Confirmed via live DOM inspection
+   that this text was rendering as black-on-black (rgb(0,0,0)), genuinely invisible, it only
    looked visible in a screenshot because the text was selected, and browser selection styling
    forces white text regardless of the real color. #8a8078 matches --muted from the coming-soon
    page's own .footer-note, the same muted tan used for its least-prominent footer text, kept
    consistent rather than picking an arbitrary new color. Real selector confirmed from the
    live DOM: .site-info .footer-html-inner p. Companion widget content change (bilingual
    "All rights reserved." / "جميع الحقوق محفوظة.") made directly in the Footer Copyright HTML
-   widget's Code tab, not tracked as a separate file since it's one short line — see
+   widget's Code tab, not tracked as a separate file since it's one short line, see
    HANDOFF.md §4 for the exact text used. */
 .site-info .footer-html-inner p{
   color: #8a8078;
@@ -84,16 +84,16 @@
   letter-spacing: 0.03em;
 }
 
-/* Bottom footer row (copyright bar) — removes the theme's default bottom padding so the
+/* Bottom footer row (copyright bar), removes the theme's default bottom padding so the
    copyright text sits closer to the page's actual bottom edge instead of leaving a visible
    gap of empty black space below it. */
 .site-bottom-footer-inner-wrap{
   padding-bottom: 0;
 }
 
-/* Footer redesign (2026-08-19/20/21) — full writeup in HANDOFF.md §4, "Footer redesign" section.
+/* Footer redesign (2026-08-19/20/21), full writeup in HANDOFF.md §4, "Footer redesign" section.
    Desktop and mobile confirmed live. Column spacing across the 1290px boxed container turned out to be
-   a Customizer setting, not CSS — the Kadence Footer Middle Row's own Column Gap field (set
+   a Customizer setting, not CSS, the Kadence Footer Middle Row's own Column Gap field (set
    to 5em live) is what stretches the three columns evenly; grid-column-gap was never added
    here. Column order (Menu / Follow Us swapped from the original About / Follow Us / Menu)
    was also done natively, by reordering the widgets in the Customizer, not via CSS. The slogan
@@ -104,7 +104,7 @@
    it renders as a stray vertical line once columns stack to one-per-row. */
 
 /* Stacks the three footer columns' own content (heading + body) vertically instead of the
-   theme's row default — without this, an H3 sibling above each column's existing content
+   theme's row default, without this, an H3 sibling above each column's existing content
    renders as an extra row-item instead of stacking above it. */
 .site-footer-section {
 	flex-direction: column;
@@ -116,7 +116,7 @@
 	flex-direction: column;
 }
 
-/* Nav items had been relying on padding alone (not margin/gap) for row-spacing — zeroing it
+/* Nav items had been relying on padding alone (not margin/gap) for row-spacing, zeroing it
    is required once the menu switches to column direction above, or the links collapse onto
    a single line with no vertical space between them. */
 #colophon .footer-navigation .footer-menu-container > ul > li > a {
@@ -124,14 +124,14 @@
 }
 
 /* Current-page indicator, done via Kadence's own .current-menu-item class rather than
-   :active — :active only applies for the literal moment of a mouse press and reverts on
+   :active, :active only applies for the literal moment of a mouse press and reverts on
    release, so it can never render persistently. This pairs with Kadence's own native
    color rule on the same selector (not duplicated here). */
 #colophon .footer-navigation .footer-menu-container ul li.current-menu-item > a {
   text-decoration: underline;
 }
 
-/* Column heading style (About / Follow us / Menu) — wood-light instead of full cream,
+/* Column heading style (About / Follow us / Menu), wood-light instead of full cream,
    uppercase + letter-spaced, so headings read as section labels distinct from body content
    rather than just bigger text in the same color as everything else. */
 .site-footer h3 {
@@ -151,19 +151,19 @@
     margin-block-start: 0.5em;
 }
 
-/* Vertical gradient dividers between the three footer columns — a plain solid border can't
+/* Vertical gradient dividers between the three footer columns, a plain solid border can't
    taper, so this is a pseudo-element with a gradient background instead: transparent at top
    and bottom, full color (#bd9c7a, bumped up from brand wood #996633 for visibility against
    the near-black footer) at the vertical midpoint. Debugging note: this rendered completely
    invisible on the first attempt because the Additional CSS editor (CodeMirror) auto-pairs
-   quote characters as you type — content: ""; typed with double quotes can silently double
+   quote characters as you type, content: ""; typed with double quotes can silently double
    up into four quote characters, which is invalid and drops the rest of the declaration
    block. Fixed by using single quotes below, which sidesteps the auto-pairing.
    Retargeted 2026-08-21: the 3-column content moved from Kadence's Middle footer row to the
    Top footer row (slogan now alone in Middle), so the selector needed to move from
    -middle- to -top- to match. Kadence's footer builder only ever has three fixed rows
    (Top/Middle/Bottom) and generates the same site-footer-{row}-section-{n} class pattern
-   for each, confirmed by the -middle- version already working before this move — not
+   for each, confirmed by the -middle- version already working before this move, not
    re-verified against the live DOM this time since no connected browser tab had the
    unsaved Customizer preview open. If this doesn't land, inspect one of the two stray
    vertical lines and report back the real class name. */
@@ -185,7 +185,7 @@
   pointer-events: none;
 }
 
-/* Hides the divider under the mobile breakpoint (2026-08-21) — with columns stacked
+/* Hides the divider under the mobile breakpoint (2026-08-21), with columns stacked
    one-per-row on mobile, the divider no longer sits between two side-by-side columns, so
    it rendered as a stray vertical line instead. A horizontal replacement (bottom-border
    between stacked columns) is still on the list for the wider mobile footer pass. */

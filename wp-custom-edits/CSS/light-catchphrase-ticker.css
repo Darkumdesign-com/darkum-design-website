@@ -1,9 +1,9 @@
 /* Homepage hero ticker CSS, Kadence Custom HTML block (see HTML/light-catchphrase-ticker.html
    for the pairing note). Pastes into the same block, wrapped in a <style> tag.
    Corrected 2026-08-18: this repo copy previously still had the 'Source San 3' typo
-   (missing the "s") that was already fixed live on 2026-08-17 — now matches live.
+   (missing the "s") that was already fixed live on 2026-08-17, now matches live.
    Also dropped the .divider rules that were in the old custom-html-blocks-wp copy of this
-   file — those belong to the coming-soon page (css/style.css), not this WordPress block,
+   file, those belong to the coming-soon page (css/style.css), not this WordPress block,
    and were never part of what's actually pasted into Kadence. */
 .catchphrase-ticker{
   min-height: 76px;

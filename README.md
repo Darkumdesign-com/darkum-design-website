@@ -52,12 +52,12 @@ darkum-design-website/
 **Confirmed:**
 - **CMS:** WordPress
 - **E-commerce:** WooCommerce
-- **Hosting:** GoDaddy Managed WordPress (Ecommerce plan) — temporary build domain `1221269.us32.myftpupload.com`
+- **Hosting:** GoDaddy Managed WordPress (Ecommerce plan), temporary build domain `1221269.us32.myftpupload.com`
 - **Page builder:** Kadence Blocks (free) + Kadence theme (free)
 - **SEO:** Yoast SEO (free)
 - **Custom code:** Code Snippets (free)
 - **Slider (conditional):** MetaSlider (free), only needed if "sliding animations" turns out to require an actual carousel rather than Kadence's native scroll-reveal effects; not yet confirmed with client
-- **Bed Frame product configurator:** pending plugin decision. Advanced Product Fields (APF) by StudioWombat recommended — **confirmed 2026-08-16** via the plugin's pricing page: a genuine one-time "Lifetime" license exists (toggle above the pricing tiers, separate from the default "Yearly" subscription view) — awaiting partner confirmation. Extra Product Options & Add-Ons by ThemeComplete as fallback (via CodeCanyon specifically, since their direct-purchase site now defaults to a subscription model)
+- **Bed Frame product configurator:** pending plugin decision. Advanced Product Fields (APF) by StudioWombat recommended, **confirmed 2026-08-16** via the plugin's pricing page: a genuine one-time "Lifetime" license exists (toggle above the pricing tiers, separate from the default "Yearly" subscription view), awaiting partner confirmation. Extra Product Options & Add-Ons by ThemeComplete as fallback (via CodeCanyon specifically, since their direct-purchase site now defaults to a subscription model)
 
 Chosen specifically to avoid subscription costs, so budget goes toward marketing instead of recurring software fees.
 
