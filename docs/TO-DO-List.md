@@ -31,6 +31,8 @@
 - [ ] Add the store address/hours to the site's JSON-LD structured data (not yet done — the section above only covers the visible contact block, not structured data).
 - [x] **Contact form wasn't delivering submissions to email.** Resolved 2026-08-24. Real cause: Zoho's own inbound filter rejecting the message as likely spoofed, since GoDaddy's local mail relay was sending "From: webmaster@darkumdesign.com" without being an authorized sender in that domain's SPF record (confirmed by looking up the bounce's destination IP, it belonged to Zoho, not GoDaddy). Fixed by installing WP Mail SMTP and connecting its Gmail mailer via Google Cloud OAuth, authenticated as `darkumdesign@gmail.com`, sidestepping the fact that Zoho's free plan doesn't support SMTP. Confirmed delivered to both `marketing@darkumdesign.com` and `darkumdesign@gmail.com`. See `HANDOFF.md` §4's Contact section write-up for the full diagnosis.
 - [x] **Contact section bilingual EN/AR content pass** (Address value, heading icons/color, all form field labels/placeholders/dropdown options/Submit button). Done 2026-08-25 via direct WordPress editor automation, saved and confirmed live. See `HANDOFF.md` §4.
+- [x] **Contact section RTL/column layout, spacing, and nested `<p>` bug.** Resolved 2026-08-26 across four troubleshooting rounds, see `HANDOFF.md` §4's "SESSION END STATE" note for the full summary.
+- [ ] **Map's top corners are square instead of rounded.** New, surfaced 2026-08-26 as a side effect of adding `padding: 10px` to `.dkd-contact-section` (the fix for the glow-not-showing-around-the-map issue). Likely fix: `border-radius` + `overflow: hidden` directly on `.dkd-contact-map-section` or its iframe, needs the real selector confirmed via live DOM inspection first, not guessed. See `HANDOFF.md` §4.
 - [ ] **DM column under Store Hours.** Add Facebook Messenger, Instagram Direct, Email, and Phone as direct-contact links inside the existing `.dkd-address-card` Section, below the Store Hours content (WhatsApp is intentionally excluded, already covered by the footer social icons and the floating widget). Real handles already confirmed via Metricool, ready to use:
   - Messenger: `https://m.me/1198692206663459`
   - Instagram Direct: `https://ig.me/m/darkumdesign`
@@ -38,6 +40,7 @@
   - Phone: `tel:+201037888900`
   
   Likely a new Paragraph block with real anchor-tag links, styled/iconed to match the Address/Store Hours headings above it. See `HANDOFF.md` §4's "Contact section, bilingual content pass + capability correction" write-up for full context.
+- [ ] **Two Polylang-generated "Home" pages (IDs 229 "Home - English", 231 "Home - العربية"), both `publish` status.** Surfaced 2026-08-26 while confirming the real homepage's post ID via `wp post list`. Sobhy confirmed these are expected Polylang language variants but hasn't decided whether to unpublish, archive, or delete them. Deliberately deferred until the Contact section work above is finished.
 
 ---
 

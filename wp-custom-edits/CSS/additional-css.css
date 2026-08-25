@@ -349,7 +349,7 @@
   background: #f2e9dd;
 }
 
-/* Outer container, 2026-08-24. Groups the map + the Address/Form panels row
+/* Outer container, 2026-08-24, revised 2026-08-26. Groups the map + the Address/Form panels row
    into one visually contained unit instead of the map's square corners
    sitting bare against the black page background. Class added to the
    Column/Section that's the shared parent of both the map (dkd-contact-map-section)
@@ -360,11 +360,19 @@
    parent's box rather than escaping it, this also has the side effect of
    clipping the map's own square iframe corners to match the rounded shape.
    Final version is Sobhy's own inset glow (warm wood tone, ties to the
-   brand palette) in place of the flatter drop-shadow first drafted here. */
+   brand palette) in place of the flatter drop-shadow first drafted here.
+   padding added 2026-08-26: an inset box-shadow paints as part of the parent's own box,
+   underneath its children, regardless of z-index, so with the map iframe previously flush
+   against every edge, zero gap, the glow had nowhere to render at the map's top corners,
+   the iframe simply covered that region. This padding insets both the map and the Address/
+   Form row from the outer edge on all sides, deliberately no longer edge-to-edge, giving the
+   glow room to show fully around the whole card, map included. Sobhy's choice over the
+   alternative, leaving the map flush with no glow there. */
 .dkd-contact-section {
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 0 10px 10px rgba(153, 102, 51, 0.50) inset;
+  padding: 10px;
 }
 
 /* Heading icons, 2026-08-25. A small location-pin before "Address / العنوان" and a
@@ -398,17 +406,19 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23bd9c7a' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v5l3 3'/%3E%3C/svg%3E");
 }
 
-/* Address card, deliberate grouping spacing (2026-08-26). An accidental empty <p> block
-   (same category of mistake as the stray "Text (Adv)" block caught before the 2026-08-25
-   save, this one wasn't caught in time) sat between the Address heading and its paragraph,
-   adding a uniform blank-line gap that made all four elements, heading, address, heading,
-   hours, read as evenly spaced when they shouldn't. Removed directly from the page content,
-   not masked with a negative margin. This rule adds real extra separation before the Store
-   Hours heading specifically, so Address and Store Hours read as two distinct clusters
-   rather than four evenly spaced lines. Starting value, not yet confirmed against the live
-   page at real content length. */
-#dkd-contact-panels-row .dkd-address-card h3:nth-of-type(2) {
-  margin-top: 1.75em;
+/* Address/Store Hours paragraphs, remove Kadence's default paragraph bottom margin
+   (2026-08-26). Diagnosed live by Sobhy directly via DevTools console: Kadence sets
+   margin-bottom: var(--global-md-spacing) (2rem) on every <p> by default, which was
+   stacking with the following heading's own spacing, producing the identical gap between
+   all four elements (heading, address, heading, hours) regardless of any margin added to
+   the headings themselves, superseding an earlier speculative h3 margin-top rule that was
+   never actually pushed live, dropped here rather than stacked on top of the real fix.
+   Scoped to this card rather than Sobhy's original bare class selector
+   (p.has-kb-palette-10-color...), since kb-palette-10 is a shared Global Palette color
+   token that other paragraphs elsewhere on the site could also carry, this way it only
+   ever touches the two paragraphs inside .dkd-address-card. */
+#dkd-contact-panels-row .dkd-address-card p {
+  margin: 0;
 }
 
 /* Form card, opt out of row height stretching (2026-08-26). Kadence's Row Layout stretches
