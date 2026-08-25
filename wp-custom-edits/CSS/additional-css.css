@@ -243,7 +243,7 @@
    overlap amount is one number to tune instead of hunting through the
    rule. */
 #dkd-contact-panels-row .dkd-form-card {
-  --dkd-contact-lift: 64px;
+  --dkd-contact-lift: 48px;
   position: relative;
   z-index: 5;
   transform: translateY(calc(-1 * var(--dkd-contact-lift)));
@@ -396,4 +396,58 @@
 
 #dkd-contact-panels-row .dkd-address-card h3:nth-of-type(2)::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23bd9c7a' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v5l3 3'/%3E%3C/svg%3E");
+}
+
+/* Address card, deliberate grouping spacing (2026-08-26). An accidental empty <p> block
+   (same category of mistake as the stray "Text (Adv)" block caught before the 2026-08-25
+   save, this one wasn't caught in time) sat between the Address heading and its paragraph,
+   adding a uniform blank-line gap that made all four elements, heading, address, heading,
+   hours, read as evenly spaced when they shouldn't. Removed directly from the page content,
+   not masked with a negative margin. This rule adds real extra separation before the Store
+   Hours heading specifically, so Address and Store Hours read as two distinct clusters
+   rather than four evenly spaced lines. Starting value, not yet confirmed against the live
+   page at real content length. */
+#dkd-contact-panels-row .dkd-address-card h3:nth-of-type(2) {
+  margin-top: 1.75em;
+}
+
+/* Form card, opt out of row height stretching (2026-08-26). Kadence's Row Layout stretches
+   sibling columns to match whichever is tallest by default. Once the Store Hours paragraph's
+   two language spans started wrapping to more lines at their narrower per-column width (see
+   dkd-bilingual-pair above), the Address card grew taller, and the Form card stretched to
+   match it even though its own content, the form fields, didn't grow, visibly over-extending
+   its gradient background well past its actual content, most noticeable at the top since the
+   card is already lifted via transform. align-self: start opts this one column out of the
+   stretch behavior, sizing it to its own content height instead, works whether the row
+   layout renders as flex or grid, both accept this value. */
+#dkd-contact-panels-row .dkd-form-card {
+  align-self: start;
+}
+
+/* Bilingual two-column paragraphs, Contact section Address card (2026-08-26). Applies to
+   both the Address paragraph and the Store Hours paragraph inside .dkd-address-card, each
+   edited directly as raw block HTML via the Gutenberg Code Editor, not the Additional CSS
+   Class panel, not browser automation, into two span lang dir children instead of Kadence's
+   own textColumns/column-count setting. column-count is CSS multi-column text reflow, it
+   decides where to break based on content height, not a reliable way to pin two distinct
+   language blocks into two predictable halves, and on its own it does nothing to fix reading
+   direction. The real bug fixed here is separate from layout, unmarked Arabic text has no
+   dir=rtl, so it read left-to-right regardless of any column setting. Class shared across
+   both paragraphs so they read as one continuous pair of columns once stacked under their
+   own headings, English first, left, per Sobhy's confirmed order, no divider or manual gap
+   since justify-content space-between plus each span's own flex-basis produces the spacing
+   on its own, matching Sobhy's note that the paragraph default spacing is good enough. */
+.dkd-bilingual-pair span {
+  flex: 1 1 46%;
+}
+
+.dkd-bilingual-pair [dir="rtl"] {
+  text-align: right;
+  font-size: medium;
+}
+
+@media screen and (max-width: 719px) {
+  .dkd-bilingual-pair {
+    flex-direction: column;
+  }
 }

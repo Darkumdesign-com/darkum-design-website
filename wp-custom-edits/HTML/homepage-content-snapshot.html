@@ -1,0 +1,307 @@
+<!-- Darkum Design WordPress build, Home page (post ID 35) raw block content mirror.
+     Pulled via: ssh Darkum-Design-GoDaddy "cd html && wp post get 35 --field=post_content"
+     This is the literal post_content field from the live database, not a rendered/exported
+     page, the same block-comment markup (<!-- wp:kadence/... -->) you see and edit in the
+     Gutenberg Code Editor. Re-pull and overwrite this file after any meaningful homepage
+     change, git history is the version log, same pattern as additional-css.css.
+     To restore a previous state: open this file at the wanted git revision, copy everything
+     below this header, paste into the Home page's Code Editor (Options menu, top right,
+     'Code editor'), select all existing content there first, replace, then Update.
+     Last pulled: 2026-08-26. -->
+
+<!-- wp:kadence/rowlayout {"uniqueID":"35_023e35-4e","columns":1,"collapseGutter":"custom","rowGutterType":"rem","colLayout":"equal","htmlTag":"main","minHeight":90,"maxWidth":100,"bgImg":"https://1221269.us32.myftpupload.com/wp-content/uploads/2026/08/hero-bg-1920x1440px.webp","bgImgID":212,"bgImgAttachment":"parallax","overlay":"#2b2620","overlayFirstOpacity":1,"overlayOpacity":40,"overlayBlendMode":"multiply","verticalAlignment":"middle","firstColumnWidth":0,"secondColumnWidth":0,"thirdColumnWidth":0,"fourthColumnWidth":0,"fifthColumnWidth":0,"sixthColumnWidth":0,"minHeightUnit":"vh","maxWidthUnit":"%","mobileBackground":[{"enable":true,"bgColor":"","bgImg":"https://1221269.us32.myftpupload.com/wp-content/uploads/2026/08/hero-bg-mobile-900x1440-1.webp","bgImgID":225,"bgImgSize":"cover","bgImgPosition":"center center","bgImgAttachment":"parallax","bgImgRepeat":"no-repeat","forceOverDesk":false}],"mobileOverlay":[{"enable":true,"currentOverlayTab":"normal","overlay":"#2b2620","overlaySecond":"#00B5E2","overlayGradLoc":0,"overlayGradLocSecond":100,"overlayGradType":"linear","overlayGradAngle":180,"overlayBgImg":"","overlayBgImgID":"","overlayBgImgSize":"cover","overlayBgImgPosition":"center center","overlayBgImgAttachment":"scroll","overlayBgImgRepeat":"no-repeat","overlayOpacity":40,"overlayBlendMod":"none"}],"inheritMaxWidth":true,"minHeightTablet":75,"minHeightMobile":75,"responsiveMaxWidth":[100,100],"padding":["lg","","lg",""],"kbVersion":2,"className":"hero-row","style":{"css":"@media screen and (max-width: 640px){\n.hero-row{\nbackground-size: contain;\n}\n}"}} -->
+<!-- wp:kadence/column {"borderWidth":["","","",""],"uniqueID":"35_bb43c7-5f","textAlign":["center","",""],"justifyContent":["center","",""],"rowGap":[0,"",""],"rowGapVariable":["none","",""],"kbVersion":2} -->
+<div class="wp-block-kadence-column kadence-column35_bb43c7-5f"><div class="kt-inside-inner-col"><!-- wp:heading {"level":1,"style":{"typography":{"textAlign":"center"}},"fontSize":"xxlarge"} -->
+<h1 class="wp-block-heading has-text-align-center has-xxlarge-font-size">DARKUM DESIGN</h1>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<div class="catchphrase-ticker" aria-live="off">
+      <p class="ticker-line ticker-en" id="ticker-en" lang="en"></p>
+      <p class="ticker-line ticker-ar" id="ticker-ar" lang="ar" dir="rtl"></p>
+    </div>
+
+    <div class="ticker-nav-row" role="group" aria-label="Catchphrase navigation / التنقل بين الجمل">
+      <button type="button" id="ticker-prev" class="ticker-arrow" aria-label="Previous phrase / السابق">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M14 5l-6 7 6 7" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </button>
+      <div class="ticker-dots" id="ticker-dots"></div>
+      <button type="button" id="ticker-next" class="ticker-arrow" aria-label="Next phrase / التالي">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M10 5l6 7-6 7" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </button>
+    </div>
+
+    <p id="ticker-status" class="sr-only" role="status" aria-live="polite"></p>
+
+<style>
+.catchphrase-ticker{
+  min-height: 76px;
+  margin: 0 0 32px;
+  padding: 18px 8px 0;
+  border-top: 1px solid rgba(242, 233, 221, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+}
+.ticker-line{
+  margin: 0;
+  font-size: clamp(1rem, 3vw, 1.4rem);
+  line-height: 1.6;
+  color: #f2e9dd;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.ticker-en{
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 300;
+}
+.ticker-ar{
+  font-family: 'Cairo', sans-serif;
+  font-weight: 400;
+}
+@media (prefers-reduced-motion: reduce){
+  .ticker-line{
+    transition: none;
+  }
+}
+.ticker-nav-row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 10px 0 28px;
+}
+.ticker-arrow{
+  background: none;
+  border: none;
+  padding: 4px;
+  margin: 0;
+  color: #f2e9dd;
+  cursor: pointer;
+  display: inline-flex;
+  transition: color 0.2s ease;
+}
+.ticker-arrow svg{ display: block; }
+.ticker-arrow:hover,
+.ticker-arrow:focus-visible{
+  color: #bd9c7a;
+}
+.ticker-dots{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ticker-dot{
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(242, 233, 221, 0.35);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.ticker-dot:hover{
+  background: rgba(242, 233, 221, 0.7);
+}
+.ticker-dot[aria-current="true"]{
+  background: #f2e9dd;
+  transform: scale(1.3);
+}
+.ticker-arrow:focus-visible,
+.ticker-dot:focus-visible{
+  outline: 1px solid #bd9c7a;
+  outline-offset: 2px;
+}
+</style>
+
+<script>
+(function () {
+  var catchphrases = [
+    {
+      en: "Do you want to buy the same bed as all your friends, family, and neighbors? Customize your bed frame today with Darkum Design.",
+      ar: "عايز تنام على نفس السرير اللي عند كل صحابك وجيرانك؟ اعمل سريرك بتصميمك انت مع داركم ديزاين."
+    },
+    {
+      en: "Is your anniversary coming up? Surprise your partner with romantic customization, only from Darkum Design.",
+      ar: "عيد جوازك قرب؟ فاجئ شريك حياتك بتصميم رومانسي مميز، بس من داركم ديزاين."
+    },
+    {
+      en: "Is your child a superhero fan? Customize his bed with Iron Man or Superman with Darkum Design.",
+      ar: "ابنك بيحب الأبطال الخارقين؟ صمّملّه سرير آيرون مان أو سوبرمان مع داركم ديزاين."
+    }
+  ];
+
+  var tickerEn = document.getElementById('ticker-en');
+  var tickerAr = document.getElementById('ticker-ar');
+  var tickerPrev = document.getElementById('ticker-prev');
+  var tickerNext = document.getElementById('ticker-next');
+  var tickerDotsWrap = document.getElementById('ticker-dots');
+  var tickerStatus = document.getElementById('ticker-status');
+  var tickerSection = document.querySelector('.catchphrase-ticker');
+  var tickerNavRow = document.querySelector('.ticker-nav-row');
+
+  if (tickerEn && tickerAr && catchphrases.length) {
+    var index = 0;
+    var intervalId = null;
+    var paused = false;
+    var prefersReducedMotion = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var fadeMs = prefersReducedMotion ? 0 : 900;
+    var rotateMs = 7000;
+    var dots = [];
+
+    if (tickerDotsWrap) {
+      catchphrases.forEach(function (_, i) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'ticker-dot';
+        dot.setAttribute('aria-current', i === 0 ? 'true' : 'false');
+        dot.setAttribute('aria-label', 'Slide ' + (i + 1) + ' of ' + catchphrases.length +
+          ' / الشريحة ' + (i + 1) + ' من ' + catchphrases.length);
+        dot.addEventListener('click', function () { goTo(i, true); });
+        tickerDotsWrap.appendChild(dot);
+        dots.push(dot);
+      });
+    }
+
+    function updateDots(i) {
+      dots.forEach(function (dot, di) {
+        dot.setAttribute('aria-current', di === i ? 'true' : 'false');
+      });
+    }
+
+    function updateStatus(i) {
+      if (tickerStatus) {
+        tickerStatus.textContent = 'Slide ' + (i + 1) + ' of ' + catchphrases.length +
+          ' / الشريحة ' + (i + 1) + ' من ' + catchphrases.length;
+      }
+    }
+
+    function setPhraseText(phrase) {
+      tickerEn.textContent = phrase.en;
+      tickerAr.textContent = phrase.ar;
+      tickerEn.style.opacity = 1;
+      tickerAr.style.opacity = 1;
+    }
+
+    function renderSlide(i, immediate) {
+      var phrase = catchphrases[i];
+      if (immediate) {
+        setPhraseText(phrase);
+        updateDots(i);
+        updateStatus(i);
+        return;
+      }
+      tickerEn.style.opacity = 0;
+      tickerAr.style.opacity = 0;
+      setTimeout(function () {
+        setPhraseText(phrase);
+        updateDots(i);
+        updateStatus(i);
+      }, fadeMs);
+    }
+
+    function startAutoplay() {
+      stopAutoplay();
+      intervalId = setInterval(function () {
+        if (paused) return;
+        index = (index + 1) % catchphrases.length;
+        renderSlide(index, false);
+      }, rotateMs);
+    }
+
+    function stopAutoplay() {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+    }
+
+    function goTo(i, userInitiated) {
+      index = i;
+      renderSlide(index, false);
+      if (userInitiated) {
+        startAutoplay();
+      }
+    }
+
+    if (tickerPrev) {
+      tickerPrev.addEventListener('click', function () {
+        goTo((index - 1 + catchphrases.length) % catchphrases.length, true);
+      });
+    }
+    if (tickerNext) {
+      tickerNext.addEventListener('click', function () {
+        goTo((index + 1) % catchphrases.length, true);
+      });
+    }
+
+    [tickerSection, tickerNavRow].forEach(function (el) {
+      if (!el) return;
+      el.addEventListener('mouseenter', function () { paused = true; });
+      el.addEventListener('mouseleave', function () { paused = false; });
+      el.addEventListener('focusin', function () { paused = true; });
+      el.addEventListener('focusout', function () { paused = false; });
+    });
+
+    renderSlide(index, true);
+    startAutoplay();
+  }
+})();
+</script>
+<!-- /wp:html -->
+
+<!-- wp:buttons {"className":"ticker-button","layout":{"type":"flex","justifyContent":"center","flexWrap":"nowrap"}} -->
+<div class="wp-block-buttons ticker-button"><!-- wp:button {"className":"is-style-fill"} -->
+<div class="wp-block-button is-style-fill"><a class="wp-block-button__link wp-element-button" href="https://1221269.us32.myftpupload.com/shop/"><strong>Explore</strong></a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div></div>
+<!-- /wp:kadence/column -->
+<!-- /wp:kadence/rowlayout -->
+
+<!-- wp:kadence/rowlayout {"uniqueID":"35_decf07-f6","colLayout":"row","inheritMaxWidth":true,"kbVersion":2} -->
+<!-- wp:kadence/column {"borderWidth":["","","",""],"uniqueID":"35_5b5923-0e","kbVersion":2,"className":"dkd-contact-section"} -->
+<div class="wp-block-kadence-column kadence-column35_5b5923-0e dkd-contact-section"><div class="kt-inside-inner-col"><!-- wp:kadence/googlemaps {"uniqueID":"35_748bf3-5d","location":"10 Aswan Street, El-Sherif Building, Heliopolis","mapFilter":"grayscale","mapFilterAmount":63,"kbVersion":2,"className":"dkd-contact-map-section"} /-->
+
+<!-- wp:kadence/rowlayout {"uniqueID":"35_67d5a6-d9","colLayout":"equal","gradient":"linear-gradient(173deg,rgb(153,102,51) 0%,rgb(0,0,0) 100%)","anchor":"dkd-contact-panels-row","kbVersion":2,"className":"dkd-contact-panels-row"} -->
+<!-- wp:kadence/column {"borderWidth":["","","",""],"uniqueID":"35_afdf09-8f","kbVersion":2,"className":"dkd-address-card"} -->
+<div class="wp-block-kadence-column kadence-column35_afdf09-8f dkd-address-card"><div class="kt-inside-inner-col"><!-- wp:heading {"level":3,"className":"is-style-heading-display","style":{"typography":{"fontStyle":"normal","fontWeight":"700"}},"textColor":"kb-palette-11"} -->
+<h3 class="wp-block-heading is-style-heading-display has-kb-palette-11-color has-text-color" style="font-style:normal;font-weight:700">Address / العنوان</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|kb-palette-10"}}},"typography":{"textColumns":"2"}},"textColor":"kb-palette-10"} -->
+<p class="has-kb-palette-10-color has-text-color has-link-color" style="column-count:2"><p class="is-style-default has-kb-palette-10-color has-text-color has-link-color dkd-bilingual-pair" style="display:flex;flex-wrap:wrap">
+<span lang="en" dir="ltr">Store No. 5, 10 Aswan Street, El-Sherif Building, Heliopolis, Cairo, Egypt, 4460305.</span>
+<span lang="ar" dir="rtl">محل رقم 5، 10 شارع أسوان، عمارة الشريف، مصر الجديدة، القاهرة، مصر، 4460305.</span>
+</p></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3,"style":{"elements":{"link":{"color":{"text":"var:preset|color|kb-palette-11"}}},"typography":{"fontStyle":"normal","fontWeight":"700"}},"textColor":"kb-palette-11"} -->
+<h3 class="wp-block-heading has-kb-palette-11-color has-text-color has-link-color" style="font-style:normal;font-weight:700">Store Hours / ساعات العمل</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|kb-palette-10"}}},"typography":{"textColumns":"1"}},"textColor":"kb-palette-10"} -->
+<p class="has-kb-palette-10-color has-text-color has-link-color" style="column-count:1"><p class="has-kb-palette-10-color has-text-color has-link-color dkd-bilingual-pair" style="display:flex;justify-content:space-between;flex-wrap:wrap">
+<span lang="en" dir="ltr">Saturday: 10 AM – 6 PM<br>Sunday: Closed<br>Monday: 10 AM – 6 PM<br>Tuesday: 10 AM – 6 PM<br>Wednesday: 10 AM – 6 PM<br>Thursday: 10 AM – 6 PM<br>Friday: 2 PM – 6 PM</span>
+<span lang="ar" dir="rtl">السبت: 10 ص – 6 م<br>الأحد: إجازة<br>الاثنين: 10 ص – 6 م<br>الثلاثاء: 10 ص – 6 م<br>الأربعاء: 10 ص – 6 م<br>الخميس: 10 ص – 6 م<br>الجمعة: 2 م – 6 م</span>
+</p></p>
+<!-- /wp:paragraph --></div></div>
+<!-- /wp:kadence/column -->
+
+<!-- wp:kadence/column {"id":2,"borderWidth":["","","",""],"uniqueID":"35_fa51b1-4e","kbVersion":2,"className":"dkd-form-card"} -->
+<div class="wp-block-kadence-column kadence-column35_fa51b1-4e dkd-form-card"><div class="kt-inside-inner-col"><!-- wp:kadence/advanced-form {"id":241,"uniqueID":"35_294f7c-fb"} /--></div></div>
+<!-- /wp:kadence/column -->
+<!-- /wp:kadence/rowlayout --></div></div>
+<!-- /wp:kadence/column -->
+
+<!-- wp:kadence/column {"id":2,"borderWidth":["","","",""],"uniqueID":"35_60e887-b1","kbVersion":2} -->
+<div class="wp-block-kadence-column kadence-column35_60e887-b1"><div class="kt-inside-inner-col"></div></div>
+<!-- /wp:kadence/column -->
+<!-- /wp:kadence/rowlayout -->
+
