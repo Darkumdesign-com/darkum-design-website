@@ -31,7 +31,7 @@ Live at **[darkumdesign.com](https://darkumdesign.com)**: a static bilingual (EN
 
 - Live placeholder: `index.html` (plain HTML/CSS/JS, no build step required)
 - Production domain: `darkumdesign.com`, currently registered through Vercel. A future transfer to the client's own GoDaddy account is planned but not yet actioned (Vercel enforces a registrar transfer lock for 60 days post-purchase).
-- Build domain (temporary): `1221269.us32.myftpupload.com` — GoDaddy Managed WordPress (Ecommerce plan), auto-provisioned for building/testing the full site without touching `darkumdesign.com`'s DNS. See `docs/HANDOFF.md` §4 for the full build/go-live sequence.
+- Build domain (temporary): `1221269.us32.myftpupload.com` is a GoDaddy Managed WordPress (Ecommerce plan), auto-provisioned for building/testing the full site without touching `darkumdesign.com`'s DNS. See `docs/HANDOFF.md` §4 for the full build/go-live sequence.
 - Local WordPress dev environment: `C:\Projects\darkum-design-wordpress\` (separate folder, not part of this repo) — see `docs/HANDOFF.md` §4 for details.
 
 ## 📁 Structure
