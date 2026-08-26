@@ -11,6 +11,7 @@
 - `JS/`, scripts, mostly the `<script>` portion of Custom HTML blocks
 - `PHP/`, for GoDaddy Pro Code Snippets, once any exist (none yet as of 2026-08-18)
 - `SQL/`, local-only database dumps (`wp db export`), gitignored, never committed. Contains user data, password hashes, and API keys, so it stays off git entirely rather than being tracked-but-encrypted or similar. If this folder looks empty in a fresh clone of the repo, that's expected, see `.gitignore` at the repo root.
+- `Scripts/`, added 2026-08-26, the odd one out, these two files (`wp-push.ps1`, `wp-eval-push.php`) are reusable tooling, not a content mirror, the mechanism that actually pushes a mirror file's content live over SSH. See `Scripts/README.md` for full usage.
 - `Docs/`, this file, plus any future notes on the custom code itself
 
 ## Sitewide Additional CSS

@@ -266,6 +266,31 @@
   z-index: 1;
 }
 
+/* Map's own corners were square instead of rounded (surfaced 2026-08-26 as a side effect
+   of the .dkd-contact-section padding fix above). Confirmed via live DOM inspection:
+   .dkd-contact-map-section already computed border-radius: 12px (set through Kadence's own
+   Container style panel on the Google Maps block, not this file, i.e. a per-block JSON
+   attribute baked into post 35's own content), but with no overflow set, that radius had
+   nothing to clip, the iframe child simply painted past the rounded corner at full square
+   size.
+
+   RETARGETED 2026-08-26, same day: a later content push to post 35 (adding the Email/Phone
+   icon lines below the Store Hours block) silently stripped that block's own border-radius
+   JSON attribute as an unrelated side effect, confirmed by diffing a fresh pull against the
+   pre-push pull, exact mechanism not fully confirmed (most likely candidates: WP-CLI's
+   `wp eval-file` running without the `unfiltered_html` capability, triggering KSES/content
+   sanitization on save; or Kadence Blocks' own save-time attribute normalization dropping an
+   attribute it doesn't expect). The radius value is now set directly here instead of relying
+   on the block's own fragile, easily-silently-dropped JSON attribute, both because it fixes
+   the immediate regression without repeating the raw content push that caused it, and because
+   a value living in this version-controlled file is inherently safer than one living inside a
+   Gutenberg block comment that's apparently vulnerable to being silently rewritten. See
+   `wp-cli-workflow-and-tooling.md` for the full writeup of this newly-discovered risk. */
+.dkd-contact-map-section {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
 /* Shared card treatment for both panels, rounded corners plus a drop
    shadow read as one floating unit rather than the row's flat default.
    Background is left out here on purpose, Address already has its own
@@ -460,4 +485,72 @@
   .dkd-bilingual-pair {
     flex-direction: column;
   }
+}
+
+/* Email/Phone icon lines under Store Hours, 2026-08-26. Plain text, not
+   clickable links, per Sobhy's request, icon substitutes for a visible text
+   label entirely rather than a bilingual word ("Email:"/"Phone:") like
+   every other line in this card.
+
+   REVISED same day: originally built as a two-column bilingual-pair block
+   (matching Address/Store Hours), duplicating identical content on both
+   sides since an email/phone number doesn't actually translate. That made
+   the block two real lines tall and pushed the Address column noticeably
+   past the Form card's bottom (confirmed live via getBoundingClientRect,
+   not eyeballed). Sobhy caught the pointless duplication independently by
+   watching the live page and deleted the Arabic span himself mid-session,
+   then asked for the two items on one row instead of two. Rebuilt as a
+   single flex row (icon+email, icon+phone) using the same
+   justify-content:space-between mechanism the Address/Store Hours pairs
+   already use to spread two flex children across the full card width, just
+   applied to two content items instead of two language columns, so it
+   reuses an established pattern rather than inventing a new one.
+
+   The unformatted digits/no-spaces-or-dashes requirement (Sobhy's explicit
+   call, so the phone number can't visually differ depending on context) and
+   the <bdi dir="ltr"> isolation around each value still apply even though
+   there's only one language column now, isolating the digit/email run from
+   bidi reordering is good practice regardless of how many columns surround
+   it.
+
+   No visible text label was added (per request), but a real one exists for
+   screen readers: each icon is aria-hidden (a background-image on an empty
+   span carries zero information to assistive tech on its own) and is
+   immediately followed by a bilingual .sr-only label (the same sitewide
+   utility class already defined at the top of this file for the hero
+   ticker, "Email / الإميل: " style, matching how the visible headings above
+   already combine both languages on one line), so "this is the email" /
+   "this is the phone number" is still announced in both languages even
+   though nothing changes visually. */
+#dkd-contact-panels-row .dkd-address-card .dkd-contact-icons {
+  margin-top: 0.6em;
+}
+
+#dkd-contact-panels-row .dkd-address-card .dkd-contact-item {
+  display: inline-flex;
+  align-items: center;
+}
+
+#dkd-contact-panels-row .dkd-address-card .dkd-icon {
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  vertical-align: -0.15em;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-inline-end: 0.4em;
+}
+
+#dkd-contact-panels-row .dkd-address-card .dkd-icon-email {
+  /* fill-rule="evenodd" is required here, not decorative: the outer envelope
+     rect and the inner flap-chevron are two subpaths with the same winding
+     direction, so the SVG default nonzero fill-rule fills both solid instead
+     of carving the chevron out as a hole, first live version rendered as a
+     plain filled square with no visible flap lines, caught via a live
+     screenshot zoom after pushing, not assumed correct from the path alone. */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23bd9c7a'%3E%3Cpath fill-rule='evenodd' d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm16 4-8 5-8-5V6l8 5 8-5v2z'/%3E%3C/svg%3E");
+}
+
+#dkd-contact-panels-row .dkd-address-card .dkd-icon-phone {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23bd9c7a'%3E%3Cpath d='M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.36 2.3.56 3.5.56.6 0 1 .45 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.56 3.5.1.35 0 .74-.25 1l-2.2 2.2z'/%3E%3C/svg%3E");
 }
