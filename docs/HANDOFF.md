@@ -39,7 +39,7 @@ As of the 2026-08-26 session end, the Contact section (map + floating form card,
 
 ## Standing rules
 
-These apply project-wide, not just to the file they happen to be documented alongside:
+These apply project-wide, not just to the file they happen to be documented alongside. This is the authoritative copy; `docs/claude-ai-instructions.md` restates the cheap, frequently-needed ones inline so Claude Desktop isn't forced to read this file just to recall them, if the two ever disagree, this list wins.
 
 - **No em dash anywhere**, in any language, in any copy or documentation (extended 2026-08-14 from an Arabic-only rule to all copy). Use commas or hyphens instead.
 - **Word choice: "Shop" (EN) / "محل" (AR)**, not "Studio"/"استوديو", decided 2026-08-14, applied across all platform copy.
