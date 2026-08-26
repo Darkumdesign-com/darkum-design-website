@@ -386,7 +386,11 @@ body{
 
 @media (max-width: 480px){
   .notify-form{ flex-direction: column; }
-  .logo img{ height: 76px; }
+  .logo img{
+      height: auto;
+      width: 55vw;
+    }
+  
   .socials{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
