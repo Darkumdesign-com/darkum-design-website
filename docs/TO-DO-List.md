@@ -84,6 +84,7 @@ Timing-gated items, not blocked by anyone specifically, just sequenced to a late
 
 - [ ] **Cancel GoDaddy Premium Backups** the day `darkumdesign.com` goes live, reverts to the Ecommerce plan's included daily backups at no extra cost
 - [ ] Check whether the Kadence Security Plugin's API key needs reissuing/reconnecting once DNS cuts over from the temp domain to `darkumdesign.com`
+- [ ] Update the JSON-LD structured data's URLs (`url`, `logo`, `image`) after the domain migration, currently pointing at the temp domain `1221269.us32.myftpupload.com`, needs to switch to `darkumdesign.com` once DNS cuts over. See `wp-custom-edits/PHP/jsonld-furniturestore.php`.
 - [ ] Draft retainer offer/proposal for the ongoing creative-authority role, to be presented only after the full website is built
 - [ ] Share the `Darkum Design - Logo Exports` Google Drive folder link with partners. The folder itself is confirmed clean and ready (192 files, verified 2026-08-17), the link just hasn't been sent yet
 - [ ] Optional, low-priority: GoDaddy Managed WordPress's native "Connectors" panel (Settings → Connectors, WordPress 7.0's PHP AI Client SDK) can wire an Anthropic API key into AI-aware plugins for tasks like alt-text/excerpt generation. Requires a separate `console.anthropic.com` account and API key, billed pay-per-use. No obligation to do anything with it, revisit once the WordPress build itself is further along
