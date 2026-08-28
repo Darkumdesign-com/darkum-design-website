@@ -1,5 +1,7 @@
 # Homepage, Header, and Footer
 
+## Homepage build approach
+
 ### Homepage build, started 2026-08-17
 
 **Approach: blank page, not a template.** Every Kadence homepage template assumes single-language, single-column content flow, the site's core requirement (simultaneous EN/AR, side-by-side, no switcher) conflicts with that structure more than it benefits from any pre-filled placeholder content. Decision: build the page blank, but pull individual **Patterns** (not full Page templates) into sections that don't need bilingual dual-column treatment (e.g. footer, simple dividers) as a time-saver, hand-build the sections that do need it (hero, most content blocks).
@@ -119,11 +121,13 @@ A full draft (`wp-custom-edits\HTML\header-logo-lockup.html`) was built and veri
 **Arabic characters with no `lang="ar"` wrapper were rendering in the wrong font.** Raised via the footer copyright line, whose `{site-title}` dynamic tag outputs "Darkum Design - داركم ديزاين" as one unmarked bilingual string with no element boundary around just the Arabic portion, so the existing scoped `[lang="ar"]` CSS approach couldn't target it. **Root cause confirmed from the theme's actual generated CSS, not guessed:** the body font, `'Source Sans 3'`, has zero Arabic glyph coverage (confirmed against its real Google Fonts `@font-face` subsets, latin/latin-ext/cyrillic/greek/vietnamese only, no Arabic), so unmarked Arabic characters were falling through past it straight to the browser's generic `sans-serif` system font, a different font than the site's intended Cairo.
 
 **Fix: redefine the CSS variable Kadence's own font-family rule already reads from**, rather than editing markup or duplicating scoped rules:
+
 ```css
 :root {
   --global-body-font-family: 'Source Sans 3', 'Cairo', sans-serif;
 }
 ```
+
 This works because of how CSS font-stack fallback actually resolves: per character, not per element, a browser checks each font in the list in order and uses the first one that has a glyph for that specific character. Cairo has to sit **before** the trailing `sans-serif`, not after, appending it after would never be reached, since the generic keyword already resolves to a real system font with some Arabic coverage of its own, satisfying the fallback before the list ever reaches Cairo. This is CSS-only and not achievable through the Kadence Customizer Typography UI at all, which only supports picking one font per element, not a fallback chain. Confirmed live by Sobhy testing `getComputedStyle` on the ticker's Arabic element directly in the browser console, resolves to Cairo.
 
 **Made one existing rule redundant, removed:** `.site-info .footer-html-inner p [lang="ar"]{ font-family: 'Cairo', sans-serif; }` (the original scoped fix for the footer copyright's separate, properly-marked Arabic sentence) was removed 2026-08-21 once the global fallback confirmed working, Sobhy verified no visual regression.
@@ -133,22 +137,27 @@ This works because of how CSS font-stack fallback actually resolves: per charact
 **Hero ticker's own explicit Cairo/Source Sans 3 declarations deliberately kept, not simplified away.** Considered removing `.ticker-en`/`.ticker-ar`'s own `font-family` lines now that the global fallback makes them technically redundant, but decided against it: `.ticker-ar` pairs a specific `font-weight: 400` and a smaller `clamp()` font-size range against Cairo specifically (documented elsewhere in this file as the fix for Cairo reading visually heavier than Latin type at the same numeric size). Removing the explicit font-family would make that tuning silently dependent on the sitewide default never changing, and the ticker block is otherwise deliberately self-contained. Kept as intentional redundancy.
 
 **Explore button contrast fixed.** The hero's "Explore" button had genuinely low contrast against the rotating background photos (gold-toned fill and text against warm-toned imagery). A `ticker-button` class was added via the Buttons block's own "Additional CSS Class(es)" field (Edit Page > block > Advanced), deliberately not touching the theme's shared button styling used elsewhere on the site. First attempt (a subtle gold `box-shadow`) was flagged as likely to be invisible against the same warm-toned photos causing the original problem, same hue family as the background, so no real contrast. Replaced with a dark shadow using `#2b2620` (the site's own dark brown palette token, `--global-palette5`) for genuine luminance contrast against any of the rotating photos, not just one:
+
 ```css
 .ticker-button a {
   box-shadow: 0 4px 14px rgba(43, 38, 32, 0.45);
 }
 ```
+
 Confirmed sufficient by Sobhy against the live rotating hero images.
 
 **Site title typo caught, being fixed by Sobhy directly.** The live site title reads "Darkum Desgin" (missing the "i"), visible in the footer copyright line and presumably the `<title>` tag/browser tab sitewide. Sobhy is correcting this in Settings → General → Site Title, **not yet confirmed fixed as of this writing**, worth a quick live check next session.
 
 ### Local debug snapshot excluded from git (2026-08-21)
+
 A full "Save As → Complete Webpage" browser capture of the footer (`wp-custom-edits\HTML\Footer - copy.html` + `Footer - copy_files\`, ~1.14 MB / 46 files, almost entirely third-party vendor bundles and session-tied admin-bar assets) was used as a one-time debugging reference for the footer CSS work above. Decided not to commit it, not source code, already stale, and the actually-useful confirmed selectors are captured properly in `additional-css.css` comments and `wp-reference.md` instead. Added to `.gitignore` (both paths, matching the existing pattern for `.env`/SQL dumps) rather than deleted, so it stays available locally without polluting version history. Both paths confirmed untracked before the ignore rule was added (`git status` showed `??`, never previously committed), and `git check-ignore` confirmed the rule takes effect.
 
 ### Site structure
+
 One-page site: Homepage / landing page, with sliding animations, plus one highly customizable product (Bed Frame) via WooCommerce.
 
 ### Homepage sliding catchphrases, confirmed scope: full WordPress site only
+
 Bido confirmed (2026-08-12) the full sliding question/answer hero carousel belongs on the real WordPress homepage, not the coming-soon placeholder. English slides in from the right, Arabic slides in from the left, in an "Egyptian street-cool" tone.
 
 A **light, non-interactive preview version** (auto-cycling every 6s, same slide-from-right/slide-from-left direction logic, no user controls) was added to the coming-soon page on 2026-08-12 using the 3 example lines Bido provided. Arabic translations below were drafted by Sobhy/Claude in colloquial Egyptian tone:
