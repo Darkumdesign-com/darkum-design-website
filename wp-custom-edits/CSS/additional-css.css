@@ -554,3 +554,67 @@
 #dkd-contact-panels-row .dkd-address-card .dkd-icon-phone {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23bd9c7a'%3E%3Cpath d='M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.36 2.3.56 3.5.56.6 0 1 .45 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.56 3.5.1.35 0 .74-.25 1l-2.2 2.2z'/%3E%3C/svg%3E");
 }
+
+/* Testimonials avatar circle, capped to a fixed size (2026-08-27). Kadence's native
+   Testimonials block has no display-size control for the avatar anywhere in its own Media
+   Settings panel, the "IMAGE SIZE" dropdown there only picks which pre-generated WordPress
+   attachment resolution to source from (thumbnail/medium/large/full/custom), it doesn't
+   constrain how large that file then renders. Confirmed live via getBoundingClientRect and
+   getComputedStyle: the image was rendering at 405px despite the source being set to a 100px
+   custom size, every wrapper down the chain (.kadence-testimonial-image-intrisic,
+   .kt-testimonial-media-inner-wrap, .kt-testimonial-media-wrap) has max-width: 100% with no
+   fixed cap, so it just scales up to match the column's own width, itself driven by the
+   3-column carousel layout, not the source file's actual resolution. No inline style was
+   fighting this (checked via getAttribute('style') on all three), it's a plain stylesheet
+   cascade, so no !important needed, a single-class-scoped rule already outranks Kadence's
+   own single-class rules through normal load order. Scoped under .dkd-tsm-section so this
+   can never affect a future Testimonials block elsewhere on the site. Border-radius already
+   set to 50% via the block's own native Media Border Radius control (not duplicated here),
+   so a fixed equal width/height is enough to keep it circular. */
+.dkd-tsm-section .kadence-testimonial-image-intrisic,
+.dkd-tsm-section .kt-testimonial-media-inner-wrap,
+.dkd-tsm-section .kt-testimonial-media-wrap {
+  width: 100px;
+  height: 100px;
+  max-width: 100px;
+  margin-bottom: 15px;
+}
+
+/* Avatar left-aligned instead of centered, same session, follow-up to the fix above.
+   Confirmed live: .kt-testimonial-media-wrap is display:block, its parent
+   (.kt-testimonial-text-wrap) has text-align:center, but text-align only centers inline
+   content, it does nothing for a block-level box, even one with an explicit width. Before
+   the fix above, this never showed up as a bug because the wrapper was 100% width, filling
+   its parent entirely, so there was no room for it to be off-center in either direction.
+   Standard margin:auto centering for a block box with a definite width. */
+.dkd-tsm-section .kt-testimonial-media-wrap {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Cards suddenly much wider after the avatar fix above, same session, found via
+   getBoundingClientRect at every level of the DOM chain. Root cause traced to the Kadence
+   Column block that directly wraps the carousel: it was rendering at 2822px while its own
+   parent (.kt-inside-inner-col) was 1242px, more than double its actual container, not
+   respecting it at all. Everything downstream (Splide's carousel root, track, list, and
+   each slide's own inline `width: calc((100% + gutter)/3 - gutter)` style) was just
+   faithfully inheriting that already-wrong 2822px as its basis, so the 3-column math itself
+   was never broken, it was correctly dividing a container that had already escaped its
+   parent by that point.
+   Confirmed via live inspection this is a genuine layout bug, not a setting: before the
+   avatar fix, the oversized 405px image's own intrinsic min-content width was (accidentally)
+   keeping this column pinned close to a sane size; once the image stopped dominating that
+   calculation, some other content (most likely the unconstrained testimonial paragraph text)
+   became the widest intrinsic driver instead, and this particular Column block had nothing
+   stopping it from growing to match, unlike its own parent Column one level up, which stayed
+   correctly sized the whole time (confirmed both by direct comparison, not assumed).
+   Two Kadence Column blocks inside .dkd-tsm-section both technically contain the carousel as
+   a descendant, one correctly sized (1242px, unaffected either way) and one broken (2822px).
+   :has() targets both rather than hand-picking Kadence's own unstable per-block hash class
+   (kadence-column{postId}_{hash}-{n}, regenerated per block instance, not safe to hardcode),
+   applying max-width:100% to the already-correct one is a harmless no-op, only the broken
+   one actually changes. */
+.dkd-tsm-section .wp-block-kadence-column:has(.kt-blocks-carousel) {
+  max-width: 100%;
+}
+
