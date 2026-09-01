@@ -72,6 +72,35 @@ All three fixes verified together live before being handed to Sobhy to apply, te
 
 **Content is the 4 dummy Lorem ipsum reviews above**, real testimonials need actual customer reviews to exist first, post-launch, a separate and later dependency than Dema's copy, not blocked by her turnaround at all. Marked `[-]` rather than `[x]` in `docs/TO-DO-List.md` for the same reason as About/Story, structure is done, content is not.
 
+### How It Works section, built 2026-09-01/02, structure mostly done, two items open
+
+**Copy locked, English only, Arabic still pending per Sobhy's explicit "English first, approve, then Arabic" sequencing.** Four steps, final wording:
+
+| Step | Body |
+|---|---|
+| Choose | Pick from 8 insert panels. |
+| Place | Headboard, footboard, or side rails. |
+| Change | Bored of the look? Change the panel, not the bed. |
+| Own | One frame, endless you. |
+
+The "8" is a deliberate placeholder, not a confirmed final count, source material (30 ChatGPT concept images from Bido, see `bed-frame-configurator.md`) only fully described 8 of a stated "16 Custom Insert Options," Part 2 was never sent. Bido was asked directly ("do you have Part 2, or is 8 all there is?") and hasn't replied as of this writing. Deliberately shipped with "8" anyway rather than blocking on the answer, changing the number later is a one-word text edit, not a rebuild, Sobhy's call given no payment has been received yet and stakeholder replies have been slow throughout.
+
+**Two real content bugs found via live DOM inspection (not visual guessing) and fixed:**
+1. **Body copy was rendering as `<h2>` tags, not paragraphs.** Broke the heading outline badly, a sentence like "Pick from 8 insert panels." outranked the section's own H3 title and the H4 step titles in nominal heading hierarchy. Root cause: whatever field/block the description text was typed into was set to a Heading block rather than plain text. Fixed by Sobhy directly, confirmed live afterward: section heading is H3, step titles are H4, body copy is genuine `<p>`, clean hierarchy, no stray headings.
+2. **Icon fill-style inconsistency, root cause was three different icon libraries, not a missing setting.** Confirmed via each icon's actual CSS class: Choose (`fas_magic`) and Own (`fas_heart`) are Font Awesome Solid, Change (`ic_reload`) is Material, but Place had been pulled from Feather (`fe_grid`), which is an **outline-only library with no solid variant for any icon**, not just grid, so no amount of searching within it would ever surface a filled version. Resolved by rebuilding all four icons as outline-style inside bordered squares during the layout pivot below, sidestepping the fill-style mismatch entirely rather than hunting for a matching solid grid icon.
+
+**Layout, three iterations:**
+
+1. **First build: horizontal 4-column row** (native Kadence Row Layout, `kt-has-4-columns`), icon circle + H4 + p per column. Measured too short at 328px section height compared to neighboring sections, plus felt visually flat, 4 disconnected feature bullets rather than a process.
+2. **Explored, drafted, never applied: a CSS connecting-line treatment for the horizontal layout.** Full recipe (a `::before` pseudo-element line behind the icon row, z-indexed under the circles so it appears to thread through them, plus an optional CSS-triangle arrowhead, no image asset) was written and handed over, but Sobhy correctly held off applying it pending a design discussion, then decided he actually wanted arrows matching a specific ChatGPT reference image (image 20 from the 30-image insert-catalog set, a vertical icon/arrow/text stepper, not a horizontal row), making the whole horizontal-line approach moot. **Superseded, not used.**
+3. **Final: rebuilt vertical, matching the reference image's stepper structure.** Icon in a bordered square, right-arrow, title+body text, per row; a down-arrow between each row; whole thing wrapped in a bordered card. Genuinely solves the "too short" complaint (more vertical space used) and reads as a sequence rather than a feature list, without needing the CSS line hack at all, since the arrows are real icon blocks now, not a drawn line.
+
+**Down-arrow-between-rows technique: two Single Icon blocks nested inside one Icon block, not a separate row.** Sobhy's choice, made to avoid the extra vertical gutter spacing a whole new Row Layout would add between each step. Confirmed not wrong, works visually, but flagged as non-standard: a Kadence Icon block is designed for one icon, not two, so this works today by coincidence of how the block happens to render flexible children, not because it's an officially supported pattern. A future Kadence update changing that block's internal layout could break it silently. **Not urgent to change.** Cleaner alternative if ever revisited: the arrow as its own separate sibling Icon block directly below the step's icon block (same column), spacing controlled via that block's own margin, same visual result without repurposing the block's child slot.
+
+**Open item 1: outer border spans the full page width instead of hugging the content column.** The border was applied via the Row Layout's native Style-tab Border control, which targets the **outer, full-bleed wrapper** (`.kb-row-layout-wrap`, edge to edge), not the **inner content-width-constrained wrapper** Kadence renders separately inside it (confirmed present on the horizontal version as `.kt-row-column-wrap` carrying a `kb-theme-content-width` class, exact class on the rebuilt vertical version not yet re-confirmed). Fix is applying the border to that inner wrapper instead via Additional CSS, not grouping/nesting anything new, Kadence already has the split needed. **Next session: confirm the exact inner-wrapper class on the current vertical markup live, then write the targeted CSS.**
+
+**Open item 2: mobile behavior not yet checked for the rebuilt vertical version.** The horizontal version's abandoned connecting-line CSS had an explicit `max-width: 767px` media query hiding the line on mobile, moot now since that CSS was never applied. The vertical stepper layout should need no mobile-specific handling at all (it's already a single vertical flow, nothing to collapse), but this hasn't been visually confirmed at a mobile viewport yet, worth a quick check alongside the border fix above.
+
 ### Header logo legibility, investigated 2026-08-19, not resolved. SVG uploads, resolved 2026-08-19.
 
 **Problem raised:** the header logo (horizontal lockup: arch icon + "DARKUM" + "DESIGN" + "FURNITURE · ART · LIVING"), currently a flattened WebP/PNG export, has genuinely low contrast on the small text. Measured, not just eyeballed: brand color `#996633` on black background is a 4.3:1 contrast ratio, under WCAG's 4.5:1 minimum for normal text, and the small text is thin-weight and letter-spaced on top of that, needing more headroom, not less.
