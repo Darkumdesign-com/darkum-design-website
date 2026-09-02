@@ -618,3 +618,55 @@
   max-width: 100%;
 }
 
+/* How It Works section: border was hugging the full-bleed outer row wrapper
+   (.kb-row-layout-wrap, edge to edge) instead of the content-width column, because
+   Kadence's own Style-tab Border control only ever targets that outer wrapper.
+   Confirmed live: the inner content-constrained wrapper Kadence renders separately
+   inside it is #dkd-how-it-works-section > .kt-row-column-wrap (max-width: 300px,
+   centered), not a class carrying kb-theme-content-width on this rebuilt vertical
+   version. Fix is two parts: kill the outer's own border (an ID selector beats
+   Kadence's single-class .kb-row-layout-id... rule on specificity alone, no
+   !important needed), then draw the real border as an inset ::before pseudo-element
+   on the inner wrapper instead of a literal border on it directly. A literal border
+   was avoided because the inner wrapper is padding: 24px 0px (no left/right padding
+   at all) and its content already sits flush to, and in one spot slightly past, its
+   own left edge, confirmed via getBoundingClientRect, so a border placed directly on
+   it would have clipped content with zero breathing room. The -20px inset pseudo-
+   element gives that breathing room without touching the wrapper's own box model or
+   its margin:auto centering. overflow: visible on the outer is required too, its
+   default overflow: clip (there for a .kt-row-layout-overlay rounded-corner rule that
+   turned out to target an element not actually present in this row's markup) would
+   otherwise clip the pseudo-element's -20px inset before it ever became visible. */
+#dkd-how-it-works-section {
+  border-width: 0;
+  border-style: none;
+  overflow: visible;
+	max-width: 700px
+}
+
+#dkd-how-it-works-section > .kt-row-column-wrap {
+  position: relative;
+}
+
+#dkd-how-it-works-section > .kt-row-column-wrap::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  bottom: -20px;
+  left: -20px;
+  border: 2px solid #996633;
+  border-radius: 12px;
+  pointer-events: none;
+}
+@media (max-width: 767px) {
+  #dkd-how-it-works-row {
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 767px) {
+  #dkd-how-it-works-section {
+    width: calc(100% - 48px);
+  }
+}
