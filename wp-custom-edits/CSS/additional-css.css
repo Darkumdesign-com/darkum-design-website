@@ -233,6 +233,17 @@
   z-index: 5;
 }
 
+/* Removes Kadence's own Row Layout default bottom padding (1.5rem, via the
+   --global-kb-row-default-bottom / --global-kb-spacing-sm fallback chain, confirmed via
+   DevTools 2026-09-06), which left visible empty space between the Submit button and the
+   section separator below it. Same id-beats-class pattern already used for the How It
+   Works section's border fix (#dkd-how-it-works-section > .kt-row-column-wrap): an ID
+   selector on the row's own generated .kt-row-column-wrap outranks Kadence's single-class
+   .kb-row-layout-id... rule on specificity alone, no !important needed. */
+#dkd-contact-panels-row > .kt-row-column-wrap {
+  padding-bottom: 0;
+}
+
 /* Floats only the Form card up over the map; Address stays in normal flow
    directly below the map, matching the reference. Uses transform instead
    of a negative margin-top: margin would pull the card's box up while the
@@ -303,6 +314,17 @@
   border-radius: 12px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
   padding: 2.5rem;
+}
+
+/* Mobile override, 2.5rem reads fine on desktop but eats too much of the card's
+   own content width on small screens (surfaced 2026-09-06). Same selector pair,
+   same 768px breakpoint already established for this section's card-lift rule
+   above, just a smaller padding value. */
+@media screen and (max-width: 768px) {
+  #dkd-contact-panels-row .dkd-address-card,
+  #dkd-contact-panels-row .dkd-form-card {
+    padding: 0.5rem;
+  }
 }
 
 /* Form card gradient, brand wood tokens already used everywhere else on
@@ -398,6 +420,21 @@
   overflow: hidden;
   box-shadow: 0 0 10px 10px rgba(153, 102, 51, 0.50) inset;
   padding: 10px;
+}
+
+/* Removes the Contact section's OUTER Row Layout's own default bottom padding (1.5rem/24px),
+   a different row from #dkd-contact-panels-row (the Address+Form row fixed earlier in this
+   file): this is the row one level further up, the one that wraps the entire
+   .dkd-contact-section column (map + panels row together). Confirmed live via
+   getComputedStyle 2026-09-06 that this, not the inner row, was the actual source of the
+   visible gap between the Contact section and the separator below it. No HTML anchor is set
+   on this outer row (unlike #dkd-contact-panels-row / #dkd-how-it-works-section elsewhere in
+   this file), so this targets Kadence's own auto-generated per-instance class directly,
+   fragile if this specific Row Layout block is ever deleted and rebuilt in the editor (the
+   id35_decf07-f6 hash would regenerate). Give this row a real HTML anchor (Advanced tab ->
+   HTML anchor) the next time it's touched, and rescope this rule through that ID instead. */
+.kb-row-layout-id35_decf07-f6 > .kt-row-column-wrap {
+  padding-bottom: 0;
 }
 
 /* Heading icons, 2026-08-25. A small location-pin before "Address / العنوان" and a
