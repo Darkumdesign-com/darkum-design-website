@@ -592,6 +592,22 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23bd9c7a'%3E%3Cpath d='M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.36 2.3.56 3.5.56.6 0 1 .45 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.56 3.5.1.35 0 .74-.25 1l-2.2 2.2z'/%3E%3C/svg%3E");
 }
 
+/* Phone icon (Email/Phone row, native Kadence Advanced Heading rebuild), mirrored
+   horizontally 2026-09-06 per Sobhy's ask, the stock Font Awesome phone glyph read visually
+   backwards against the layout. Kadence's Advanced Heading block has no built-in icon-flip
+   control (unlike the standalone Icon block, which does), confirmed via
+   wp.blocks.getBlockType('kadence/advancedheading').supports. That same block also doesn't
+   support an Additional CSS Class field at all (confirmed the same way), so there's no way
+   to hand it a stable custom class either, this targets the heading's own auto-generated
+   per-instance class (kt-adv-heading35_1543fc-97_0) directly. Same caveat already noted on
+   the outer Contact row rule further up this file: this class regenerates if this specific
+   block is ever deleted and rebuilt (not a plain edit, a genuine duplicate/recreate) in the
+   editor, if the icon reverts to its unmirrored orientation unexpectedly later, that's the
+   first thing to check. */
+.kt-adv-heading35_1543fc-97_0 svg {
+  transform: scaleX(-1);
+}
+
 /* Testimonials avatar circle, capped to a fixed size (2026-08-27). Kadence's native
    Testimonials block has no display-size control for the avatar anywhere in its own Media
    Settings panel, the "IMAGE SIZE" dropdown there only picks which pre-generated WordPress
