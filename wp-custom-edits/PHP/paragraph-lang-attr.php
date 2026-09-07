@@ -43,12 +43,24 @@
  * any Paragraph or Heading block that should carry that lang attribute.
  * Only use this on blocks that are entirely one language; a block mixing
  * both languages in one line should not be tagged with either value.
+ *
+ * Extended 2026-09-06 to also inject dir="ltr"/dir="rtl" alongside lang,
+ * same class check, same render-time-only mechanism. Needed because pure
+ * bidi-auto-detection isn't reliable once Arabic text has Latin digits
+ * mixed into it (times, phone numbers, e.g. "10 ص - 6 م"), the exact
+ * failure mode already found and fixed once elsewhere on this site
+ * (unmarked Arabic text reading left-to-right despite being genuinely
+ * Arabic). dir is a 1:1 function of the same lang value here, en is
+ * always ltr and ar is always rtl, so no separate class/detection is
+ * needed for it.
  */
 function dkd_add_lang_attribute( $block_content, $tag_pattern ) {
 	if ( strpos( $block_content, 'dkd-lang-ar' ) !== false ) {
 		$lang = 'ar';
+		$dir = 'rtl';
 	} elseif ( strpos( $block_content, 'dkd-lang-en' ) !== false ) {
 		$lang = 'en';
+		$dir = 'ltr';
 	} else {
 		return $block_content;
 	}
@@ -58,7 +70,7 @@ function dkd_add_lang_attribute( $block_content, $tag_pattern ) {
 		return $block_content;
 	}
 
-	return preg_replace( '/(<' . $tag_pattern . ')\b/i', '$1 lang="' . esc_attr( $lang ) . '"', $block_content, 1 );
+	return preg_replace( '/(<' . $tag_pattern . ')\b/i', '$1 lang="' . esc_attr( $lang ) . '" dir="' . esc_attr( $dir ) . '"', $block_content, 1 );
 }
 
 add_filter( 'render_block_core/paragraph', function ( $block_content, $block ) {

@@ -1,0 +1,33 @@
+<!--
+Archived 2026-09-06. Reconstructed from the live rendered DOM's text/lang/dir
+content immediately before the two Custom HTML blocks below were removed and
+replaced with native Kadence Row Layout > Column > core/paragraph pairs
+(dkd-lang-en / dkd-lang-ar classes), same rebuild pattern already used for the
+Our Story section. See docs/handoff/homepage-and-header-footer.md for the
+"Not eligible for the same fix" note this closes out, and contact-section.md
+for the Contact section's build history.
+
+This is a reconstruction of the visible content and structure (spans, lang,
+dir, line breaks), not necessarily byte-identical to the original block's
+exact class list on the outer <p>, that detail wasn't captured before the
+rebuild. WordPress's own post-35 revision history remains the authoritative
+backup if the exact original markup is ever needed.
+
+Both blocks lived inside .dkd-address-card, using the dkd-bilingual-pair
+flex layout defined in wp-custom-edits/CSS/additional-css.css (that CSS
+class/rule is no longer used by the new native version, which relies on
+Kadence's own 2-column Row Layout grid instead, but is left in the
+stylesheet in case anything else on the site still references it).
+-->
+
+<!-- Address paragraph -->
+<p class="dkd-bilingual-pair has-kb-palette-10-color has-text-color has-link-color">
+<span lang="en" dir="ltr">Store No. 5, 10 Aswan Street, El-Sherif Building, Heliopolis, Cairo, Egypt, 4460305.</span>
+<span lang="ar" dir="rtl">محل رقم 5، 10 شارع أسوان، عمارة الشريف، مصر الجديدة، القاهرة، مصر، 4460305.</span>
+</p>
+
+<!-- Store Hours paragraph -->
+<p class="dkd-bilingual-pair has-kb-palette-10-color has-text-color has-link-color">
+<span lang="en" dir="ltr">Saturday: 10 AM – 6 PM<br>Sunday: Closed<br>Monday: 10 AM – 6 PM<br>Tuesday: 10 AM – 6 PM<br>Wednesday: 10 AM – 6 PM<br>Thursday: 10 AM – 6 PM<br>Friday: 2 PM – 6 PM</span>
+<span lang="ar" dir="rtl">السبت: 10 ص – 6 م<br>الأحد: إجازة<br>الاثنين: 10 ص – 6 م<br>الثلاثاء: 10 ص – 6 م<br>الأربعاء: 10 ص – 6 م<br>الخميس: 10 ص – 6 م<br>الجمعة: 2 م – 6 م</span>
+</p>
