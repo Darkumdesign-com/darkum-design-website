@@ -460,12 +460,57 @@
   background-size: contain;
 }
 
-#dkd-contact-panels-row .dkd-address-card h3:first-of-type::before {
+#dkd-contact-panels-row .dkd-address-card .dkd-address-heading-wrap h3:first-of-type::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23bd9c7a'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z'/%3E%3C/svg%3E");
 }
 
-#dkd-contact-panels-row .dkd-address-card h3:nth-of-type(2)::before {
+#dkd-contact-panels-row .dkd-address-card .dkd-hours-heading-wrap h3:first-of-type::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23bd9c7a' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v5l3 3'/%3E%3C/svg%3E");
+}
+
+/* Arabic heading font fallback, 2026-09-08. Headings h1-h6 are hardcoded to font-family: Alice,
+   serif in Kadence's own CSS, not through the --global-body-font-family variable the sitewide
+   Arabic fallback (above) redefines, and Alice has zero Arabic glyph coverage. Flagged as a known
+   gap since 2026-08-21 ("nothing currently puts Arabic inside an actual heading tag"), now a real
+   issue since the How It Works, Testimonials, and Contact heading lang-splits put Arabic text
+   directly inside h3/h4 elements for the first time. Scoped to dkd-lang-ar rather than every
+   heading sitewide, so English headings keep Alice untouched. */
+.wp-block-heading.dkd-lang-ar,
+h1.dkd-lang-ar, h2.dkd-lang-ar, h3.dkd-lang-ar, h4.dkd-lang-ar, h5.dkd-lang-ar, h6.dkd-lang-ar {
+  font-family: 'Cairo', sans-serif;
+}
+
+/* Section-title bar background/padding, 2026-09-08. Used on lang-split section headings (e.g.
+   Testimonials) where the original single mixed-language heading carried its own backgroundColor
+   and border-radius block attributes to render as a filled bar; once split into two separate
+   EN/AR heading blocks, that box now lives on the wrapping Group instead, tagged with this class. */
+.dkd-lang-pair-box {
+  padding: 1em 2em;
+  text-align: center;
+}
+
+/* Lang-pair heading vertical alignment, 2026-09-08. Kadence's own heading defaults give h3
+   elements a bottom margin (12-16px depending on font size preset), which the Arabic side of
+   each lang-split heading pair doesn't carry in the same way, so the English half sat visibly
+   higher than the Arabic half inside the flex row instead of both baselining together. Zeroed
+   on the English h3 specifically (the one that had it), rather than adding a matching margin to
+   the Arabic side, since zero is the simpler, more predictable target for a single-line pair. */
+h3.dkd-lang-en {
+  margin-bottom: 0;
+}
+
+/* How It Works main heading, mobile stacking, 2026-09-08. This is the one lang-split
+   heading that stays flex-wrap: nowrap on desktop (Sobhy's manual fix, keeps "How it Works? /"
+   and "ازاي بيشتغل؟" on one line, matches the four step titles' own nowrap treatment).
+   On narrow screens there's no room for both languages side by side, and forcing nowrap there
+   pushed the whole row past the viewport edge instead of wrapping (confirmed live via
+   screenshot, phone width). Same 719px breakpoint already established for .dkd-bilingual-pair
+   below, so this heading pair falls back to stacking EN above AR at the same point every other
+   bilingual element on the page already switches at. */
+@media screen and (max-width: 719px) {
+  .dkd-hiw-heading-pair.is-nowrap {
+    flex-wrap: wrap;
+  }
 }
 
 /* Address/Store Hours paragraphs, remove Kadence's default paragraph bottom margin

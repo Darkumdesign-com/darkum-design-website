@@ -1,6 +1,6 @@
 # Darkum Design, Project Handoff
 
-**Last updated:** 2026-09-06
+**Last updated:** 2026-09-08
 **Maintainer:** Sobhy (sole developer/administrator, GitHub Org `darkumdesign`, separate Vercel account)
 **Pricing note:** Bido offered a flat rate of EGP 15,000 for the entire engagement (2026-08-16). The original item-by-item proposal and all freelancer market research have been archived to `docs/offer_market-research.md`, see `docs/handoff/business-terms.md`.
 
@@ -10,7 +10,7 @@ This file is now a slim index. The detailed project history, decisions, and trou
 
 ## Business context, in brief
 
-**Darkum Design (داركم ديزاين)** is a custom furniture and home décor shop based in Heliopolis, Cairo, delivering across Egypt (slogan: "FURNITURE · ART · DESIGN"). Owners are Nourhan Osama ("Noura") and Heba Farouk, both non-technical; key contact and decision authority is Bido (Noura's uncle), who has delegated technological decisions to Sobhy in his stead. The arrangement is an informal, trust-based one built on the personal relationship, but explicitly paid, not a favor: Bido offered a flat rate of **EGP 15,000 for the entire engagement** (logo, social media, coming-soon page, full website build, Bed Frame configurator) on 2026-08-16, no payment received yet. Content is currently under a **freeze pending Dema**, a friend of Noura's who runs an advertising agency and will be writing all website/social copy going forward (confirmed 2026-08-22), no new homepage copy is being drafted until she delivers. Full detail: `docs/handoff/business-context.md`.
+**Darkum Design (داركم ديزاين)** is a custom furniture and home décor shop based in Heliopolis, Cairo, delivering across Egypt (slogan: "FURNITURE · ART · DESIGN"). Owners are Nourhan Osama ("Noura") and Heba Farouk, both non-technical; key contact and decision authority is Bido (Noura's uncle), who has delegated technological decisions to Sobhy in his stead. The arrangement is an informal, trust-based one built on the personal relationship, but explicitly paid, not a favor: Bido offered a flat rate of **EGP 15,000 for the entire engagement** (logo, social media, coming-soon page, full website build, Bed Frame configurator) on 2026-08-16, no payment received yet. Full detail: `docs/handoff/business-context.md`.
 
 ## Confirmed stack
 
@@ -29,7 +29,6 @@ Full detail: `docs/handoff/website-stack-and-hosting.md`.
 - **Commercial Registration:** not yet in hand; blocks TikTok business account, Etsy shop onboarding, and (anticipated) Paymob/WooCommerce payments. Accountant is preparing documents (7 to 14 business days from when this was confirmed). See `docs/handoff/social-media.md`.
 - **APF Lifetime tier decision:** purchase is ready to proceed but blocked on Bido/partners choosing between the Pro, Extended, or Extended + Addons tiers. See `docs/handoff/bed-frame-configurator.md`.
 - **Legal pages** (Privacy Policy, Terms of Service, Return/Refund Policy): need the business's formal registered name from the Commercial Registration and Tax Card, and a lawyer to draft/review. See `docs/handoff/business-context.md`.
-- **Dema copy freeze:** no new homepage/social copy is being drafted until Dema delivers hers; whether her scope also covers WooCommerce transactional email wording is unconfirmed. See `docs/handoff/business-context.md`.
 
 ## Where things stand
 
@@ -38,6 +37,8 @@ As of the 2026-08-26 session end, the Contact section (map + floating form card,
 As of the 2026-09-02 session end, the How It Works section is fully complete, including Arabic copy. Heading, border, down-arrow structure, accessibility labels, orphaned-block cleanup, pattern background, and the mobile margin (resolved on the third attempt, see below) were finished earlier the same day; Egyptian-colloquial Arabic for the heading and all four steps was added and confirmed live to close out the session. Worth knowing for future sessions: two of the first two mobile-CSS fixes failed for genuinely different reasons (a background pattern layer painting straight through added padding with no visual break, then a real spec-level bug in Claude's own proposed CSS, `inset` doesn't resize a `position:relative` element, only offsets it), and Claude in Chrome, the browser tool available in this environment, has no real device/viewport emulation, confirmed several ways this session, which is why those misses happened blind rather than caught before being handed over. See `docs/handoff/homepage-and-header-footer.md` for the full account (including the Arabic word-choice reasoning) and `docs/TO-DO-List.md` for the live task list.
 
 As of the 2026-09-06 session end, a decorative ornamental section separator (`DKD-Separator`) is built and confirmed live between every homepage section (Hero, Our Story, How it Works, Testimonials, Contact, and above the footer). Designed in Illustrator as a single united SVG, the mosaic-star ornament plus two tapered lines merged into one flat path via Pathfinder \> Unite, since a CSS gradient can fade color but can't produce a genuine geometric taper. Implemented as a Kadence Vector Graphic block saved as a Reusable Block, with a responsive Max Width set per breakpoint (318px desktop, 299px mobile) after confirming the fixed 318.5px artwork would otherwise sit right at the smallest real phone viewport's floor. Confirmed working via both Chrome's device emulator and a real Android device screenshot, no overflow or clipping at any placement, including the Contact/footer boundary. One item deliberately deferred rather than done as a one-off: marking the SVG `aria-hidden` for screen readers, folded into the still-open Accessibility scan task instead. See `docs/handoff/homepage-and-header-footer.md` and `docs/TO-DO-List.md`.
+
+As of the 2026-09-08 session end, every remaining mixed-language block on the homepage now has proper `lang`/`dir` accessibility tagging: How It Works' heading and all 4 step titles/bodies, Testimonials' heading, Contact's Address/Store Hours headings, and Our Story's own heading (12 blocks total, closing out an item that had been open since late August). Two real bugs were found and fixed along the way, not just the splitting itself: the Address/Store Hours icon CSS was keyed to sibling position and broke once each heading got wrapped, and Arabic text landing inside a heading tag for the first time exposed a known-but-unaddressed gap (headings are hardcoded to a font with no Arabic coverage). Sobhy then reworked the section's spacing by hand, and a mobile-specific bug in that rework (one heading's `nowrap` treatment had no narrow-screen fallback, confirmed via a real phone screenshot, not any tooling in this session) was fixed with a scoped media query. A real WordPress editor reliability issue also surfaced this session, the Save button's own state signals became untrustworthy partway through, worked around by verifying saves directly against the REST API instead, worth remembering for future sessions. See `docs/handoff/homepage-and-header-footer.md` and `docs/TO-DO-List.md`.
 
 ---
 
@@ -61,7 +62,7 @@ These apply project-wide, not just to the file they happen to be documented alon
 
 | File | Covers |
 |---|---|
-| `business-context.md` | Who Darkum Design is, the owners and Bido's role, payment arrangement, Dema copy freeze, legal-pages requirement, communication gaps |
+| `business-context.md` | Who Darkum Design is, the owners and Bido's role, payment arrangement, legal-pages requirement, communication gaps |
 | `logo.md` | Logo export history, fixes, final file counts, delivery method, brand primary color |
 | `social-media.md` | Per-platform status table, the Commercial Registration blocker, business phone number, business email addresses, the Metricool unified inbox |
 | `website-stack-and-hosting.md` | Confirmed WordPress stack, local dev environment (set up then torn down), GoDaddy Managed WordPress limitations and hosting reference, backup strategy, the GitHub CI/CD decision |

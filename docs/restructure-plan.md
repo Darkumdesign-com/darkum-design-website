@@ -51,9 +51,9 @@ After all content has been moved out, rewrite `docs/HANDOFF.md` itself. The new 
 
 1. The existing header block (title, Last updated date, Maintainer line, Pricing note).
 2. A short paragraph explaining this file is now an index, and that detailed history lives in `docs/handoff/`.
-3. A brief business-context summary (a few sentences, not the full §1, just enough for someone to orient immediately: who Darkum Design is, the flat-fee arrangement, the key stakeholders, the current content freeze pending Dema).
+3. A brief business-context summary (a few sentences, not the full §1, just enough for someone to orient immediately: who Darkum Design is, the flat-fee arrangement, the key stakeholders).
 4. A "Confirmed stack" snapshot (WordPress, WooCommerce, Kadence, Polylang, hosting, current live-vs-build domain situation) in a few bullet points.
-5. An "Active blockers" list (Commercial Registration, APF tier decision, legal pages, Dema copy freeze), matching what's already accurate in the current file.
+5. An "Active blockers" list (Commercial Registration, APF tier decision, legal pages), matching what's already accurate in the current file.
 6. A short "Where things stand" summary, this should absorb the existing "SESSION END STATE (2026-08-26)" framing at the index level too (a one-paragraph version, the fuller version lives in `contact-section.md` per Step 2), so a reader gets the gist without opening a subfile.
 7. A table of contents linking to every file in `docs/handoff/`, each with a one-line description of what it covers, plus the existing pointer to `docs/MARKETING-COPY.md` for §8's content.
 
