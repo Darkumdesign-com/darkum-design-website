@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "c:\\Projects\\darkum-design-website\\logs\\.8214bfe95ec7b46318aecf506bd1f08206698135-audit.json",
+    "files": [
+        {
+            "date": 1789762251281,
+            "name": "c:\\Projects\\darkum-design-website\\logs\\mcp-puppeteer-2026-09-18.log",
+            "hash": "85b3f80ccd9e6aef835088e4ab4b85929c8329daf24eb8f14266bee60a84a548"
+        },
+        {
+            "date": 1789785407550,
+            "name": "c:\\Projects\\darkum-design-website\\logs\\mcp-puppeteer-2026-09-19.log",
+            "hash": "06bf10cb57b4b31985bdf11512e818fed14f382ed1b127554741fbfac7bb08b9"
+        }
+    ],
+    "hashType": "sha256"
+}

@@ -768,3 +768,16 @@ h3.dkd-lang-en {
     width: calc(100% - 48px);
   }
 }
+
+/* Add to Cart button - WooCommerce */
+.wp-site-blocks input[type="submit"]:not(.wp-element-button), .wp-site-blocks button[type="submit"]:not(.wp-element-button) {
+  background-color: var(--global-palette-btn-bg);
+}
+
+/* Quantity selector - WooCommerce */
+body .wp-site-blocks input:not([type="submit"]):not([type="button"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="image"]):not([type="hidden"]), body .wp-site-blocks textarea, body .wp-site-blocks select {
+    background-color: var(--global-palette9);
+    color: var(--global-palette1);
+    border: 1px solid var(--global-palette1);
+    border-radius: 8px;
+}

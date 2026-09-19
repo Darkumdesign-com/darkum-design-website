@@ -15,10 +15,22 @@ This is the "very customizable product" and is effectively a mini product config
 
 **Why Kadence Blocks doesn't cover this:** it's a page/layout builder, not a WooCommerce product-options tool. This needs a dedicated plugin.
 
-**Plugin decision, GoDaddy compatibility confirmed 2026-08-17, purchase still pending:**
+## Product photography
+
+**Received and background-removed, 2026-09-19.** Real bed frame and matching night stand photos, background removed by Sobhy, saved to the repo at `img/generated-imgs-chatgpt/bed-frame/`:
+- `bed-frame-front-transparent.png`
+- `bed-frame-tilted-left-transparent.png`
+- `bed-frame-tilted-right-transparent.png`
+- `night-stand-front-transparent.png`
+- `night-stand-tilted-left-transparent.png`
+- `night-stand-tilted-right-transparent.png`
+
+This answers the Phase 3 "does Bed Frame product photography exist yet" question, see `TO-DO-List.md` and `resolved-items-log.md`. Not yet used anywhere on the site or in the configurator build itself, that's still pending the Phase 3 configurator-detail answers.
+
+**Plugin decision, GoDaddy compatibility confirmed 2026-08-17, Lifetime tier purchased 2026-08-31:**
 - **Advanced Product Fields (APF) by StudioWombat**, 18+ field types, conditional logic, formula-based pricing.
 - **Corrected 2026-08-17:** the earlier note in this doc about APF being "installed and active" was the **free version**, installed by Sobhy specifically to verify it runs cleanly on GoDaddy Managed WordPress (i.e. isn't blocklisted), not a purchase. This confirms the plugin is compatible with the hosting environment, which resolves that due-diligence open item (see `resolved-items-log.md`), but **the free version cannot build the actual configurator**, its stripped-down feature set is missing conditional logic and file upload fields, both required here (position → insertions → size is a dependent chain). The real build still needs the paid tier.
-- **Purchase status:** ready to proceed on the paid **Lifetime** tier (the one-time option confirmed to exist as of 2026-08-16, satisfying the no-subscription requirement), **blocked on Bido/partners choosing which of the three Lifetime tiers to buy: Pro, Extended, or Extended + Addons.** Confirmed 2026-08-17 (Sobhy).
+- **Purchase status, resolved:** Sobhy purchased the **Lifetime All Access Pass** bundle directly on 2026-08-31 (satisfying the no-subscription requirement, one-time payment), license confirmed active on StudioWombat's own account dashboard. No longer blocked on Bido/partners choosing a tier.
 - **Alternative if APF doesn't work out:** Extra Product Options & Add-Ons by ThemeComplete, one-time payment **only if purchased via CodeCanyon specifically**; buying directly through themecomplete.com now defaults to a subscription model, which would violate the no-subscription requirement.
 - **Ruled out:** free-tier product option plugins generally, same reasoning as above, missing conditional logic and file upload fields.
 - **Plugin cost is separate from Sobhy's fee**, this is a cost Bido/partners ultimately bear, authorized for Sobhy to pay directly per the 2026-08-16 green light, rather than requiring Bido/partners to purchase it themselves. This still holds under the flat EGP 15,000 offer (see `business-terms.md`).

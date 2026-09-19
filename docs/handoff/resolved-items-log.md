@@ -2,6 +2,8 @@
 
 **Live open items are tracked in `docs/TO-DO-List.md`.** This section only records what has already been resolved, dated, for reference. If an item below has a follow-up caveat noted inline (for example "still needs Publish clicked"), that follow-up also lives in `TO-DO-List.md`, not just here.
 
+- [x] **Bed Frame product photography:** does it exist yet, or does it still need to be taken?, resolved 2026-09-19: real bed frame and matching night stand photos received, background removed by Sobhy, saved to the repo at `img/generated-imgs-chatgpt/bed-frame/` (6 files: bed frame front/tilted-left/tilted-right, night stand front/tilted-left/tilted-right). See `bed-frame-configurator.md`.
+
 - [x] Confirm exact handles/URLs for TikTok, YouTube, Pinterest, and X, done by Sobhy directly in `README.md` and `index.html` (2026-08-12)
 - [x] Confirm with client: "sliding animations" = scroll-reveal (Kadence native) or carousel/slider (needs MetaSlider)?, resolved 2026-08-13, see `domain-and-scope-decisions.md`: hero uses a custom Q&A slideshow, everything else uses Kadence's native fade-in/fade-out scroll-reveal, no slider plugin needed
 - [x] Re-verify StudioWombat APF pricing (subscription vs. one-time, see `bed-frame-configurator.md`), resolved 2026-08-16: confirmed a genuine one-time "Lifetime" license exists (separate toggle from "Yearly"). **Free version installed 2026-08-17 to confirm GoDaddy compatibility only, not a purchase, see `bed-frame-configurator.md`.**
