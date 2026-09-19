@@ -8,6 +8,9 @@
  * Color: official WhatsApp green, chosen deliberately for universal recognition,
  * not the brand primary color used elsewhere on the site.
  * Position: fixed, bottom-right, standard convention.
+ * Shadow: a black box-shadow was invisible against this site's black background,
+ * found and fixed 2026-09-19, now a soft green-tinted glow matching the button's own
+ * color instead, reads as an intentional glow rather than a plain white halo.
  */
 
 add_action( 'wp_footer', function() {
@@ -34,14 +37,14 @@ add_action( 'wp_footer', function() {
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+			box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
 			transition: transform 0.2s ease, box-shadow 0.2s ease;
 			text-decoration: none;
 		}
 		#darkum-whatsapp-float:hover,
 		#darkum-whatsapp-float:focus-visible {
 			transform: scale(1.08);
-			box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+			box-shadow: 0 6px 20px rgba(37, 211, 102, 0.55);
 		}
 		#darkum-whatsapp-float svg {
 			display: block;
