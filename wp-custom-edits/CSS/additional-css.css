@@ -781,3 +781,19 @@ body .wp-site-blocks input:not([type="submit"]):not([type="button"]):not([type="
     border: 1px solid var(--global-palette1);
     border-radius: 8px;
 }
+
+/* Product Variates - Font Size */
+.wapf-swatch-label {
+  font-size: small;
+}
+
+/* Product Variates - Price Font Size */
+.wapf-swatch-label span {
+  font-size: smaller;
+}
+
+/* Product - Required Asterisk */
+abbr.required {
+    text-decoration: none;
+    color: var(--global-palette14);
+}
