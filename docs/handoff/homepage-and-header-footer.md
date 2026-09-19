@@ -288,3 +288,7 @@ A **light, non-interactive preview version** (auto-cycling every 6s, same slide-
 | Is your child a superhero fan? Customize his bed with Iron Man or Superman with Darkum Design. | ابنك بيحب الأبطال الخارقين؟ صمّملّه سرير آيرون مان أو سوبرمان مع داركم ديزاين. |
 
 Bido to provide the full list of catchphrases (only 3 examples given so far) before the full WordPress build starts.
+
+### Floating WhatsApp button shadow, sitewide, 2026-09-19
+
+`wp-custom-edits/PHP/floating-whatsapp-button.php`'s box-shadow was a black glow, invisible against the site's black background. Replaced with a soft glow tinted to the button's own WhatsApp green (`rgba(37, 211, 102, ...)` at rest and on hover) instead, confirmed live. Sitewide fix, not tied to any one page or product.

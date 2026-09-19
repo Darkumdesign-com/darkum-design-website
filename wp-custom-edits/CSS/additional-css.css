@@ -797,3 +797,30 @@ abbr.required {
     text-decoration: none;
     color: var(--global-palette14);
 }
+
+/* Product - Quantity + Add to Cart row: expand button to fill remaining space
+   instead of leaving dead space beside a left-aligned fixed-width button.
+   form.cart is WooCommerce's own standard class, applies to every product. */
+form.cart {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	flex-wrap: wrap;
+}
+form.cart .quantity {
+	flex: 0 0 auto;
+}
+form.cart .single_add_to_cart_button {
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 0;
+	width: auto;
+	max-width: none;
+}
+
+/* Product totals block had no width constraint of its own, so its right edge
+   didn't line up with the quantity/Add to Cart row below it. Found via DevTools
+   computed styles, confirmed no competing button width rule was the cause. */
+.wapf-product-totals .wapf--inner {
+	max-width: 96%;
+}

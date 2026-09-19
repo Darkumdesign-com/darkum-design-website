@@ -82,3 +82,15 @@ Not recommended during the build:
 3. **Smaller benefit than it looks.** As above, git only solves file sync, most of this build's real state lives in the database, which git-based deployment doesn't touch at all.
 
 **Revisit only if** there's a meaningful, ongoing slice of pure custom code worth version-controlling later (e.g. a future child theme), not needed for the current scope.
+
+### WooCommerce non-legal-dependent setup, 2026-09-19
+
+A task list of WooCommerce setup steps that don't depend on the Commercial Registration/Tax Card was worked through (see `TO-DO-List.md` Phase 2):
+- **Store currency/general settings:** confirmed done.
+- **GoDaddy Payments (including Apple Pay, Google Pay, Selling in Person):** confirmed unusable for an Egypt-based store, US/Canada only per GoDaddy's own warning, disabled outright rather than worked around.
+- **Paymob:** added as the eventual live gateway, shows "Action needed", correctly left untouched, still blocked on the Commercial Registration/Tax Card.
+- **Cash on Delivery and Direct Bank Transfer:** enabled as the two test-mode payment methods.
+- **Sitewide styling gap found and fixed:** WooCommerce's default-generated text and inputs (price, Add to Cart button, quantity field, Cart Summary/Cart totals table, every Checkout billing field) rendered in WooCommerce's default black against the site's black theme, invisible without a select-drag or Tab-focus workaround. Fixed via new Additional CSS rules (an Add to Cart button background rule, then a broad WooCommerce input/textarea/select text-color rule after a first attempt had a missing closing brace), confirmed live via DevTools.
+- **First live order placed:** a demo product ("TEST, do not purchase", Hidden from Shop/search) was created and successfully walked through add to cart, checkout, and order placement via Direct Bank Transfer, the store's first live order (Order #1).
+
+Separately, Bido raised that the team is disappointed no product demo exists yet, and has been sending generated reference images in unannounced batches (5, then 10, then 12, no consolidated list), while confirming the factory visits for real materials/prices/processing time haven't happened. See `docs/handoff/bed-frame-configurator.md` for what was actually built as the demo (superseding the initial "first 5 images" scope decision) and `TO-DO-List.md` Phase 3 for the message queued to Bido about this.
