@@ -1,6 +1,6 @@
 # Darkum Design, Project Handoff
 
-**Last updated:** 2026-09-20
+**Last updated:** 2026-09-21
 **Maintainer:** Sobhy (sole developer/administrator, GitHub Org `darkumdesign`, separate Vercel account)
 **Pricing note:** Bido offered a flat rate of EGP 15,000 for the entire engagement (2026-08-16). The original item-by-item proposal and all freelancer market research have been archived to `docs/offer_market-research.md`, see `docs/handoff/business-terms.md`.
 
@@ -10,7 +10,7 @@ This file is now a slim index. The detailed project history, decisions, and trou
 
 ## Business context, in brief
 
-**Darkum Design (داركم ديزاين)** is a custom furniture and home décor shop based in Heliopolis, Cairo, delivering across Egypt (slogan: "FURNITURE · ART · DESIGN"). Owners are Nourhan Osama ("Noura") and Heba Farouk, both non-technical; key contact and decision authority is Bido (Noura's uncle), who has delegated technological decisions to Sobhy in his stead. The arrangement is an informal, trust-based one built on the personal relationship, but explicitly paid, not a favor: Bido offered a flat rate of **EGP 15,000 for the entire engagement** (logo, social media, coming-soon page, full website build, Bed Frame configurator) on 2026-08-16, no payment received yet. Full detail: `docs/handoff/business-context.md`.
+**Darkum Design (داركم ديزاين)** is a custom furniture and home décor shop based in Heliopolis, Cairo, delivering across Egypt (slogan: "FURNITURE · ART · DESIGN"). Owners are Nourhan Osama ("Noura") and Heba Farouk, both non-technical; key contact and decision authority is Bido (Noura's uncle), who has delegated technological decisions to Sobhy in his stead. The arrangement is an informal, trust-based one built on the personal relationship, but explicitly paid, not a favor: Bido offered a flat rate of **EGP 15,000 for the entire engagement** (logo, social media, coming-soon page, full website build, Bed Frame configurator) on 2026-08-16, paid in full as of 2026-09-13. Full detail: `docs/handoff/business-context.md`.
 
 ## Confirmed stack
 
@@ -45,6 +45,8 @@ As of 2026-09-19 (later the same day), the WooCommerce non-legal-dependent setup
 
 As of 2026-09-19 (later still), a further round of demo-product fixes shipped: Shop-grid image cropping, the APF frontend totals labels renamed ("Base subtotal"/"Options total"/"Grand total"), the product-page cart/totals layout aligned, and the floating WhatsApp button's shadow made visible. Full account: `docs/handoff/bed-frame-configurator.md` and `docs/handoff/homepage-and-header-footer.md`.
 
+As of 2026-09-21, a new homepage section, "Meet the Bed Frame," was designed and built: a hero image plus an 8-image material grid (7 material insertions plus the original wood), showcasing the bed frame using the `bed-frame-w-sheets` photo set. Bilingual EN/AR heading, intro paragraph, and 8 captions were drafted, reviewed, and applied; the `dkd-lang-en`/`dkd-lang-ar` accessibility pattern was extended to the section's heading and paragraph blocks, with `dkd-meet-bed-frame-row` and `dkd-meet-bed-frame-gallery` added as the row and gallery's own classes. Two real bugs were found and fixed: a literal `\u00A0` string typed into the captions instead of an actual non-breaking space (diagnosed and fixed directly against the database via WP-CLI, not just the editor UI), and the "Customize Yours" CTA button pointing nowhere because the Kadence Buttons block's Link Relation field had been used to hold the destination URL, writing to the HTML `rel` attribute instead of `href` (fixed by switching to the Button (Adv.) block, which exposes a proper URL field). One item remains open: 4 of the 8 captions are confirmed correct in the database but not yet reflecting on the live front end, most likely GoDaddy's CDN/page cache, to be rechecked after a cache flush. Full account: `docs/handoff/meet-the-bed-frame.md`.
+
 ---
 
 ## Standing rules
@@ -75,6 +77,7 @@ These apply project-wide, not just to the file they happen to be documented alon
 | `contact-section.md` | The Contact section build (map + floating form card) and all four rounds of bilingual/troubleshooting work, current session-end state |
 | `wp-cli-workflow-and-tooling.md` | The `eval-file` + `file_get_contents()` safe live-push method, the homepage content mirror and Posh-SSH snapshot tooling |
 | `bed-frame-configurator.md` | Required configurator fields, the Advanced Product Fields plugin decision and pricing tiers, the demo product build and its ChatGPT-generated images, the APF totals-label and product-page layout fixes |
+| `meet-the-bed-frame.md` | The homepage "Meet the Bed Frame" section build: layout, bilingual EN/AR copy, lang-attribute classes, the caption non-breaking-space bug, the CTA rel-vs-href bug, and the open front-end caption caching item |
 | `domain-and-scope-decisions.md` | Domain/registrar transfer timeline, the 2026-08-13 animation and bilingual-approach scope decisions |
 | `repo-infra-coming-soon-page.md` | GitHub/Vercel repo setup, the coming-soon page's full build history (meta tags, structured data, Notify Me form, ticker UX, socials) |
 | `business-terms.md` | The flat-rate offer, what stays relevant despite it (retainer, plugin costs, scoping principle) |
